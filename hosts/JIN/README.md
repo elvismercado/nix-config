@@ -1,0 +1,106 @@
+# JIN
+
+NixOS desktop — AMD Ryzen 9 / Radeon R7 430
+
+## Hardware
+
+| Component   | Model                                                                 |
+| ----------- | --------------------------------------------------------------------- |
+| Motherboard | Gigabyte X570 I AORUS PRO WIFI                                        |
+| CPU         | AMD Ryzen 9 3900X                                                     |
+| RAM         | Corsair Vengeance LPX 32GB (2x16GB) DDR4 3200MHz (CMK32GX4M2B3200C16) |
+| GPU         | AMD Radeon R7 430 (Oland)                                             |
+| Storage 1   | Crucial P2 1TB NVMe M.2 SSD (CT1000P2SSD8) — front M.2 (CPU)          |
+| Storage 2   | Crucial P2 1TB NVMe M.2 SSD (CT1000P2SSD8) — back M.2 (chipset)       |
+
+## M.2 connectors
+
+| Slot | Location      | Lanes       | Connected to | Use         |
+| ---- | ------------- | ----------- | ------------ | ----------- |
+| M2A  | Front (top)   | PCIe 4.0 ×4 | CPU direct   | OS drive    |
+| M2B  | Back (bottom) | PCIe 3.0 ×4 | X570 chipset | /home drive |
+
+The front M.2 slot connects directly to the CPU and provides full PCIe 4.0
+bandwidth (though the Crucial P2 is a PCIe 3.0 ×4 drive). The back M.2 slot
+runs through the X570 chipset at PCIe 3.0 ×4 — more than adequate for a
+data/home drive.
+
+## Disk layout
+
+### Drive 1 — OS (front M.2, CPU)
+
+| Partition | Mount   | Filesystem | Size                |
+| --------- | ------- | ---------- | ------------------- |
+| EFI       | `/boot` | vfat       | 2 GB                |
+| Root      | `/`     | ext4       | Remainder of disk   |
+| Swap      | —       | swap       | ≥ 48 GB (RAM × 1.5) |
+
+### Drive 2 — Home (back M.2, chipset)
+
+| Partition | Mount   | Filesystem | Size        |
+| --------- | ------- | ---------- | ----------- |
+| Home      | `/home` | ext4       | Entire disk |
+
+The entire second drive is formatted as a single ext4 partition mounted at
+`/home`. This keeps user data completely separate from the OS — you can
+reinstall NixOS on Drive 1 without touching `/home`.
+
+### Swap
+
+The swap partition is used as the hibernation (suspend-to-disk) target and as
+an overflow safety net for zram. It must be at least as large as physical RAM
+(32 GB) for hibernation to work; 1.5× RAM (48 GB) is recommended to allow
+headroom. Day-to-day swap is handled by zram (compressed swap in RAM) — the
+disk swap partition is rarely touched during normal use.
+
+## Configuration overview
+
+- **OS:** NixOS 25.11, x86_64-linux, stable channel
+- **Desktop:** KDE Plasma + SDDM (with multi-monitor layout)
+- **Bootloader:** GRUB (EFI)
+- **Networking:** NetworkManager, Bluetooth (A2DP), TCP BBR, irqbalance
+- **Audio:** PipeWire
+- **Kernel:** Linux Zen (desktop-optimised, 1000 Hz)
+- **CPU:** AMD Ryzen (P-State EPP, Zenpower, microcode updates)
+- **GPU:** AMD Radeon R7 430 (Oland), AMD graphics stack
+- **Storage:** 2× NVMe SSD (fstrim, noatime, tmpfs /tmp, I/O tuning)
+- **Memory:** zram (compressed swap), earlyoom, hibernation
+- **Input:** Wacom tablet, Logitech mouse
+- **Security:** YubiKey, fingerprint reader (fprintd)
+- **Printing:** CUPS
+- **Virtualisation:** Docker, libvirtd / virt-manager
+- **VPN:** Mullvad
+- **Fan Control:** CoolerControl
+- **Firmware:** fwupd
+- **Shell:** Bash (with completions)
+- **Garbage Collection:** Managed (Determinate Nix)
+
+## Installation
+
+For a full step-by-step guide to install NixOS from scratch on this machine
+(including an automated install script), see [INSTALL.md](../../scripts/nixos/INSTALL.md).
+
+## Useful commands
+
+```bash
+# Rebuild and switch
+sudo nixos-rebuild switch --flake .#JIN
+
+# Regenerate hardware config
+nixos-generate-config --show-hardware-config > ./configuration/hardware-configuration.nix
+```
+
+## Hardware diagnostics
+
+```bash
+# Motherboard
+nix-shell -p dmidecode --run "sudo dmidecode -t baseboard"
+
+# Memory
+nix-shell -p dmidecode --run "sudo dmidecode -t memory"
+
+# Storage
+lsblk -o NAME,MODEL
+nix-shell -p smartmontools --run "sudo smartctl -a /dev/nvme0n1"   # OS drive
+nix-shell -p smartmontools --run "sudo smartctl -a /dev/nvme1n1"   # Home drive
+```

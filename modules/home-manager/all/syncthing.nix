@@ -1,0 +1,31 @@
+{
+  config,
+  lib,
+  ...
+}:
+
+{
+  options = {
+    custom.syncthing.enable = lib.mkEnableOption "enables syncthing";
+  };
+
+  config = lib.mkIf config.custom.syncthing.enable {
+    services.syncthing = {
+      enable = true;
+      tray = {
+        enable = true;
+      };
+      # extraOptions = [ ];
+      # guiAddress = "127.0.0.1:8384";
+      overrideDevices = false; # If set to false, devices added via the web interface will persist and will have to be deleted manually.
+      overrideFolders = false; # If set to false, folders added via the web interface will persist and will have to be deleted manually.
+      settings.options = {
+        urAccepted = -1;
+        localAnnounceEnabled = true;
+        # localAnnouncePort = null;
+        # maxFolderConcurrency = null;
+        # relaysEnabled = true;
+      };
+    };
+  };
+}

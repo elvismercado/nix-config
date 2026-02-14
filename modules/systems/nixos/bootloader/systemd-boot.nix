@@ -1,0 +1,27 @@
+{
+  config,
+  lib,
+  ...
+}:
+
+{
+  options = {
+    custom.systemd-boot.enable = lib.mkEnableOption "enables SYSTEMD-BOOT bootloader";
+  };
+
+  config = lib.mkIf config.custom.systemd-boot.enable {
+    boot.loader = {
+      timeout = 3;
+      efi = {
+        canTouchEfiVariables = true;
+      };
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 20;
+
+        # Memtest86+ — memory diagnostic tool in the boot menu.
+        memtest86.enable = true;
+      };
+    };
+  };
+}

@@ -1,0 +1,46 @@
+# fnm — Fast Node Manager
+# https://github.com/Schniz/fnm
+#
+# Fast, cross-platform Node.js version manager written in Rust.
+# Works on Linux + macOS. Alternative to nvm with better performance.
+#
+# On first activation, installs the latest LTS Node.js version and sets it
+# as default if no versions are installed yet.
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/fnm.nix ];
+#   custom.fnm.enable = true;
+
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+{
+  options = {
+    custom.fnm.enable = lib.mkEnableOption "enables fnm Node.js version manager";
+  };
+
+  config = lib.mkIf config.custom.fnm.enable {
+    home.packages = [ pkgs.fnm ];
+
+    # Initialize fnm in bash (adds shims to PATH, enables auto-switching)
+    programs.bash.initExtra = ''
+      eval "$(fnm env --use-on-cd)"
+    '';
+
+    # Install latest LTS Node.js and set as default if no versions are installed yet
+    home.activation.fnmInstallLts = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      if command -v fnm &>/dev/null; then
+        if [ -z "$(fnm list 2>/dev/null | grep -v 'system')" ]; then
+          echo "[fnm] No Node.js versions found, installing latest LTS..."
+          fnm install --lts || echo "[fnm] Failed to install Node.js"
+          fnm default lts-latest 2>/dev/null || true
+          echo "[fnm] Set default Node.js to $(fnm current 2>/dev/null)"
+        fi
+      fi
+    '';
+  };
+}

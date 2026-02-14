@@ -1,0 +1,29 @@
+# Ansible — IT automation toolkit and linter
+#
+# Installs ansible (includes ansible-playbook, ansible-vault, ansible-galaxy,
+# etc.) and ansible-lint. All binaries are on PATH via Nix — no pip or
+# ~/.local/bin needed.
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/ansible.nix ];
+#   custom.ansible.enable = true;
+
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+{
+  options = {
+    custom.ansible.enable = lib.mkEnableOption "enables Ansible";
+  };
+
+  config = lib.mkIf config.custom.ansible.enable {
+    home.packages = with pkgs; [
+      ansible
+      ansible-lint
+    ];
+  };
+}
