@@ -1,7 +1,12 @@
-# Linux gaming — desktop shortcuts for gaming reference sites
+# Linux gaming — MangoHud overlay and desktop shortcuts for gaming reference sites
 #
-# Adds application menu entries for ProtonDB, Are We Anti-Cheat Yet,
-# PCGamingWiki, SteamDB, and Lutris game install scripts.
+# Configures MangoHud for FPS/frametime overlays and adds application menu
+# entries for ProtonDB, Are We Anti-Cheat Yet, PCGamingWiki, SteamDB, and
+# Lutris game install scripts.
+#
+# MangoHud is activated per-game via Steam launch options:
+#   mangohud %command%
+#   gamemoderun mangohud %command%
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/linux/gaming.nix ];
@@ -19,6 +24,32 @@
   };
 
   config = lib.mkIf config.custom.hmGaming.enable {
+    # MangoHud — FPS counter and frametime graph overlay.
+    # Activate per-game: mangohud %command%
+    #
+    # Additional settings to add below:
+    #   resolution             — display resolution
+    #   fps_limit = 144        — cap framerate
+    #   font_size = 24         — overlay text size
+    #   background_alpha = 0.5 — overlay background transparency
+    #   no_display             — hide overlay (logging only)
+    #
+    # Full reference: https://github.com/flightlessmango/MangoHud#mangohud_config
+    programs.mangohud = {
+      enable = true;
+      settings = {
+        fps = true;
+        frame_timing = true;
+        position = "top-left";
+        ram = true;
+        vram = true;
+        cpu_stats = true;
+        cpu_temp = true;
+        gpu_stats = true;
+        gpu_temp = true;
+      };
+    };
+
     xdg.desktopEntries = {
       protondb = {
         name = "ProtonDB";

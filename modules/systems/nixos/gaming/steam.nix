@@ -1,9 +1,9 @@
-# Steam — gaming platform with Proton, GameMode, Gamescope, MangoHud, and Lutris
+# Steam — gaming platform with Proton, GameMode, Gamescope, and Lutris
 #
 # Enables Steam with GE-Proton for broad game compatibility, GameMode for
 # CPU/GPU performance tuning, Gamescope for resolution scaling and HDR,
-# MangoHud for FPS/performance overlays, and Lutris for non-Steam games
-# (Epic, GOG, Battle.net, standalone Windows games).
+# and Lutris for non-Steam games (Epic, GOG, Battle.net, standalone Windows
+# games). MangoHud is configured separately via home-manager (gaming.nix).
 #
 # Steam launch options (set per-game in Properties → Launch Options):
 #   gamemoderun %command%              — enable GameMode performance tuning
@@ -62,10 +62,6 @@
     boot.kernel.sysctl."vm.max_map_count" = 2147483642;
 
     environment.systemPackages = with pkgs; [
-      # MangoHud — FPS counter and performance overlay (CPU, GPU, frametime).
-      # Activate per-game: mangohud %command%
-      mangohud
-
       # Lutris — open-source game launcher for non-Steam games.
       # Manages Wine/Proton for Epic, GOG, Battle.net, and standalone installers.
       lutris
