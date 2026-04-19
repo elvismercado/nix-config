@@ -38,15 +38,15 @@
     programs.mangohud = {
       enable = true;
       settings = {
-        fps = true;
-        frame_timing = true;
         position = "top-left";
-        ram = true;
-        vram = true;
-        cpu_stats = true;
-        cpu_temp = true;
         gpu_stats = true;
         gpu_temp = true;
+        cpu_stats = true;
+        cpu_temp = true;
+        vram = true;
+        ram = true;
+        fps = true;
+        frame_timing = true;
       };
     };
 
