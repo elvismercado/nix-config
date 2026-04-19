@@ -127,8 +127,9 @@
       # with "Could not load QML component".
       QT_QUICK_BACKEND = "rhi";
 
-      # Prefer native Wayland video output in SDL apps (games, emulators)
-      SDL_VIDEODRIVER = "wayland";
+      # SDL_VIDEODRIVER: not set — modern SDL2/SDL3 auto-detect Wayland.
+      # Forcing "wayland" breaks Easy Anti-Cheat games under Proton (Elden Ring, etc.)
+      # SDL_VIDEODRIVER = "wayland";
 
       # Force Firefox (and other Mozilla apps) to use the Wayland backend
       MOZ_ENABLE_WAYLAND = "1";
