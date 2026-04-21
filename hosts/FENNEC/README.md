@@ -9,7 +9,7 @@ NixOS desktop — ASUS PRIME X570-PRO / NVIDIA RTX 3080
 | Component   | Model                                                                                  |
 | ----------- | -------------------------------------------------------------------------------------- |
 | Motherboard | ASUS PRIME X570-PRO                                                                    |
-| CPU         | AMD Ryzen 9 3900X                                                                      |
+| CPU         | AMD Ryzen 9 5900X                                                                      |
 | RAM         | G.Skill 32 GB (2×16 GB) DDR4 4400 MHz (F4-4400C19-16GVK)                               |
 | GPU         | NVIDIA PNY GeForce RTX 3080 10 GB XLR8 Gaming REVEL EPIC-X RGB Triple Fan (LHR, GA102) |
 | Storage 1   | Corsair MP600 PRO XT 4 TB NVMe — M.2_1 (CPU)                                           |
@@ -71,10 +71,10 @@ and 6 would be disabled if an M.2 slot were ever switched to SATA mode.
 The SATA connectors are on the **right edge** of the PRIME X570-PRO, stacked
 vertically and labeled `SATA6G_1` through `SATA6G_6` on the PCB.
 
-| SATA Port | Drive           | OS      | Device      |
-| --------- | --------------- | ------- | ----------- |
-| Port 1    | Samsung 860 EVO | Linux   | `/dev/sda`  |
-| Port 2    | Samsung 860 EVO | Windows | `/dev/sdb`  |
+| SATA Port | Drive           | OS      | Device     |
+| --------- | --------------- | ------- | ---------- |
+| Port 1    | Samsung 860 EVO | Linux   | `/dev/sda` |
+| Port 2    | Samsung 860 EVO | Windows | `/dev/sdb` |
 
 ### Swap
 

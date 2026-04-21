@@ -83,6 +83,7 @@ Modules default to `false` — importing without enabling has no effect.
 |                                                          | `custom.grubThemeSleek.style`         |
 | `systems/nixos/bootloader/grub-theme-breeze.nix`         | `custom.grubThemeBreeze.enable`       |
 | `systems/nixos/bootloader/grub-theme-nixos.nix`          | `custom.grubThemeNixos.enable`        |
+| `systems/nixos/bootloader/systemd-boot.nix`              | `custom.systemd-boot.enable`          |
 | `systems/nixos/bootloader/plymouth.nix`                  | `custom.plymouth.enable`              |
 | `systems/nixos/bootloader/plymouth-theme-builtin.nix`    | `custom.plymouthThemeBuiltin.enable`  |
 |                                                          | `custom.plymouthThemeBuiltin.theme`   |
@@ -95,6 +96,8 @@ Modules default to `false` — importing without enabling has no effect.
 | `systems/nixos/cpu/amd/ryzen.nix`                        | `custom.amdRyzenCpu.enable`           |
 | `systems/nixos/cpu/amd/pstate.nix`                       | `custom.amdPstate.enable`             |
 | `systems/nixos/cpu/amd/zenpower.nix`                     | `custom.amdZenpower.enable`           |
+| `systems/nixos/cpu/amd/zen-kernel.nix`                   | `custom.zenKernel.enable`             |
+| `systems/nixos/cpu/amd/mitigations-off.nix`              | `custom.cpuMitigationsOff.enable`     |
 | **CPU Profiles** (import one per host)                   |                                       |
 | `systems/nixos/cpu/amd/ryzen_9_3900x.nix`                | `custom.amdRyzen93900x.enable`        |
 | `systems/nixos/cpu/amd/ryzen_9_5900x.nix`                | `custom.amdRyzen95900x.enable`        |
@@ -105,6 +108,8 @@ Modules default to `false` — importing without enabling has no effect.
 | `systems/nixos/display_manager/sddm.nix`                 | `custom.sddm.enable`                  |
 | `systems/nixos/display_manager/sddm-monitor-layout.nix`  | `custom.sddmMonitorLayout.enable`     |
 | `systems/nixos/display_manager/sddm-input-config.nix`    | `custom.sddmInputConfig.enable`       |
+| `systems/nixos/display_manager/greetd.nix`               | `custom.greetd.enable`                |
+| `systems/nixos/display_manager/ly.nix`                   | `custom.ly.enable`                    |
 | **Graphics**                                             |                                       |
 | `systems/nixos/graphics/amd_radeon_r7_430.nix`           | `custom.amdRadeonR7430.enable`        |
 | `systems/nixos/graphics/intel_arc_a380-intel-driver.nix` | `custom.intelArcIntelDriver.enable`   |
