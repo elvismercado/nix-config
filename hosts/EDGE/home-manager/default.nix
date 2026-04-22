@@ -22,6 +22,7 @@
 
     # macOS
     ../../../modules/home-manager/darwin/rectangle.nix
+    ../../../modules/home-manager/darwin/aliases.nix
   ];
 
   # Enable imported modules
@@ -40,4 +41,5 @@
 
   # macOS
   custom.rectangle.enable = true;
+  custom.hmDarwinAliases.enable = true;
 }

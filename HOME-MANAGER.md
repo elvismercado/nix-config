@@ -104,9 +104,10 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
 
 **macOS** (`home-manager/darwin/`):
 
-| Module                              | Option                    |
-| ----------------------------------- | ------------------------- |
-| `home-manager/darwin/rectangle.nix` | `custom.rectangle.enable` |
+| Module                              | Option                          |
+| ----------------------------------- | ------------------------------- |
+| `home-manager/darwin/aliases.nix`   | `custom.hmDarwinAliases.enable` |
+| `home-manager/darwin/rectangle.nix` | `custom.rectangle.enable`       |
 
 > `systems/shared/ssh-server.nix` (`custom.sshServer.enable`) is a **system** module — use it in `configuration/default.nix`, not in `home-manager/default.nix`.
 
