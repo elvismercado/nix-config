@@ -48,7 +48,7 @@
 set -euo pipefail
 
 SECONDS=0
-trap 'elapsed=$SECONDS; printf "\n%b Total time: %dm %ds\n" "${BOLD:-}[install]${NC:-}" $((elapsed/60)) $((elapsed%60))' EXIT
+trap 'umount -R /mnt 2>/dev/null || true; swapoff -a 2>/dev/null || true; elapsed=$SECONDS; printf "\n%b Total time: %dm %ds\n" "${BOLD:-}[install]${NC:-}" $((elapsed/60)) $((elapsed%60))' EXIT
 
 # ──────────────────────────────────────────────────────────────
 # Configuration
