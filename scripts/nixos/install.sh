@@ -193,7 +193,7 @@ prompt_size() {
     fi
     # Try to normalize — on failure, re-prompt instead of exiting
     if normalized=$(normalize_size "$input" "$label" 2>&1); then
-      eval "${varname}=\"${normalized}\""
+      printf -v "$varname" '%s' "$normalized"
       return
     else
       warn "Invalid size '${input}'. Use a number with M or G (e.g. 512M, 2G, 48G)."
@@ -236,7 +236,7 @@ prompt_disk() {
   while true; do
     read -rp "  ${label} [1-${#disks[@]}]: " choice
     if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#disks[@]} )); then
-      eval "${varname}=\"${disks[$((choice - 1))]}\""
+      printf -v "$varname" '%s' "${disks[$((choice - 1))]}"
       info "Selected: ${BOLD}${disks[$((choice - 1))]}${NC}"
       return
     fi
