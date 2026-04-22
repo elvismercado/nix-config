@@ -18,7 +18,6 @@
       url = "https://flakehub.com/f/nix-darwin/nix-darwin/*"; # latest stable
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    mac-app-util.url = "github:hraban/mac-app-util"; # (Nix) Utilities for Mac App launchers
 
     home-manager = {
       url = "github:nix-community/home-manager"; # unstable (master)

@@ -25,13 +25,12 @@ darwin-rebuild switch --flake .#EDGE
 4. `nixpkgs.source` is set to the selected channel's `outPath`, ensuring all packages come from the right branch
 5. The Home Manager version (stable/unstable) is also selected per-host via `selectHomeManager` — a `"stable"` host uses `home-manager-stable`, an `"unstable"` host uses `home-manager`
 6. Home Manager is integrated as a nix-darwin module for system rebuilds
-7. [mac-app-util](https://github.com/hraban/mac-app-util) is available as an input for macOS app launcher utilities
 
 ### What gets passed to modules
 
 Every Darwin module receives these via `specialArgs`:
 
-- `inputs` — all flake inputs (access `inputs.mac-app-util`, `inputs.home-manager`, etc.)
+- `inputs` — all flake inputs (access `inputs.home-manager`, etc.)
 - `userSettings` — the host's `user-settings.nix` (`username`, `hostname`, `system`, `channel`, `timeZone`)
 - `outputs` — the flake's own outputs
 
