@@ -13,7 +13,6 @@
     # and nix.enable = false means nix.settings is not managed by nix-darwin.
     ./user.nix
 
-    ../../../modules/systems/darwin/garbage.nix
     ../../../modules/systems/darwin/dock.nix
     ../../../modules/systems/darwin/finder.nix
     ../../../modules/systems/darwin/control-center.nix
@@ -101,5 +100,4 @@
   custom.fonts.enable = true;
   custom.power.enable = true;
   custom.security.enable = true;
-  # custom.gc.enable — disabled: nix.enable = false (Determinate Nix manages its own GC)
 }
