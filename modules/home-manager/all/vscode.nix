@@ -17,10 +17,6 @@
   };
 
   config = lib.mkIf config.custom.hmVscode.enable {
-    home.packages = with pkgs; [
-      nil # LSP Plugin Support
-    ];
-
     programs.vscode = {
       enable = true;
       profiles.default = {
