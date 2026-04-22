@@ -103,7 +103,7 @@
     # Login window
     system.defaults.loginwindow = {
       GuestEnabled = false;
-      SHOWFULLNAME = true;
+      SHOWFULLNAME = false; # false = user list with icons, true = username+password text fields
     };
 
     # Menu bar clock
