@@ -1,3 +1,9 @@
+# Syncthing — continuous file synchronisation daemon
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/syncthing.nix ];
+#   custom.syncthing.enable = true;
+
 {
   config,
   lib,

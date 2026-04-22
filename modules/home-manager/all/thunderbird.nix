@@ -1,3 +1,9 @@
+# Thunderbird email client
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/thunderbird.nix ];
+#   custom.thunderbird.enable = true;
+
 {
   config,
   pkgs,

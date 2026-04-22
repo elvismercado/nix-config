@@ -1,3 +1,9 @@
+# Mullvad VPN daemon
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/mullvad.nix ];
+#   custom.mullvad.enable = true;
+
 {
   config,
   lib,

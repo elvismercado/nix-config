@@ -1,4 +1,9 @@
-# compatible across all shells!
+# Cross-platform shell aliases — nix workflow, diagnostics, hardware
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/aliases.nix ];
+#   custom.hmAliases.enable = true;
+
 {
   config,
   lib,

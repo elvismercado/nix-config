@@ -1,3 +1,9 @@
+# Additional user packages not managed by a dedicated module
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/packages.nix ];
+#   custom.hmPackages.enable = true;
+
 {
   config,
   pkgs,

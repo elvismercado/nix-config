@@ -1,3 +1,9 @@
+# Base home-manager config — environment variables, XDG dirs, core packages
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/base.nix ];
+#   custom.hmBase.enable = true;
+
 {
   config,
   pkgs,

@@ -1,3 +1,9 @@
+# Brave browser — installed via home-manager with optional extensions
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/brave.nix ];
+#   custom.brave.enable = true;
+
 {
   config,
   pkgs,

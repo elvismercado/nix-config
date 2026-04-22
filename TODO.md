@@ -33,7 +33,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ## P4 — Module Quality
 
-- [ ] **Add comment headers to 13 modules** — Missing purpose + Usage block: `base.nix`, `packages.nix`, `vscode.nix`, `bash.nix`, `brave.nix`, `syncthing.nix`, `thunderbird.nix`, `nextcloud.nix`, `docker.nix`, `mullvad.nix`, `garbage.nix` (shared), `packages.nix` (shared), partial `aliases.nix`.
+- [x] **Add comment headers to 13 modules** — Missing purpose + Usage block: `base.nix`, `packages.nix`, `vscode.nix`, `bash.nix`, `brave.nix`, `syncthing.nix`, `thunderbird.nix`, `nextcloud.nix`, `docker.nix`, `mullvad.nix`, `garbage.nix` (shared), `packages.nix` (shared), partial `aliases.nix`.
 - [ ] **Resolve inconsistent `hm` prefix naming** — `custom.hmBase`, `custom.hmPackages`, `custom.hmAliases`, `custom.hmVesktop` use an `hm` prefix while all other modules use clean names (e.g., `custom.ssh`, `custom.brave`).
 - [ ] **Deduplicate `nil` package** — Installed in both `base.nix` and `vscode.nix`. Remove from one.
 - [ ] **Remove `mpv` from `packages.nix`** — A dedicated `mpv.nix` module exists. Having it in `packages.nix` too is confusing.

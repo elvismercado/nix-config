@@ -1,3 +1,9 @@
+# Docker container runtime
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/docker.nix ];
+#   custom.docker.enable = true;
+
 {
   config,
   lib,

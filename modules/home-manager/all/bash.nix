@@ -1,3 +1,9 @@
+# Bash shell configuration — history, completions, initExtra
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/bash.nix ];
+#   custom.bash.enable = true;
+
 {
   config,
   lib,

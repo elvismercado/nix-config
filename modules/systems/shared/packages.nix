@@ -1,3 +1,9 @@
+# Base system packages shared across NixOS and darwin
+#
+# Usage:
+#   imports = [ ../../../modules/systems/shared/packages.nix ];
+#   custom.systemPackages.enable = true;
+
 {
   config,
   pkgs,

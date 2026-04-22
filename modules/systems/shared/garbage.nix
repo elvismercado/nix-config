@@ -1,3 +1,9 @@
+# Automatic Nix garbage collection and store optimisation
+#
+# Usage:
+#   imports = [ ../../../modules/systems/shared/garbage.nix ];
+#   custom.gc.enable = true;
+
 {
   config,
   lib,
