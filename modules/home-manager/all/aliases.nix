@@ -2,6 +2,7 @@
 {
   config,
   lib,
+  userSettings,
   ...
 }:
 
@@ -22,9 +23,9 @@
         nixdiag = "journalctl -b -o short-monotonic > /tmp/_bootlog.txt; cat /proc/cmdline > /tmp/_bootparams.txt; journalctl -b | grep -i plymouth > /tmp/_plymouth.txt; sudo dmesg | grep -iE 'drm|amdgpu|fbcon|console' > /tmp/_drm_display_output_events.txt; journalctl -b | grep -i kscreen > /tmp/_kscreen.txt; journalctl -b -u display-manager | grep -iE 'kscreen|output|priority|primary' > /tmp/_display-manager.txt; journalctl -b -u greetd --no-pager > /tmp/_greetd.txt; journalctl -b --no-pager | grep -iE 'sway|wlroots|greetd|regreet' > /tmp/_greetd-sway.txt; cat /tmp/_bootlog.txt /tmp/_bootparams.txt /tmp/_plymouth.txt /tmp/_drm_display_output_events.txt /tmp/_kscreen.txt /tmp/_display-manager.txt /tmp/_greetd.txt /tmp/_greetd-sway.txt > /tmp/_results.txt; echo 'Diagnostics saved to /tmp/_results.txt'";
 
         # Nix workflow aliases
-        switchcd = "cd ${config.home.homeDirectory}/git/nix-config";
-        switchupdate = "cd ${config.home.homeDirectory}/git/nix-config && nix flake update";
-        switchcheck = "cd ${config.home.homeDirectory}/git/nix-config && nix flake check";
+        switchcd = "cd ${config.home.homeDirectory}/${userSettings.repoPath}";
+        switchupdate = "cd ${config.home.homeDirectory}/${userSettings.repoPath} && nix flake update";
+        switchcheck = "cd ${config.home.homeDirectory}/${userSettings.repoPath} && nix flake check";
       };
     })
 

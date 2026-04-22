@@ -40,7 +40,8 @@ confirm() {
 # ──────────────────────────────────────────────────────────────
 detect_environment() {
   HOST=$(hostname)
-  REPO_DIR="$HOME/git/nix-config"
+  REPO_NAME="nix-config"
+  REPO_DIR="$HOME/git/$REPO_NAME"
 
   if [[ ! -d "$REPO_DIR" ]]; then
     error "Config repo not found at ${REPO_DIR}"
@@ -289,7 +290,7 @@ main() {
 
   if [[ $EUID -eq 0 ]]; then
     error "Do not run this script as root."
-    error "Run as your normal user: bash ~/git/nix-config/scripts/nixos/postinstall.sh"
+    error "Run as your normal user: bash ~/git/${REPO_NAME}/scripts/nixos/postinstall.sh"
     exit 1
   fi
 

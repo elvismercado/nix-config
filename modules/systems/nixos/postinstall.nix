@@ -12,6 +12,7 @@
 {
   config,
   lib,
+  userSettings,
   ...
 }:
 
@@ -22,7 +23,7 @@
 
   config = lib.mkIf config.custom.postinstall.enable {
     environment.shellAliases = {
-      postinstall = "bash ~/git/nix-config/scripts/nixos/postinstall.sh";
+      postinstall = "bash ~/${userSettings.repoPath}/scripts/nixos/postinstall.sh";
     };
   };
 }

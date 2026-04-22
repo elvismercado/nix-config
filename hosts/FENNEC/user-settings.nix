@@ -5,5 +5,6 @@
   channel = "stable"; # "stable" or "unstable"
   timeZone = "Europe/Amsterdam";
   uid = 1000; # UID for the system user — must match install script chown
+  repoPath = "git/nix-config"; # relative to $HOME
   desktopEnvironment = "kde-plasma"; # "kde-plasma", "cosmic", etc.
 }

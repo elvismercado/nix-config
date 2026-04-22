@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
 
-REPO_DIR="$HOME/git/nix-config"
+REPO_NAME="nix-config"
+REPO_DIR="$HOME/git/$REPO_NAME"
 
 get_os_name() {
   [ -f /etc/os-release ] || return 1
