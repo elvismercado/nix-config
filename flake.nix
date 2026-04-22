@@ -30,6 +30,9 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    # plasma-manager follows stable inputs only. If a NixOS host ever uses
+    # channel = "unstable", a second plasma-manager input (following the unstable
+    # variants) would be needed, or the follows must be made channel-aware.
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs-stable";

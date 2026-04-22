@@ -29,6 +29,8 @@ nixpkgs.lib.genAttrs (builtins.attrNames nixosHosts) (
           outputs = self.outputs;
           inherit inputs userSettings;
         };
+        # plasma-manager input follows nixpkgs-stable / home-manager-stable.
+        # Incompatible with channel = "unstable" hosts — see flake.nix.
         home-manager.sharedModules = [
           inputs.plasma-manager.homeModules.plasma-manager
         ];
