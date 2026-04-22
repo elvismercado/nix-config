@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/thunderbird.nix ];
-#   custom.thunderbird.enable = true;
+#   custom.hmThunderbird.enable = true;
 
 {
   config,
@@ -13,10 +13,10 @@
 
 {
   options = {
-    custom.thunderbird.enable = lib.mkEnableOption "enables thunderbird";
+    custom.hmThunderbird.enable = lib.mkEnableOption "enables thunderbird";
   };
 
-  config = lib.mkIf config.custom.thunderbird.enable {
+  config = lib.mkIf config.custom.hmThunderbird.enable {
     home.packages = with pkgs; [
       thunderbird
       hunspell

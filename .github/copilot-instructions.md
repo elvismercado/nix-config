@@ -10,16 +10,21 @@
 
 ## Custom Module Convention
 
-All modules use a `custom.*.enable` toggle pattern:
+All modules use a `custom.*.enable` toggle pattern with a **scope prefix**:
+
+- `hm*` — home-manager modules (e.g., `custom.hmBash`, `custom.hmBrave`)
+- `sys*` — shared system modules (e.g., `custom.sysPackages`, `custom.sysFonts`)
+- `sysDar*` — darwin-only system modules (e.g., `custom.sysDarDock`, `custom.sysDarFinder`)
+- `sysNix*` — NixOS-only system modules (e.g., `custom.sysNixBluetooth`, `custom.sysNixPlymouth`)
 
 ```nix
 {
-  options.custom.<name>.enable = lib.mkEnableOption "description";
-  config = lib.mkIf config.custom.<name>.enable { ... };
+  options.custom.<prefix><Name>.enable = lib.mkEnableOption "description";
+  config = lib.mkIf config.custom.<prefix><Name>.enable { ... };
 }
 ```
 
-Modules are imported in the host's `home-manager/default.nix` or `configuration/default.nix`, then explicitly enabled with `custom.<name>.enable = true`.
+Modules are imported in the host's `home-manager/default.nix` or `configuration/default.nix`, then explicitly enabled with `custom.<prefix><Name>.enable = true`.
 
 New modules should include a comment header with: one-line purpose, brief explanation, and a `Usage:` block showing the import path and enable flag.
 

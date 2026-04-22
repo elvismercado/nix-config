@@ -16,7 +16,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/cpu/amd/pstate.nix ];
-#   custom.amdPstate.enable = true;
+#   custom.sysNixAmdPstate.enable = true;
 
 {
   config,
@@ -30,12 +30,12 @@
   ];
 
   options = {
-    custom.amdPstate.enable = lib.mkEnableOption "enables AMD P-State CPU frequency scaling driver";
+    custom.sysNixAmdPstate.enable = lib.mkEnableOption "enables AMD P-State CPU frequency scaling driver";
   };
 
-  config = lib.mkIf config.custom.amdPstate.enable {
+  config = lib.mkIf config.custom.sysNixAmdPstate.enable {
     # Auto-enable the base AMD CPU module
-    custom.amdCpu.enable = true;
+    custom.sysNixAmdCpu.enable = true;
 
     # Tell the kernel to use the AMD P-State EPP driver in active mode.
     # In active mode, the CPU's internal firmware (CPPC) autonomously selects

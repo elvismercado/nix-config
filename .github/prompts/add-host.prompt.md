@@ -126,11 +126,11 @@ Start with the base home-manager modules:
 
   custom.hmBase.enable = true;
   custom.hmAliases.enable = true;
-  custom.bash.enable = true;
-  custom.git.enable = true;
-  custom.ssh.enable = true;
-  custom.starship.enable = true;
-  custom.starship.style = "pastel-powerline";
+  custom.hmBash.enable = true;
+  custom.hmGit.enable = true;
+  custom.hmSsh.enable = true;
+  custom.hmStarship.enable = true;
+  custom.hmStarship.style = "pastel-powerline";
 }
 ```
 

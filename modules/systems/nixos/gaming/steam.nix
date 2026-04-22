@@ -18,7 +18,7 @@
 #
 # Usage:
 #   imports = [ ../../../../modules/systems/nixos/gaming/steam.nix ];
-#   custom.steam.enable = true;
+#   custom.sysNixSteam.enable = true;
 
 {
   config,
@@ -29,10 +29,10 @@
 
 {
   options = {
-    custom.steam.enable = lib.mkEnableOption "enables Steam with gaming tools";
+    custom.sysNixSteam.enable = lib.mkEnableOption "enables Steam with gaming tools";
   };
 
-  config = lib.mkIf config.custom.steam.enable {
+  config = lib.mkIf config.custom.sysNixSteam.enable {
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;

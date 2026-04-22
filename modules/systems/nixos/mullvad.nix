@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/mullvad.nix ];
-#   custom.mullvad.enable = true;
+#   custom.sysNixMullvad.enable = true;
 
 {
   config,
@@ -12,10 +12,10 @@
 
 {
   options = {
-    custom.mullvad.enable = lib.mkEnableOption "enables Mullvad VPN daemon";
+    custom.sysNixMullvad.enable = lib.mkEnableOption "enables Mullvad VPN daemon";
   };
 
-  config = lib.mkIf config.custom.mullvad.enable {
+  config = lib.mkIf config.custom.sysNixMullvad.enable {
     services.mullvad-vpn.enable = true;
 
     # WireGuard-based kill-switch requires loose reverse-path filtering.

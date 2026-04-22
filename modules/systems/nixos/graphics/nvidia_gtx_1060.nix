@@ -45,11 +45,11 @@
   ];
 
   options = {
-    custom.nvidiaGtx1060.enable = lib.mkEnableOption "enables NVIDIA GTX 1060 6GB (Pascal/GP106) graphics support";
+    custom.sysNixNvidiaGtx1060.enable = lib.mkEnableOption "enables NVIDIA GTX 1060 6GB (Pascal/GP106) graphics support";
   };
 
-  config = lib.mkIf config.custom.nvidiaGtx1060.enable {
-    custom.nvtopNvidia.enable = true;
+  config = lib.mkIf config.custom.sysNixNvidiaGtx1060.enable {
+    custom.sysNixNvtopNvidia.enable = true;
 
     boot.kernelPackages = pkgs.linuxPackages_zen; # zen — low-latency desktop/gaming, consistent with other GPU profiles
     boot.initrd.kernelModules = [

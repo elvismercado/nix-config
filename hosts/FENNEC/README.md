@@ -86,7 +86,7 @@ disk swap partition is rarely touched during normal use.
 
 ## Bootloader
 
-Use GRUB (EFI) with os-prober for dual-boot. The `custom.grub.enable` module
+Use GRUB (EFI) with os-prober for dual-boot. The `custom.sysNixGrub.enable` module
 already sets `useOSProber = true`, which automatically detects Windows on the
 second SATA drive and adds a GRUB menu entry — no manual chainloading needed.
 
@@ -101,14 +101,14 @@ configuration for the Windows boot partition.
 2. Install NixOS first, then Windows on the second drive. Run
    `sudo nixos-rebuild switch` afterward to re-detect and add the Windows entry.
 
-Set `custom.grub.timeout = 5` (the default) to give enough time to select the
+Set `custom.sysNixGrub.timeout = 5` (the default) to give enough time to select the
 OS at boot.
 
 ## Next steps
 
 1. Boot NixOS installer on the machine
 2. Generate hardware config: `nixos-generate-config --show-hardware-config > hosts/FENNEC/configuration/hardware-configuration.nix`
-3. Set `custom.hibernate.resumeDevice` in `configuration/default.nix` to the swap partition UUID
+3. Set `custom.sysNixHibernate.resumeDevice` in `configuration/default.nix` to the swap partition UUID
 4. Run `sudo nixos-rebuild switch --flake .#FENNEC`
 
 ## Hardware diagnostics

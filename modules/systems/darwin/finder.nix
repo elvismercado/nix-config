@@ -5,7 +5,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/darwin/finder.nix ];
-#   custom.finder.enable = true;
+#   custom.sysDarFinder.enable = true;
 
 {
   config,
@@ -15,10 +15,10 @@
 
 {
   options = {
-    custom.finder.enable = lib.mkEnableOption "enables macOS Finder configuration";
+    custom.sysDarFinder.enable = lib.mkEnableOption "enables macOS Finder configuration";
   };
 
-  config = lib.mkIf config.custom.finder.enable {
+  config = lib.mkIf config.custom.sysDarFinder.enable {
     system.defaults.finder = {
       # View
       FXPreferredViewStyle = "clmv"; # Column view

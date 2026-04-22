@@ -9,8 +9,8 @@
 #     ../../../modules/systems/nixos/bootloader/plymouth.nix
 #     ../../../modules/systems/nixos/bootloader/plymouth-theme-breeze.nix
 #   ];
-#   custom.plymouth.enable = true;
-#   custom.plymouthThemeBreeze.enable = true;
+#   custom.sysNixPlymouth.enable = true;
+#   custom.sysNixPlymouthThemeBreeze.enable = true;
 
 {
   config,
@@ -21,10 +21,10 @@
 
 {
   options = {
-    custom.plymouthThemeBreeze.enable = lib.mkEnableOption "enables KDE Breeze Plymouth theme";
+    custom.sysNixPlymouthThemeBreeze.enable = lib.mkEnableOption "enables KDE Breeze Plymouth theme";
   };
 
-  config = lib.mkIf config.custom.plymouthThemeBreeze.enable {
+  config = lib.mkIf config.custom.sysNixPlymouthThemeBreeze.enable {
     boot.plymouth = {
       theme = "breeze";
       themePackages = [ pkgs.kdePackages.breeze-plymouth ];

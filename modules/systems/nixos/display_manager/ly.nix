@@ -11,8 +11,8 @@
 #     ../../../modules/systems/nixos/display_manager/ly.nix
 #     ../../../modules/systems/nixos/desktop_environment/kde_plasma.nix
 #   ];
-#   custom.ly.enable = true;
-#   custom.kdePlasma.enable = true;
+#   custom.sysNixLy.enable = true;
+#   custom.sysNixKdePlasma.enable = true;
 
 {
   config,
@@ -22,10 +22,10 @@
 
 {
   options = {
-    custom.ly.enable = lib.mkEnableOption "enables Ly TUI display manager";
+    custom.sysNixLy.enable = lib.mkEnableOption "enables Ly TUI display manager";
   };
 
-  config = lib.mkIf config.custom.ly.enable {
+  config = lib.mkIf config.custom.sysNixLy.enable {
     services.displayManager.ly = {
       enable = true;
       settings = {

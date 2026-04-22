@@ -129,7 +129,7 @@ All modules use `lib.mkEnableOption` with the `custom.*` namespace and default t
 ```nix
 {
   imports = [ ../../../modules/systems/nixos/printing.nix ];
-  custom.printing.enable = true;
+  custom.sysNixPrinting.enable = true;
 }
 ```
 

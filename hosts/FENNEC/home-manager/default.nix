@@ -51,26 +51,26 @@
 
   # Shell
   custom.hmAliases.enable = true;
-  custom.bash.enable = true;
-  custom.fastfetch.enable = true;
-  custom.git.enable = true;
-  custom.ssh.enable = true;
-  custom.starship.enable = true;
-  custom.starship.style = "pastel-powerline";
+  custom.hmBash.enable = true;
+  custom.hmFastfetch.enable = true;
+  custom.hmGit.enable = true;
+  custom.hmSsh.enable = true;
+  custom.hmStarship.enable = true;
+  custom.hmStarship.style = "pastel-powerline";
 
   # Apps
-  custom.brave.enable = true;
+  custom.hmBrave.enable = true;
   custom.hmMpv.enable = true;
-  custom.vscode.enable = true;
-  custom.syncthing.enable = true;
+  custom.hmVscode.enable = true;
+  custom.hmSyncthing.enable = true;
 
   # Linux
   custom.hmLinuxAliases.enable = true;
-  custom.windowShortcuts.enable = true;
-  custom.displayProfiles.enable = true;
+  custom.hmWindowShortcuts.enable = true;
+  custom.hmDisplayProfiles.enable = true;
 
   # Linux / KDE Plasma
-  custom.plasmaConfig.enable = true;
+  custom.hmPlasmaConfig.enable = true;
 
   # Linux / Gaming
   custom.hmGaming.enable = true;

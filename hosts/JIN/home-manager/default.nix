@@ -58,15 +58,15 @@
   # Shell
   custom.hmAliases.enable = true;
   custom.hmAliasesAmdCpu.enable = true;
-  custom.ansible.enable = true;
-  custom.bash.enable = true;
-  custom.fastfetch.enable = true;
-  custom.fnm.enable = true;
-  custom.git.enable = true;
-  custom.pyenv.enable = true;
-  custom.ssh.enable = true;
-  custom.starship.enable = true;
-  custom.starship.style = "pastel-powerline";
+  custom.hmAnsible.enable = true;
+  custom.hmBash.enable = true;
+  custom.hmFastfetch.enable = true;
+  custom.hmFnm.enable = true;
+  custom.hmGit.enable = true;
+  custom.hmPyenv.enable = true;
+  custom.hmSsh.enable = true;
+  custom.hmStarship.enable = true;
+  custom.hmStarship.style = "pastel-powerline";
 
   # Linux
   custom.hmLinuxAliases.enable = true;
@@ -75,20 +75,20 @@
   custom.hmLinutil.enable = true;
 
   # Apps
-  custom.android.enable = true;
-  custom.brave.enable = true;
-  custom.plasmaConfig.enable = true;
-  custom.windowShortcuts.enable = true;
-  custom.thunderbird.enable = true;
-  custom.vscode.enable = true;
+  custom.hmAndroid.enable = true;
+  custom.hmBrave.enable = true;
+  custom.hmPlasmaConfig.enable = true;
+  custom.hmWindowShortcuts.enable = true;
+  custom.hmThunderbird.enable = true;
+  custom.hmVscode.enable = true;
 
   # Services
-  custom.displayProfiles.enable = true;
-  custom.shutdownDisableOutputs.enable = true;
-  custom.shutdownDisableOutputs.connectors = [ "DP-2" ]; # disable DP-2 before shutdown for clean Plymouth splash
+  custom.hmDisplayProfiles.enable = true;
+  custom.hmShutdownDisableOutputs.enable = true;
+  custom.hmShutdownDisableOutputs.connectors = [ "DP-2" ]; # disable DP-2 before shutdown for clean Plymouth splash
 
   # Dual-monitor profiles (DP-2 connected — score 2, wins over single)
-  custom.displayProfiles.profiles."4k-dual" = {
+  custom.hmDisplayProfiles.profiles."4k-dual" = {
     match."DP-1" = "3840x2160";
     match."DP-2" = "1920x1200";
     outputs."DP-1" = {
@@ -107,7 +107,7 @@
       position = "right-of-DP-1";
     };
   };
-  custom.displayProfiles.profiles."2k-dual" = {
+  custom.hmDisplayProfiles.profiles."2k-dual" = {
     match."DP-1" = "2560x1440";
     match."DP-2" = "1920x1200";
     outputs."DP-1" = {
@@ -126,7 +126,7 @@
       position = "right-of-DP-1";
     };
   };
-  custom.displayProfiles.profiles."1080p-dual" = {
+  custom.hmDisplayProfiles.profiles."1080p-dual" = {
     match."DP-1" = "1920x1080";
     match."DP-2" = "1920x1200";
     outputs."DP-1" = {
@@ -147,7 +147,7 @@
   };
 
   # Single-monitor profiles (DP-2 disconnected — score 1, fallback)
-  custom.displayProfiles.profiles."4k-single" = {
+  custom.hmDisplayProfiles.profiles."4k-single" = {
     match."DP-1" = "3840x2160";
     outputs."DP-1" = {
       resolution = "3840x2160";
@@ -157,7 +157,7 @@
       brightness = 1.0;
     };
   };
-  custom.displayProfiles.profiles."2k-single" = {
+  custom.hmDisplayProfiles.profiles."2k-single" = {
     match."DP-1" = "2560x1440";
     outputs."DP-1" = {
       resolution = "2560x1440";
@@ -167,7 +167,7 @@
       brightness = 1.0;
     };
   };
-  custom.displayProfiles.profiles."1080p-single" = {
+  custom.hmDisplayProfiles.profiles."1080p-single" = {
     match."DP-1" = "1920x1080";
     outputs."DP-1" = {
       resolution = "1920x1080";
@@ -178,8 +178,8 @@
     };
   };
 
-  custom.nextcloud.enable = true;
-  custom.syncthing.enable = true;
+  custom.hmNextcloud.enable = true;
+  custom.hmSyncthing.enable = true;
 
   # Packages
   custom.hmPackages.enable = true;

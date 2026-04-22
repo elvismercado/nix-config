@@ -13,10 +13,10 @@
 
 {
   options = {
-    custom.enableFlakes.enable = lib.mkEnableOption "enables Nix flakes and nix-command";
+    custom.sysNixEnableFlakes.enable = lib.mkEnableOption "enables Nix flakes and nix-command";
   };
 
-  config = lib.mkIf config.custom.enableFlakes.enable {
+  config = lib.mkIf config.custom.sysNixEnableFlakes.enable {
     nix = {
       settings = {
         experimental-features = [

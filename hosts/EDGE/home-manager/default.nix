@@ -28,18 +28,18 @@
   # Enable imported modules
   custom.hmBase.enable = true;
   custom.hmAliases.enable = true;
-  custom.android.enable = true;
-  custom.ansible.enable = true;
-  custom.bash.enable = true;
-  custom.fastfetch.enable = true;
-  custom.fnm.enable = true;
-  custom.git.enable = true;
-  custom.pyenv.enable = true;
-  custom.ssh.enable = true;
-  custom.starship.enable = true;
-  custom.starship.style = "pastel-powerline";
+  custom.hmAndroid.enable = true;
+  custom.hmAnsible.enable = true;
+  custom.hmBash.enable = true;
+  custom.hmFastfetch.enable = true;
+  custom.hmFnm.enable = true;
+  custom.hmGit.enable = true;
+  custom.hmPyenv.enable = true;
+  custom.hmSsh.enable = true;
+  custom.hmStarship.enable = true;
+  custom.hmStarship.style = "pastel-powerline";
 
   # macOS
-  custom.rectangle.enable = true;
+  custom.hmRectangle.enable = true;
   custom.hmDarwinAliases.enable = true;
 }

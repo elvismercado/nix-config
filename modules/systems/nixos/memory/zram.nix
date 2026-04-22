@@ -16,7 +16,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/memory/zram.nix ];
-#   custom.zram.enable = true;
+#   custom.sysNixZram.enable = true;
 
 {
   config,
@@ -26,10 +26,10 @@
 
 {
   options = {
-    custom.zram.enable = lib.mkEnableOption "enables zram compressed swap";
+    custom.sysNixZram.enable = lib.mkEnableOption "enables zram compressed swap";
   };
 
-  config = lib.mkIf config.custom.zram.enable {
+  config = lib.mkIf config.custom.sysNixZram.enable {
     zramSwap = {
       enable = lib.mkDefault true;
 

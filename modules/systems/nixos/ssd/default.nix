@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.ssd.enable = lib.mkEnableOption "enables SSD optimizations";
+    custom.sysNixSsd.enable = lib.mkEnableOption "enables SSD optimizations";
   };
 
-  config = lib.mkIf config.custom.ssd.enable {
+  config = lib.mkIf config.custom.sysNixSsd.enable {
 
     # --- TRIM ---
     # Periodic TRIM reclaims unused blocks; preferred over continuous discard

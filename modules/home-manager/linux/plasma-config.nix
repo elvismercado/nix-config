@@ -13,7 +13,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/linux/plasma-config.nix ];
-#   custom.plasmaConfig.enable = true;
+#   custom.hmPlasmaConfig.enable = true;
 
 {
   config,
@@ -25,14 +25,14 @@
 
 {
   options = {
-    custom.plasmaConfig.enable = lib.mkEnableOption "enables macOS-style Plasma desktop configuration";
+    custom.hmPlasmaConfig.enable = lib.mkEnableOption "enables macOS-style Plasma desktop configuration";
   };
 
-  config = lib.mkIf config.custom.plasmaConfig.enable {
+  config = lib.mkIf config.custom.hmPlasmaConfig.enable {
     assertions = [
       {
         assertion = (userSettings.desktopEnvironment or null) == "kde-plasma";
-        message = "custom.plasmaConfig requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
+        message = "custom.hmPlasmaConfig requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
       }
     ];
     # Webcam app (Qt, replaces Kamoso)

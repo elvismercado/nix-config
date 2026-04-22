@@ -39,26 +39,26 @@
 #     ../../../modules/systems/nixos/bootloader/plymouth.nix
 #     ../../../modules/systems/nixos/bootloader/plymouth-theme-adi1090x.nix
 #   ];
-#   custom.plymouth.enable = true;
-#   custom.plymouthThemeAdi1090x.enable = true;
-#   custom.plymouthThemeAdi1090x.theme = "angular_alt";
+#   custom.sysNixPlymouth.enable = true;
+#   custom.sysNixPlymouthThemeAdi1090x.enable = true;
+#   custom.sysNixPlymouthThemeAdi1090x.theme = "angular_alt";
 #
 #   # Optional: disable secondary monitors during boot splash (multi-monitor setups)
-#   custom.plymouth.bootDisabledOutputs = [ "DP-2" ];  # auto-adds video=DP-2:d kernel param
+#   custom.sysNixPlymouth.bootDisabledOutputs = [ "DP-2" ];  # auto-adds video=DP-2:d kernel param
 #
 #   # Optional: additional kernel video= params for pinning modes (rarely needed)
-#   custom.plymouth.bootVideoParams = [
+#   custom.sysNixPlymouth.bootVideoParams = [
 #     "video=DP-1:2560x1440@100"   # primary — pin to a specific mode
 #   ];
 #
 #   # Optional: HiDPI scaling (integer factor, e.g. 2 for 4K displays)
-#   custom.plymouth.deviceScale = 2;
+#   custom.sysNixPlymouth.deviceScale = 2;
 #
 #   # Optional: ensure full animation plays on fast-booting systems (seconds)
-#   custom.plymouth.minAnimationDuration = 5;
+#   custom.sysNixPlymouth.minAnimationDuration = 5;
 #
 #   # Optional: ensure shutdown/reboot splash is visible (seconds)
-#   custom.plymouth.minShutdownDuration = 2;
+#   custom.sysNixPlymouth.minShutdownDuration = 2;
 
 {
   config,
@@ -69,9 +69,9 @@
 
 {
   options = {
-    custom.plymouth.enable = lib.mkEnableOption "enables Plymouth boot splash (silent boot + systemd initrd)";
+    custom.sysNixPlymouth.enable = lib.mkEnableOption "enables Plymouth boot splash (silent boot + systemd initrd)";
 
-    custom.plymouth.bootVideoParams = lib.mkOption {
+    custom.sysNixPlymouth.bootVideoParams = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
       description = ''
@@ -85,7 +85,7 @@
       '';
     };
 
-    custom.plymouth.bootDisabledOutputs = lib.mkOption {
+    custom.sysNixPlymouth.bootDisabledOutputs = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
       description = ''
@@ -101,7 +101,7 @@
       '';
     };
 
-    custom.plymouth.deviceScale = lib.mkOption {
+    custom.sysNixPlymouth.deviceScale = lib.mkOption {
       type = lib.types.nullOr lib.types.int;
       default = null;
       description = ''
@@ -111,7 +111,7 @@
       '';
     };
 
-    custom.plymouth.useSimpleDrm = lib.mkOption {
+    custom.sysNixPlymouth.useSimpleDrm = lib.mkOption {
       type = lib.types.bool;
       default = true;
       description = ''
@@ -126,7 +126,7 @@
       '';
     };
 
-    custom.plymouth.minAnimationDuration = lib.mkOption {
+    custom.sysNixPlymouth.minAnimationDuration = lib.mkOption {
       type = lib.types.nullOr lib.types.int;
       default = null;
       description = ''
@@ -142,7 +142,7 @@
       '';
     };
 
-    custom.plymouth.minShutdownDuration = lib.mkOption {
+    custom.sysNixPlymouth.minShutdownDuration = lib.mkOption {
       type = lib.types.nullOr lib.types.int;
       default = null;
       description = ''
@@ -156,7 +156,7 @@
       '';
     };
 
-    custom.plymouth.debug = lib.mkOption {
+    custom.sysNixPlymouth.debug = lib.mkOption {
       type = lib.types.bool;
       default = false;
       description = ''
@@ -167,7 +167,7 @@
     };
   };
 
-  config = lib.mkIf config.custom.plymouth.enable {
+  config = lib.mkIf config.custom.sysNixPlymouth.enable {
     boot.plymouth = {
       enable = true;
 
@@ -188,8 +188,8 @@
       +
         # HiDPI integer scaling factor — only included when deviceScale is set.
         lib.optionalString (
-          config.custom.plymouth.deviceScale != null
-        ) "DeviceScale=${toString config.custom.plymouth.deviceScale}\n";
+          config.custom.sysNixPlymouth.deviceScale != null
+        ) "DeviceScale=${toString config.custom.sysNixPlymouth.deviceScale}\n";
 
     # Use systemd-based initrd for smooth Plymouth transitions.
     # Without this, Plymouth uses shell script hooks which can cause
@@ -212,10 +212,10 @@
       "fbcon=vc:2-6" # keep fbcon off VT1 so it can't flash during GPU driver swap
       "plymouth.nolog" # disable Plymouth boot log (/var/log/boot.log) & console redirection
     ]
-    ++ config.custom.plymouth.bootVideoParams
-    ++ map (connector: "video=${connector}:d") config.custom.plymouth.bootDisabledOutputs
-    ++ lib.optional (!config.custom.plymouth.useSimpleDrm) "plymouth.use-simpledrm=0"
-    ++ lib.optional config.custom.plymouth.debug "plymouth.debug";
+    ++ config.custom.sysNixPlymouth.bootVideoParams
+    ++ map (connector: "video=${connector}:d") config.custom.sysNixPlymouth.bootDisabledOutputs
+    ++ lib.optional (!config.custom.sysNixPlymouth.useSimpleDrm) "plymouth.use-simpledrm=0"
+    ++ lib.optional config.custom.sysNixPlymouth.debug "plymouth.debug";
 
     # Lower console log level to prevent kernel messages from
     # bleeding through the Plymouth splash.
@@ -233,7 +233,7 @@
     # Re-enable outputs that were disabled via video=<connector>:d
     # before the display manager starts, so the login screen sees all monitors.
     systemd.services.plymouth-reenable-outputs =
-      lib.mkIf (config.custom.plymouth.bootDisabledOutputs != [ ])
+      lib.mkIf (config.custom.sysNixPlymouth.bootDisabledOutputs != [ ])
         {
           description = "Re-enable DRM outputs disabled during boot";
           wantedBy = [ "display-manager.service" ];
@@ -250,7 +250,7 @@
                 echo "Re-enabled $card"
               fi
             done
-          '') config.custom.plymouth.bootDisabledOutputs
+          '') config.custom.sysNixPlymouth.bootDisabledOutputs
           + ''
             ${pkgs.udev}/bin/udevadm settle --timeout=5
           '';
@@ -262,18 +262,18 @@
     # when Plymouth starts from the initramfs (the standalone-service
     # approach does NOT work with initramfs-based Plymouth).
     # https://wiki.archlinux.org/title/Plymouth#Slow_down_boot_to_show_the_full_animation
-    systemd.services.plymouth-quit = lib.mkIf (config.custom.plymouth.minAnimationDuration != null) {
-      serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/sleep ${toString config.custom.plymouth.minAnimationDuration}";
+    systemd.services.plymouth-quit = lib.mkIf (config.custom.sysNixPlymouth.minAnimationDuration != null) {
+      serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/sleep ${toString config.custom.sysNixPlymouth.minAnimationDuration}";
     };
 
     # Ensure the Plymouth shutdown/reboot splash is visible on fast systems.
     # Same ExecStartPre approach as boot, applied to plymouth-poweroff and
     # plymouth-reboot services.
-    systemd.services.plymouth-poweroff = lib.mkIf (config.custom.plymouth.minShutdownDuration != null) {
-      serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/sleep ${toString config.custom.plymouth.minShutdownDuration}";
+    systemd.services.plymouth-poweroff = lib.mkIf (config.custom.sysNixPlymouth.minShutdownDuration != null) {
+      serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/sleep ${toString config.custom.sysNixPlymouth.minShutdownDuration}";
     };
-    systemd.services.plymouth-reboot = lib.mkIf (config.custom.plymouth.minShutdownDuration != null) {
-      serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/sleep ${toString config.custom.plymouth.minShutdownDuration}";
+    systemd.services.plymouth-reboot = lib.mkIf (config.custom.sysNixPlymouth.minShutdownDuration != null) {
+      serviceConfig.ExecStartPre = "${pkgs.coreutils}/bin/sleep ${toString config.custom.sysNixPlymouth.minShutdownDuration}";
     };
 
     # Disable secondary outputs again before the shutdown/reboot splash.
@@ -282,7 +282,7 @@
     # disables them before Plymouth starts, giving a clean single-monitor
     # shutdown splash matching the boot experience.
     systemd.services.plymouth-disable-outputs-on-shutdown =
-      lib.mkIf (config.custom.plymouth.bootDisabledOutputs != [ ])
+      lib.mkIf (config.custom.sysNixPlymouth.bootDisabledOutputs != [ ])
         {
           description = "Disable secondary DRM outputs before shutdown/reboot splash";
           wantedBy = [
@@ -307,7 +307,7 @@
                 echo "DPMS off $card for shutdown splash"
               fi
             done
-          '') config.custom.plymouth.bootDisabledOutputs;
+          '') config.custom.sysNixPlymouth.bootDisabledOutputs;
         };
   };
 }

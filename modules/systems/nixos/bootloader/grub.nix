@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/bootloader/grub.nix ];
-#   custom.grub.enable = true;
+#   custom.sysNixGrub.enable = true;
 
 {
   config,
@@ -12,9 +12,9 @@
 
 {
   options = {
-    custom.grub.enable = lib.mkEnableOption "enables GRUB bootloader";
+    custom.sysNixGrub.enable = lib.mkEnableOption "enables GRUB bootloader";
 
-    custom.grub.timeout = lib.mkOption {
+    custom.sysNixGrub.timeout = lib.mkOption {
       type = lib.types.int;
       default = 5;
       description = ''
@@ -23,7 +23,7 @@
       '';
     };
 
-    custom.grub.gfxmodeEfi = lib.mkOption {
+    custom.sysNixGrub.gfxmodeEfi = lib.mkOption {
       type = lib.types.str;
       default = "auto";
       description = ''
@@ -34,9 +34,9 @@
     };
   };
 
-  config = lib.mkIf config.custom.grub.enable {
+  config = lib.mkIf config.custom.sysNixGrub.enable {
     boot.loader = {
-      timeout = config.custom.grub.timeout;
+      timeout = config.custom.sysNixGrub.timeout;
       efi = {
         canTouchEfiVariables = true;
       };
@@ -49,8 +49,8 @@
         # Resolution — use the host-configured mode for a crisp boot menu.
         # "keep" passes the resolution to the kernel, so the console and
         # Plymouth inherit it without a mode switch.
-        # Set custom.grub.gfxmodeEfi per host (e.g. "2560x1440,auto").
-        gfxmodeEfi = config.custom.grub.gfxmodeEfi;
+        # Set custom.sysNixGrub.gfxmodeEfi per host (e.g. "2560x1440,auto").
+        gfxmodeEfi = config.custom.sysNixGrub.gfxmodeEfi;
         gfxpayloadEfi = "keep";
 
         # OS prober — auto-detect other OSes (Windows, other Linux) on disk

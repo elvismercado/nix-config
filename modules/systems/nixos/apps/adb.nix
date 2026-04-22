@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.adb.enable = lib.mkEnableOption "enables ADB udev rules and adbusers group";
+    custom.sysNixAdb.enable = lib.mkEnableOption "enables ADB udev rules and adbusers group";
   };
 
-  config = lib.mkIf config.custom.adb.enable {
+  config = lib.mkIf config.custom.sysNixAdb.enable {
     programs.adb.enable = true;
   };
 }

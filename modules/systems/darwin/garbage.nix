@@ -9,7 +9,7 @@
     ../shared/garbage.nix
   ];
 
-  config = lib.mkIf config.custom.gc.enable {
+  config = lib.mkIf config.custom.sysGc.enable {
     nix.gc = {
       interval = [
         {

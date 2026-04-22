@@ -19,7 +19,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/darwin/rectangle.nix ];
-#   custom.rectangle.enable = true;
+#   custom.hmRectangle.enable = true;
 
 {
   config,
@@ -29,10 +29,10 @@
 
 {
   options = {
-    custom.rectangle.enable = lib.mkEnableOption "enables Rectangle window tiling with Cmd+Option shortcuts";
+    custom.hmRectangle.enable = lib.mkEnableOption "enables Rectangle window tiling with Cmd+Option shortcuts";
   };
 
-  config = lib.mkIf config.custom.rectangle.enable {
+  config = lib.mkIf config.custom.hmRectangle.enable {
     # Configure Rectangle shortcuts via defaults write on activation.
     # modifierFlags 1572864 = Cmd+Option (⌘⌥)
     # Key codes: Left=123, Right=124, Up=126, Down=125,

@@ -5,7 +5,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/bluetooth.nix ];
-#   custom.bluetooth.enable = true;
+#   custom.sysNixBluetooth.enable = true;
 
 {
   config,
@@ -15,10 +15,10 @@
 
 {
   options = {
-    custom.bluetooth.enable = lib.mkEnableOption "enables Bluetooth support with A2DP audio";
+    custom.sysNixBluetooth.enable = lib.mkEnableOption "enables Bluetooth support with A2DP audio";
   };
 
-  config = lib.mkIf config.custom.bluetooth.enable {
+  config = lib.mkIf config.custom.sysNixBluetooth.enable {
     hardware.bluetooth.enable = true;
     hardware.bluetooth.powerOnBoot = true;
   };

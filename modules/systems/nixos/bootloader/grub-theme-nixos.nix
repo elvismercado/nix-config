@@ -3,7 +3,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/bootloader/grub-theme-nixos.nix ];
-#   custom.grubThemeNixos.enable = true;
+#   custom.sysNixGrubThemeNixos.enable = true;
 
 {
   config,
@@ -14,10 +14,10 @@
 
 {
   options = {
-    custom.grubThemeNixos.enable = lib.mkEnableOption "enables NixOS GRUB theme";
+    custom.sysNixGrubThemeNixos.enable = lib.mkEnableOption "enables NixOS GRUB theme";
   };
 
-  config = lib.mkIf config.custom.grubThemeNixos.enable {
+  config = lib.mkIf config.custom.sysNixGrubThemeNixos.enable {
     boot.loader.grub.theme = pkgs.nixos-grub2-theme;
   };
 }

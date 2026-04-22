@@ -6,7 +6,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/ansible.nix ];
-#   custom.ansible.enable = true;
+#   custom.hmAnsible.enable = true;
 
 {
   config,
@@ -17,10 +17,10 @@
 
 {
   options = {
-    custom.ansible.enable = lib.mkEnableOption "enables Ansible";
+    custom.hmAnsible.enable = lib.mkEnableOption "enables Ansible";
   };
 
-  config = lib.mkIf config.custom.ansible.enable {
+  config = lib.mkIf config.custom.hmAnsible.enable {
     home.packages = with pkgs; [
       ansible
       ansible-lint

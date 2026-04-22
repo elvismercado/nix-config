@@ -20,7 +20,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/linux/window-shortcuts.nix ];
-#   custom.windowShortcuts.enable = true;
+#   custom.hmWindowShortcuts.enable = true;
 
 {
   config,
@@ -31,14 +31,14 @@
 
 {
   options = {
-    custom.windowShortcuts.enable = lib.mkEnableOption "enables unified Meta+Alt window tiling shortcuts";
+    custom.hmWindowShortcuts.enable = lib.mkEnableOption "enables unified Meta+Alt window tiling shortcuts";
   };
 
-  config = lib.mkIf config.custom.windowShortcuts.enable {
+  config = lib.mkIf config.custom.hmWindowShortcuts.enable {
     assertions = [
       {
         assertion = (userSettings.desktopEnvironment or null) == "kde-plasma";
-        message = "custom.windowShortcuts requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
+        message = "custom.hmWindowShortcuts requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
       }
     ];
 

@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.i18n.enable = lib.mkEnableOption "enables i18n / locale configuration";
+    custom.sysNixI18n.enable = lib.mkEnableOption "enables i18n / locale configuration";
   };
 
-  config = lib.mkIf config.custom.i18n.enable {
+  config = lib.mkIf config.custom.sysNixI18n.enable {
     i18n.defaultLocale = "en_GB.UTF-8";
     i18n.defaultCharset = "UTF-8";
 

@@ -8,15 +8,15 @@
 # this with the x11-fallback display manager module if your desktop
 # environment defaults to Wayland (e.g. KDE Plasma 6):
 #   imports = [ ../../../modules/systems/nixos/display_manager/x11-fallback.nix ];
-#   custom.x11Fallback.enable = true;
+#   custom.sysNixX11Fallback.enable = true;
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/graphics/nomodeset.nix ];
-#   custom.nomodeset.enable = true;
+#   custom.sysNixNomodeset.enable = true;
 #
 # Optional: override the EFI framebuffer mode if auto-detection picks
 # a wrong resolution:
-#   custom.nomodeset.efifbMode = "1920x1080-32@60";
+#   custom.sysNixNomodeset.efifbMode = "1920x1080-32@60";
 #
 # Emergency GRUB override (no rebuild needed):
 #   At the GRUB menu, press 'e' to edit the boot entry, append 'nomodeset'
@@ -31,9 +31,9 @@
 
 {
   options = {
-    custom.nomodeset.enable = lib.mkEnableOption "enables nomodeset (basic framebuffer driver)";
+    custom.sysNixNomodeset.enable = lib.mkEnableOption "enables nomodeset (basic framebuffer driver)";
 
-    custom.nomodeset.efifbMode = lib.mkOption {
+    custom.sysNixNomodeset.efifbMode = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       default = null;
       example = "1920x1080-32@60";
@@ -41,12 +41,12 @@
     };
   };
 
-  config = lib.mkIf config.custom.nomodeset.enable {
+  config = lib.mkIf config.custom.sysNixNomodeset.enable {
 
     # Disable all GPU kernel mode-setting — forces EFI/VESA framebuffer
     boot.kernelParams = [ "nomodeset" ]
-      ++ lib.optionals (config.custom.nomodeset.efifbMode != null) [
-        "video=efifb:${config.custom.nomodeset.efifbMode}"
+      ++ lib.optionals (config.custom.sysNixNomodeset.efifbMode != null) [
+        "video=efifb:${config.custom.sysNixNomodeset.efifbMode}"
       ];
 
     # Use the generic modesetting DDX (falls back to fbdev with nomodeset)

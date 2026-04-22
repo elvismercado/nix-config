@@ -36,11 +36,11 @@
   ];
 
   options = {
-    custom.nvidiaRtx3080.enable = lib.mkEnableOption "enables NVIDIA RTX 3080 graphics support";
+    custom.sysNixNvidiaRtx3080.enable = lib.mkEnableOption "enables NVIDIA RTX 3080 graphics support";
   };
 
-  config = lib.mkIf config.custom.nvidiaRtx3080.enable {
-    custom.nvtopNvidia.enable = true;
+  config = lib.mkIf config.custom.sysNixNvidiaRtx3080.enable {
+    custom.sysNixNvtopNvidia.enable = true;
 
     boot.kernelPackages = pkgs.linuxPackages_zen; # zen
     boot.initrd.kernelModules = [

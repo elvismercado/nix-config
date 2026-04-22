@@ -13,7 +13,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/system/network-tuning.nix ];
-#   custom.networkTuning.enable = true;
+#   custom.sysNixNetworkTuning.enable = true;
 
 {
   config,
@@ -23,10 +23,10 @@
 
 {
   options = {
-    custom.networkTuning.enable = lib.mkEnableOption "enables network and I/O tuning";
+    custom.sysNixNetworkTuning.enable = lib.mkEnableOption "enables network and I/O tuning";
   };
 
-  config = lib.mkIf config.custom.networkTuning.enable {
+  config = lib.mkIf config.custom.sysNixNetworkTuning.enable {
 
     # --- TCP congestion control ---
     boot.kernel.sysctl = {

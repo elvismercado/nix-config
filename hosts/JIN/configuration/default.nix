@@ -76,82 +76,82 @@
   # (no host-level toggles)
 
   # Nix
-  custom.enableFlakes.enable = true;
-  custom.gc.enable = true;
+  custom.sysNixEnableFlakes.enable = true;
+  custom.sysGc.enable = true;
 
   # Bootloader
-  custom.grub.enable = true;
-  custom.grub.timeout = 1;
-  # custom.grub.gfxmodeEfi = "3840x2160,2560x1440,1920x1080,auto"; # 4K preferred, 1440p fallback, 1080p fallback, auto last resort
-  custom.grub.gfxmodeEfi = "1920x1080,auto"; # 4K preferred, 1440p fallback, 1080p fallback, auto last resort
-  custom.grubThemeSleek.enable = true;
-  custom.grubThemeSleek.style = "dark";
-  custom.plymouth.enable = true;
-  custom.plymouth.bootDisabledOutputs = [ "DP-2" ]; # auto-adds video=DP-2:d, re-enables before display manager
-  custom.plymouth.useSimpleDrm = false; # disable SimpleDRM — amdgpu forced-SI ignores video=DP-2:d either way
-  custom.plymouth.minAnimationDuration = 3; # NVMe boots fast — ensure animation plays
-  custom.plymouth.minShutdownDuration = 3; # NVMe shuts down fast — ensure splash is visible
-  # custom.plymouth.debug = true; # writes /var/log/plymouth-debug.log
-  custom.plymouthThemeAdi1090x.enable = true;
-  custom.plymouthThemeAdi1090x.theme = "circuit";
+  custom.sysNixGrub.enable = true;
+  custom.sysNixGrub.timeout = 1;
+  # custom.sysNixGrub.gfxmodeEfi = "3840x2160,2560x1440,1920x1080,auto"; # 4K preferred, 1440p fallback, 1080p fallback, auto last resort
+  custom.sysNixGrub.gfxmodeEfi = "1920x1080,auto"; # 4K preferred, 1440p fallback, 1080p fallback, auto last resort
+  custom.sysNixGrubThemeSleek.enable = true;
+  custom.sysNixGrubThemeSleek.style = "dark";
+  custom.sysNixPlymouth.enable = true;
+  custom.sysNixPlymouth.bootDisabledOutputs = [ "DP-2" ]; # auto-adds video=DP-2:d, re-enables before display manager
+  custom.sysNixPlymouth.useSimpleDrm = false; # disable SimpleDRM — amdgpu forced-SI ignores video=DP-2:d either way
+  custom.sysNixPlymouth.minAnimationDuration = 3; # NVMe boots fast — ensure animation plays
+  custom.sysNixPlymouth.minShutdownDuration = 3; # NVMe shuts down fast — ensure splash is visible
+  # custom.sysNixPlymouth.debug = true; # writes /var/log/plymouth-debug.log
+  custom.sysNixPlymouthThemeAdi1090x.enable = true;
+  custom.sysNixPlymouthThemeAdi1090x.theme = "circuit";
 
   # Hardware
-  custom.amdRyzen93900x.enable = true; # Ryzen 9 3900X profile (ryzen + pstate + zenpower)
-  # custom.nomodeset.enable = true;
-  # custom.nomodeset.efifbMode = "2560x1440-32@100";
-  custom.amdRadeonR7430.enable = true;
-  # custom.nvidiaGtx1060.enable = true;   # ← uncomment (and comment amdRadeonR7430 above) to swap GPU
-  # custom.nvidiaRtx3070Lhr.enable = true; # ← uncomment (and comment amdRadeonR7430 above) to swap GPU
-  custom.ssd.enable = true;
+  custom.sysNixAmdRyzen93900x.enable = true; # Ryzen 9 3900X profile (ryzen + pstate + zenpower)
+  # custom.sysNixNomodeset.enable = true;
+  # custom.sysNixNomodeset.efifbMode = "2560x1440-32@100";
+  custom.sysNixAmdRadeonR7430.enable = true;
+  # custom.sysNixNvidiaGtx1060.enable = true;   # ← uncomment (and comment amdRadeonR7430 above) to swap GPU
+  # custom.sysNixNvidiaRtx3070Lhr.enable = true; # ← uncomment (and comment amdRadeonR7430 above) to swap GPU
+  custom.sysNixSsd.enable = true;
 
   # Memory
-  custom.zram.enable = true;
-  custom.earlyoom.enable = true;
-  custom.hibernate.enable = true;
+  custom.sysNixZram.enable = true;
+  custom.sysNixEarlyoom.enable = true;
+  custom.sysNixHibernate.enable = true;
 
   # System
-  custom.systemPackages.enable = true;
-  custom.bashCompletion.enable = true;
-  custom.console.enable = true;
-  custom.timezone.enable = true;
-  custom.i18n.enable = true;
-  custom.fonts.enable = true;
-  custom.networkTuning.enable = true;
+  custom.sysPackages.enable = true;
+  custom.sysBashCompletion.enable = true;
+  custom.sysNixConsole.enable = true;
+  custom.sysNixTimezone.enable = true;
+  custom.sysNixI18n.enable = true;
+  custom.sysFonts.enable = true;
+  custom.sysNixNetworkTuning.enable = true;
 
   # Display
-  # custom.ly.enable = true;
-  # custom.greetd.enable = true;
-  # custom.greetd.swayOutputConfig = ''
+  # custom.sysNixLy.enable = true;
+  # custom.sysNixGreetd.enable = true;
+  # custom.sysNixGreetd.swayOutputConfig = ''
   #   output DP-1 mode 2560x1440@100Hz position 0 0
   #   output DP-2 mode 1920x1200@100Hz transform 90 position 2560 0
   # '';
-  custom.sddm.enable = true;
-  custom.sddmMonitorLayout.enable = true;
-  custom.sddmMonitorLayout.disabledOutputs = [ "DP-2" ]; # login screen on primary only
-  custom.sddmInputConfig.enable = true;
-  custom.kdePlasma.enable = true;
+  custom.sysNixSddm.enable = true;
+  custom.sysNixSddmMonitorLayout.enable = true;
+  custom.sysNixSddmMonitorLayout.disabledOutputs = [ "DP-2" ]; # login screen on primary only
+  custom.sysNixSddmInputConfig.enable = true;
+  custom.sysNixKdePlasma.enable = true;
 
   # Input
-  custom.logitechMouse.enable = true;
-  custom.wacom.enable = true;
+  custom.sysNixLogitechMouse.enable = true;
+  custom.sysNixWacom.enable = true;
 
   # Peripherals
-  custom.bluetooth.enable = true;
-  custom.pipewire.enable = true;
+  custom.sysNixBluetooth.enable = true;
+  custom.sysNixPipewire.enable = true;
 
   # Security
-  custom.yubikey.enable = true;
-  custom.fprintd.enable = true;
+  custom.sysNixYubikey.enable = true;
+  custom.sysNixFprintd.enable = true;
 
   # Services
-  custom.printing.enable = true;
-  custom.fwupd.enable = true;
-  custom.docker.enable = true;
-  custom.mullvad.enable = true;
-  custom.postinstall.enable = true;
+  custom.sysNixPrinting.enable = true;
+  custom.sysNixFwupd.enable = true;
+  custom.sysNixDocker.enable = true;
+  custom.sysNixMullvad.enable = true;
+  custom.sysNixPostinstall.enable = true;
 
   # Apps
-  custom.adb.enable = true;
-  custom.coolercontrol.enable = true;
-  custom.libvirtd.enable = true;
+  custom.sysNixAdb.enable = true;
+  custom.sysNixCoolercontrol.enable = true;
+  custom.sysNixLibvirtd.enable = true;
 }

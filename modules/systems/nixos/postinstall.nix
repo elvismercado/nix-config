@@ -7,7 +7,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/postinstall.nix ];
-#   custom.postinstall.enable = true;
+#   custom.sysNixPostinstall.enable = true;
 
 {
   config,
@@ -18,10 +18,10 @@
 
 {
   options = {
-    custom.postinstall.enable = lib.mkEnableOption "enables system-level postinstall alias";
+    custom.sysNixPostinstall.enable = lib.mkEnableOption "enables system-level postinstall alias";
   };
 
-  config = lib.mkIf config.custom.postinstall.enable {
+  config = lib.mkIf config.custom.sysNixPostinstall.enable {
     environment.shellAliases = {
       postinstall = "bash ~/${userSettings.repoPath}/scripts/nixos/postinstall.sh";
     };

@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/brave.nix ];
-#   custom.brave.enable = true;
+#   custom.hmBrave.enable = true;
 
 {
   config,
@@ -13,10 +13,10 @@
 
 {
   options = {
-    custom.brave.enable = lib.mkEnableOption "enables brave";
+    custom.hmBrave.enable = lib.mkEnableOption "enables brave";
   };
 
-  config = lib.mkIf config.custom.brave.enable {
+  config = lib.mkIf config.custom.hmBrave.enable {
     programs.brave = {
       enable = true;
 

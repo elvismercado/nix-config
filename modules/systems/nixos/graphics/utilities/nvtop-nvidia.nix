@@ -7,10 +7,10 @@
 
 {
   options = {
-    custom.nvtopNvidia.enable = lib.mkEnableOption "enables nvtop for NVIDIA GPUs";
+    custom.sysNixNvtopNvidia.enable = lib.mkEnableOption "enables nvtop for NVIDIA GPUs";
   };
 
-  config = lib.mkIf config.custom.nvtopNvidia.enable {
+  config = lib.mkIf config.custom.sysNixNvtopNvidia.enable {
     # List packages installed in system profile. (all users)
     environment.systemPackages = with pkgs; [
       nvtopPackages.nvidia

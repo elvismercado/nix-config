@@ -6,8 +6,8 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/bootloader/grub-theme-sleek.nix ];
-#   custom.grubThemeSleek.enable = true;
-#   custom.grubThemeSleek.style = "dark"; # or "light", "orange", "bigSur"
+#   custom.sysNixGrubThemeSleek.enable = true;
+#   custom.sysNixGrubThemeSleek.style = "dark"; # or "light", "orange", "bigSur"
 
 {
   config,
@@ -19,8 +19,8 @@
 
 {
   options = {
-    custom.grubThemeSleek.enable = lib.mkEnableOption "enables Sleek GRUB theme";
-    custom.grubThemeSleek.style = lib.mkOption {
+    custom.sysNixGrubThemeSleek.enable = lib.mkEnableOption "enables Sleek GRUB theme";
+    custom.sysNixGrubThemeSleek.style = lib.mkOption {
       type = lib.types.enum [
         "light"
         "dark"
@@ -32,9 +32,9 @@
     };
   };
 
-  config = lib.mkIf config.custom.grubThemeSleek.enable {
+  config = lib.mkIf config.custom.sysNixGrubThemeSleek.enable {
     boot.loader.grub.theme = pkgs.sleek-grub-theme.override {
-      withStyle = config.custom.grubThemeSleek.style;
+      withStyle = config.custom.sysNixGrubThemeSleek.style;
       withBanner = userSettings.hostname;
     };
   };

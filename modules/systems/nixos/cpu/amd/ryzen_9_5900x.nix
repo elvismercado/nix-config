@@ -16,7 +16,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/cpu/amd/ryzen_9_5900x.nix ];
-#   custom.amdRyzen95900x.enable = true;
+#   custom.sysNixAmdRyzen95900x.enable = true;
 
 {
   config,
@@ -34,14 +34,14 @@
   ];
 
   options = {
-    custom.amdRyzen95900x.enable = lib.mkEnableOption "enables AMD Ryzen 9 5900X CPU profile";
+    custom.sysNixAmdRyzen95900x.enable = lib.mkEnableOption "enables AMD Ryzen 9 5900X CPU profile";
   };
 
-  config = lib.mkIf config.custom.amdRyzen95900x.enable {
-    custom.amdRyzenCpu.enable = true;
-    custom.amdPstate.enable = true;
-    custom.amdZenpower.enable = true;
-    custom.zenKernel.enable = true;
-    custom.cpuMitigationsOff.enable = true;
+  config = lib.mkIf config.custom.sysNixAmdRyzen95900x.enable {
+    custom.sysNixAmdRyzenCpu.enable = true;
+    custom.sysNixAmdPstate.enable = true;
+    custom.sysNixAmdZenpower.enable = true;
+    custom.sysNixZenKernel.enable = true;
+    custom.sysNixCpuMitigationsOff.enable = true;
   };
 }

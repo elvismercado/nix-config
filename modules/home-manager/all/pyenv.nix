@@ -9,7 +9,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/pyenv.nix ];
-#   custom.pyenv.enable = true;
+#   custom.hmPyenv.enable = true;
 
 {
   config,
@@ -19,10 +19,10 @@
 
 {
   options = {
-    custom.pyenv.enable = lib.mkEnableOption "enables pyenv Python version manager";
+    custom.hmPyenv.enable = lib.mkEnableOption "enables pyenv Python version manager";
   };
 
-  config = lib.mkIf config.custom.pyenv.enable {
+  config = lib.mkIf config.custom.hmPyenv.enable {
     programs.pyenv = {
       enable = true;
       enableBashIntegration = true;

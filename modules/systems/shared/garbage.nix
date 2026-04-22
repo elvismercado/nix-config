@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/shared/garbage.nix ];
-#   custom.gc.enable = true;
+#   custom.sysGc.enable = true;
 
 {
   config,
@@ -12,10 +12,10 @@
 
 {
   options = {
-    custom.gc.enable = lib.mkEnableOption "enables automatic Nix garbage collection";
+    custom.sysGc.enable = lib.mkEnableOption "enables automatic Nix garbage collection";
   };
 
-  config = lib.mkIf config.custom.gc.enable {
+  config = lib.mkIf config.custom.sysGc.enable {
     nix.gc = {
       automatic = true;
       options = "--delete-older-than 7d";

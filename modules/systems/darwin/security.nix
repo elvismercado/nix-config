@@ -4,7 +4,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/darwin/security.nix ];
-#   custom.security.enable = true;
+#   custom.sysDarSecurity.enable = true;
 
 {
   config,
@@ -14,10 +14,10 @@
 
 {
   options = {
-    custom.security.enable = lib.mkEnableOption "enables macOS security settings (Touch ID sudo)";
+    custom.sysDarSecurity.enable = lib.mkEnableOption "enables macOS security settings (Touch ID sudo)";
   };
 
-  config = lib.mkIf config.custom.security.enable {
+  config = lib.mkIf config.custom.sysDarSecurity.enable {
     security.pam.services.sudo_local = {
       enable = true;
       touchIdAuth = true;

@@ -6,7 +6,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/pipewire.nix ];
-#   custom.pipewire.enable = true;
+#   custom.sysNixPipewire.enable = true;
 
 {
   config,
@@ -16,10 +16,10 @@
 
 {
   options = {
-    custom.pipewire.enable = lib.mkEnableOption "enables PipeWire audio server";
+    custom.sysNixPipewire.enable = lib.mkEnableOption "enables PipeWire audio server";
   };
 
-  config = lib.mkIf config.custom.pipewire.enable {
+  config = lib.mkIf config.custom.sysNixPipewire.enable {
     # Realtime scheduling for audio — prevents crackling and dropouts
     security.rtkit.enable = true;
 

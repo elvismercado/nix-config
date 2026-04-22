@@ -10,7 +10,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/system/console.nix ];
-#   custom.console.enable = true;
+#   custom.sysNixConsole.enable = true;
 
 {
   config,
@@ -20,10 +20,10 @@
 
 {
   options = {
-    custom.console.enable = lib.mkEnableOption "enables console configuration";
+    custom.sysNixConsole.enable = lib.mkEnableOption "enables console configuration";
   };
 
-  config = lib.mkIf config.custom.console.enable {
+  config = lib.mkIf config.custom.sysNixConsole.enable {
     console = {
       keyMap = "us";
       # earlySetup = true; # load font/keymap in initrd — only useful if the

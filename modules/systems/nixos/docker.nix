@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/docker.nix ];
-#   custom.docker.enable = true;
+#   custom.sysNixDocker.enable = true;
 
 {
   config,
@@ -12,10 +12,10 @@
 
 {
   options = {
-    custom.docker.enable = lib.mkEnableOption "enables Docker container runtime";
+    custom.sysNixDocker.enable = lib.mkEnableOption "enables Docker container runtime";
   };
 
-  config = lib.mkIf config.custom.docker.enable {
+  config = lib.mkIf config.custom.sysNixDocker.enable {
     virtualisation.docker.enable = true;
 
     # Docker defaults to iptables; if you use nftables, uncomment:

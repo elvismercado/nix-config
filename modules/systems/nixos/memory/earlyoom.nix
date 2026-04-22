@@ -11,7 +11,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/memory/earlyoom.nix ];
-#   custom.earlyoom.enable = true;
+#   custom.sysNixEarlyoom.enable = true;
 
 {
   config,
@@ -21,10 +21,10 @@
 
 {
   options = {
-    custom.earlyoom.enable = lib.mkEnableOption "enables earlyoom OOM prevention daemon";
+    custom.sysNixEarlyoom.enable = lib.mkEnableOption "enables earlyoom OOM prevention daemon";
   };
 
-  config = lib.mkIf config.custom.earlyoom.enable {
+  config = lib.mkIf config.custom.sysNixEarlyoom.enable {
     services.earlyoom = {
       enable = lib.mkDefault true;
 

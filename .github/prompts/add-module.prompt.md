@@ -19,7 +19,7 @@ If not provided, ask for:
   - `modules/home-manager/all/` — home-manager module for all platforms
   - `modules/home-manager/linux/` — home-manager module for Linux only
   - `modules/home-manager/darwin/` — home-manager module for macOS only
-- **Enable option name** — e.g., `custom.bluetooth.enable` (system) or `custom.hmGaming.enable` (home-manager)
+- **Enable option name** — e.g., `custom.sysNixBluetooth.enable` (system) or `custom.hmGaming.enable` (home-manager)
 - **One-line purpose** — for the comment header
 - **Target hosts** — which hosts to import and enable the module on (e.g., FENNEC, JIN, EDGE)
 

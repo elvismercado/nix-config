@@ -15,10 +15,10 @@
 
 {
   options = {
-    custom.alacritty.enable = lib.mkEnableOption "enables Alacritty terminal";
+    custom.sysDarAlacritty.enable = lib.mkEnableOption "enables Alacritty terminal";
   };
 
-  config = lib.mkIf config.custom.alacritty.enable {
+  config = lib.mkIf config.custom.sysDarAlacritty.enable {
     environment.systemPackages = with pkgs; [
       alacritty
       mkalias

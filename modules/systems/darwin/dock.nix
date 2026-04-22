@@ -5,7 +5,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/darwin/dock.nix ];
-#   custom.dock.enable = true;
+#   custom.sysDarDock.enable = true;
 
 {
   config,
@@ -15,10 +15,10 @@
 
 {
   options = {
-    custom.dock.enable = lib.mkEnableOption "enables macOS Dock configuration";
+    custom.sysDarDock.enable = lib.mkEnableOption "enables macOS Dock configuration";
   };
 
-  config = lib.mkIf config.custom.dock.enable {
+  config = lib.mkIf config.custom.sysDarDock.enable {
     system.defaults.dock = {
       # Layout
       orientation = "bottom";

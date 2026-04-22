@@ -6,7 +6,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/cpu/amd/ryzen.nix ];
-#   custom.amdRyzenCpu.enable = true;
+#   custom.sysNixAmdRyzenCpu.enable = true;
 
 {
   config,
@@ -21,12 +21,12 @@
   ];
 
   options = {
-    custom.amdRyzenCpu.enable = lib.mkEnableOption "enables AMD Ryzen CPU support";
+    custom.sysNixAmdRyzenCpu.enable = lib.mkEnableOption "enables AMD Ryzen CPU support";
   };
 
-  config = lib.mkIf config.custom.amdRyzenCpu.enable {
+  config = lib.mkIf config.custom.sysNixAmdRyzenCpu.enable {
     # Auto-enable the base AMD CPU module
-    custom.amdCpu.enable = true;
+    custom.sysNixAmdCpu.enable = true;
 
     # Load the kvm-amd kernel module — enables hardware-accelerated virtualisation
     # (AMD-V / SVM) for QEMU/KVM virtual machines. This is the AMD equivalent of

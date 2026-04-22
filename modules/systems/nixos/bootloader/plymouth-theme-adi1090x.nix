@@ -35,9 +35,9 @@
 #     ../../../modules/systems/nixos/bootloader/plymouth.nix
 #     ../../../modules/systems/nixos/bootloader/plymouth-theme-adi1090x.nix
 #   ];
-#   custom.plymouth.enable = true;
-#   custom.plymouthThemeAdi1090x.enable = true;
-#   custom.plymouthThemeAdi1090x.theme = "angular_alt";
+#   custom.sysNixPlymouth.enable = true;
+#   custom.sysNixPlymouthThemeAdi1090x.enable = true;
+#   custom.sysNixPlymouthThemeAdi1090x.theme = "angular_alt";
 # My Favourites:
 #   - angular_alt (Pack 1)
 #   - circuit (Pack 1)
@@ -60,9 +60,9 @@
 
 {
   options = {
-    custom.plymouthThemeAdi1090x.enable = lib.mkEnableOption "enables an adi1090x Plymouth theme";
+    custom.sysNixPlymouthThemeAdi1090x.enable = lib.mkEnableOption "enables an adi1090x Plymouth theme";
 
-    custom.plymouthThemeAdi1090x.theme = lib.mkOption {
+    custom.sysNixPlymouthThemeAdi1090x.theme = lib.mkOption {
       type = lib.types.enum [
         # Pack 1
         "abstract_ring"
@@ -154,12 +154,12 @@
     };
   };
 
-  config = lib.mkIf config.custom.plymouthThemeAdi1090x.enable {
+  config = lib.mkIf config.custom.sysNixPlymouthThemeAdi1090x.enable {
     boot.plymouth = {
-      theme = config.custom.plymouthThemeAdi1090x.theme;
+      theme = config.custom.sysNixPlymouthThemeAdi1090x.theme;
       themePackages = [
         (pkgs.adi1090x-plymouth-themes.override {
-          selected_themes = [ config.custom.plymouthThemeAdi1090x.theme ];
+          selected_themes = [ config.custom.sysNixPlymouthThemeAdi1090x.theme ];
         })
       ];
     };

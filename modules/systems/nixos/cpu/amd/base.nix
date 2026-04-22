@@ -10,10 +10,10 @@
 
 {
   options = {
-    custom.amdCpu.enable = lib.mkEnableOption "enables AMD CPU support";
+    custom.sysNixAmdCpu.enable = lib.mkEnableOption "enables AMD CPU support";
   };
 
-  config = lib.mkIf config.custom.amdCpu.enable {
+  config = lib.mkIf config.custom.sysNixAmdCpu.enable {
     hardware.cpu.amd = {
       # Apply AMD CPU microcode updates at boot.
       # Microcode patches fix CPU-level bugs (security vulnerabilities like Spectre/Meltdown,

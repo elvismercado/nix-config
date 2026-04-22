@@ -15,8 +15,8 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/linux/shutdown-disable-outputs.nix ];
-#   custom.shutdownDisableOutputs.enable = true;
-#   custom.shutdownDisableOutputs.connectors = [ "DP-2" ];
+#   custom.hmShutdownDisableOutputs.enable = true;
+#   custom.hmShutdownDisableOutputs.connectors = [ "DP-2" ];
 
 {
   config,
@@ -27,7 +27,7 @@
 }:
 
 let
-  cfg = config.custom.shutdownDisableOutputs;
+  cfg = config.custom.hmShutdownDisableOutputs;
 
   daemonScript = pkgs.writeShellApplication {
     name = "shutdown-disable-outputs";
@@ -97,9 +97,9 @@ in
 
 {
   options = {
-    custom.shutdownDisableOutputs.enable = lib.mkEnableOption "disable secondary monitors on session shutdown for clean Plymouth splash";
+    custom.hmShutdownDisableOutputs.enable = lib.mkEnableOption "disable secondary monitors on session shutdown for clean Plymouth splash";
 
-    custom.shutdownDisableOutputs.connectors = lib.mkOption {
+    custom.hmShutdownDisableOutputs.connectors = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
       example = [ "DP-2" ];
@@ -115,7 +115,7 @@ in
     assertions = [
       {
         assertion = (userSettings.desktopEnvironment or null) == "kde-plasma";
-        message = "custom.shutdownDisableOutputs requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
+        message = "custom.hmShutdownDisableOutputs requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
       }
     ];
 

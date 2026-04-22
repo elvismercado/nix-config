@@ -18,8 +18,8 @@
 #   imports = [
 #     ../../../modules/home-manager/linux/display-profiles.nix
 #   ];
-#   custom.displayProfiles.enable = true;
-#   custom.displayProfiles.profiles."4k-dual" = {
+#   custom.hmDisplayProfiles.enable = true;
+#   custom.hmDisplayProfiles.profiles."4k-dual" = {
 #     match."DP-1" = "3840x2160";
 #     match."DP-2" = "1920x1200";
 #     outputs."DP-1" = { resolution = "3840x2160"; scale = 1.5; refreshRate = 60; };
@@ -35,7 +35,7 @@
 }:
 
 let
-  cfg = config.custom.displayProfiles;
+  cfg = config.custom.hmDisplayProfiles;
 
   # Submodule for per-output configuration
   outputModule = lib.types.submodule {
@@ -494,15 +494,15 @@ in
 
 {
   options = {
-    custom.displayProfiles.enable = lib.mkEnableOption "topology-based display auto-configuration service";
+    custom.hmDisplayProfiles.enable = lib.mkEnableOption "topology-based display auto-configuration service";
 
-    custom.displayProfiles.pollInterval = lib.mkOption {
+    custom.hmDisplayProfiles.pollInterval = lib.mkOption {
       type = lib.types.int;
       default = 2;
       description = "Seconds between topology polls.";
     };
 
-    custom.displayProfiles.profiles = lib.mkOption {
+    custom.hmDisplayProfiles.profiles = lib.mkOption {
       type = lib.types.attrsOf profileModule;
       default = { };
       description = ''
@@ -517,7 +517,7 @@ in
     assertions = [
       {
         assertion = (userSettings.desktopEnvironment or null) == "kde-plasma";
-        message = "custom.displayProfiles requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
+        message = "custom.hmDisplayProfiles requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
       }
     ];
 

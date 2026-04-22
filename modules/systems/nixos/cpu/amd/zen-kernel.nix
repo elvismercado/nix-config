@@ -12,7 +12,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/cpu/amd/zen-kernel.nix ];
-#   custom.zenKernel.enable = true;
+#   custom.sysNixZenKernel.enable = true;
 
 {
   config,
@@ -23,10 +23,10 @@
 
 {
   options = {
-    custom.zenKernel.enable = lib.mkEnableOption "enables the Linux Zen kernel (desktop-optimised)";
+    custom.sysNixZenKernel.enable = lib.mkEnableOption "enables the Linux Zen kernel (desktop-optimised)";
   };
 
-  config = lib.mkIf config.custom.zenKernel.enable {
+  config = lib.mkIf config.custom.sysNixZenKernel.enable {
     boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
   };
 }

@@ -39,7 +39,7 @@
 #   cat /proc/cmdline                                      → should contain "mitigations=off"
 #   grep . /sys/devices/system/cpu/vulnerabilities/*       → "Vulnerable" or "Not affected" (no "Mitigation:" lines)
 #
-# To re-enable mitigations, set custom.cpuMitigationsOff.enable = false
+# To re-enable mitigations, set custom.sysNixCpuMitigationsOff.enable = false
 # or remove mitigations-off.nix from your CPU profile imports.
 
 {
@@ -50,10 +50,10 @@
 
 {
   options = {
-    custom.cpuMitigationsOff.enable = lib.mkEnableOption "disables all CPU vulnerability mitigations (mitigations=off)";
+    custom.sysNixCpuMitigationsOff.enable = lib.mkEnableOption "disables all CPU vulnerability mitigations (mitigations=off)";
   };
 
-  config = lib.mkIf config.custom.cpuMitigationsOff.enable {
+  config = lib.mkIf config.custom.sysNixCpuMitigationsOff.enable {
     boot.kernelParams = [ "mitigations=off" ];
   };
 }

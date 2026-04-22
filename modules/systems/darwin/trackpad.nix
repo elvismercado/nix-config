@@ -5,7 +5,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/darwin/trackpad.nix ];
-#   custom.trackpad.enable = true;
+#   custom.sysDarTrackpad.enable = true;
 
 {
   config,
@@ -15,10 +15,10 @@
 
 {
   options = {
-    custom.trackpad.enable = lib.mkEnableOption "enables macOS trackpad configuration";
+    custom.sysDarTrackpad.enable = lib.mkEnableOption "enables macOS trackpad configuration";
   };
 
-  config = lib.mkIf config.custom.trackpad.enable {
+  config = lib.mkIf config.custom.sysDarTrackpad.enable {
     system.defaults.trackpad = {
       # Clicking
       Clicking = true; # Tap to click

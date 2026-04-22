@@ -14,10 +14,10 @@
 
 {
   options = {
-    custom.sddm.enable = lib.mkEnableOption "enables SDDM display manager";
+    custom.sysNixSddm.enable = lib.mkEnableOption "enables SDDM display manager";
   };
 
-  config = lib.mkIf config.custom.sddm.enable {
+  config = lib.mkIf config.custom.sysNixSddm.enable {
     services.displayManager.sddm = {
       enable = true;
       wayland.enable = true; # use kwin_wayland — respects kwinoutputconfig.json primary monitor

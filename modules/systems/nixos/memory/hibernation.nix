@@ -18,11 +18,11 @@
 #
 # The resume device is auto-derived from swapDevices — the first
 # physical (non-zram, non-random-encryption) swap partition is used.
-# Override with custom.hibernate.resumeDevice if needed (e.g. swap files).
+# Override with custom.sysNixHibernate.resumeDevice if needed (e.g. swap files).
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/memory/hibernation.nix ];
-#   custom.hibernate.enable = true;
+#   custom.sysNixHibernate.enable = true;
 
 {
   config,
@@ -50,16 +50,16 @@ let
 
   # Use explicit override if provided, otherwise auto-derived value.
   effectiveResumeDevice =
-    if config.custom.hibernate.resumeDevice != null then
-      config.custom.hibernate.resumeDevice
+    if config.custom.sysNixHibernate.resumeDevice != null then
+      config.custom.sysNixHibernate.resumeDevice
     else
       autoResumeDevice;
 in
 {
   options = {
-    custom.hibernate.enable = lib.mkEnableOption "enables hibernation (suspend-to-disk) support";
+    custom.sysNixHibernate.enable = lib.mkEnableOption "enables hibernation (suspend-to-disk) support";
 
-    custom.hibernate.resumeDevice = lib.mkOption {
+    custom.sysNixHibernate.resumeDevice = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       default = null;
       description = ''
@@ -70,7 +70,7 @@ in
     };
   };
 
-  config = lib.mkIf (config.custom.hibernate.enable && effectiveResumeDevice != null) {
+  config = lib.mkIf (config.custom.sysNixHibernate.enable && effectiveResumeDevice != null) {
     # Tell the kernel where to find the hibernation image on boot.
     # Without this, the kernel writes the image to swap on hibernate
     # but has no idea where to read it back on the next boot.

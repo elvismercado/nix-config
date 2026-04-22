@@ -31,12 +31,12 @@
   imports = [ ./utilities/amd.nix ];
 
   options = {
-    custom.amdRadeonR7430.enable = lib.mkEnableOption "enables AMD Radeon R7 430 (Oland/SI) with amdgpu driver";
+    custom.sysNixAmdRadeonR7430.enable = lib.mkEnableOption "enables AMD Radeon R7 430 (Oland/SI) with amdgpu driver";
   };
 
-  config = lib.mkIf config.custom.amdRadeonR7430.enable {
+  config = lib.mkIf config.custom.sysNixAmdRadeonR7430.enable {
     # Auto-enable base AMD graphics support
-    custom.amdGraphics.enable = true;
+    custom.sysNixAmdGraphics.enable = true;
     # Early KMS start — load amdgpu in initrd for flicker-free boot
     boot.initrd.kernelModules = [ "amdgpu" ];
 

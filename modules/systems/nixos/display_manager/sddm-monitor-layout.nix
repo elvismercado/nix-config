@@ -17,10 +17,10 @@
 #   imports = [
 #     ../../../modules/systems/nixos/display_manager/sddm-monitor-layout.nix
 #   ];
-#   custom.sddmMonitorLayout.enable = true;
+#   custom.sysNixSddmMonitorLayout.enable = true;
 #
 #   # Optional: disable secondary monitor on the login screen
-#   custom.sddmMonitorLayout.disabledOutputs = [ "DP-2" ];
+#   custom.sysNixSddmMonitorLayout.disabledOutputs = [ "DP-2" ];
 
 {
   config,
@@ -31,9 +31,9 @@
 
 {
   options = {
-    custom.sddmMonitorLayout.enable = lib.mkEnableOption "applies monitor layout to SDDM login screen";
+    custom.sysNixSddmMonitorLayout.enable = lib.mkEnableOption "applies monitor layout to SDDM login screen";
 
-    custom.sddmMonitorLayout.disabledOutputs = lib.mkOption {
+    custom.sysNixSddmMonitorLayout.disabledOutputs = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
       example = [ "DP-2" ];
@@ -47,14 +47,14 @@
     };
   };
 
-  config = lib.mkIf config.custom.sddmMonitorLayout.enable {
+  config = lib.mkIf config.custom.sysNixSddmMonitorLayout.enable {
     # Deploy the kwin output config to the sddm user on every rebuild/activation.
     # This ensures the SDDM Wayland greeter (which uses kwin_wayland)
     # renders with the correct monitor layout.
     system.activationScripts.sddmMonitorLayout = {
       text =
         let
-          disabledOutputs = config.custom.sddmMonitorLayout.disabledOutputs;
+          disabledOutputs = config.custom.sysNixSddmMonitorLayout.disabledOutputs;
           jq = "${pkgs.jq}/bin/jq";
 
           # Build a jq filter that disables specified outputs in every setup.

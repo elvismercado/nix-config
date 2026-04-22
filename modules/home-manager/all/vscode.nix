@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/vscode.nix ];
-#   custom.vscode.enable = true;
+#   custom.hmVscode.enable = true;
 
 {
   config,
@@ -13,10 +13,10 @@
 
 {
   options = {
-    custom.vscode.enable = lib.mkEnableOption "enables vscode";
+    custom.hmVscode.enable = lib.mkEnableOption "enables vscode";
   };
 
-  config = lib.mkIf config.custom.vscode.enable {
+  config = lib.mkIf config.custom.hmVscode.enable {
     home.packages = with pkgs; [
       nil # LSP Plugin Support
     ];

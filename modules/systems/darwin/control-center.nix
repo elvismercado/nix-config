@@ -5,7 +5,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/darwin/control-center.nix ];
-#   custom.controlCenter.enable = true;
+#   custom.sysDarControlCenter.enable = true;
 
 {
   config,
@@ -15,10 +15,10 @@
 
 {
   options = {
-    custom.controlCenter.enable = lib.mkEnableOption "enables macOS Control Center menu bar items";
+    custom.sysDarControlCenter.enable = lib.mkEnableOption "enables macOS Control Center menu bar items";
   };
 
-  config = lib.mkIf config.custom.controlCenter.enable {
+  config = lib.mkIf config.custom.sysDarControlCenter.enable {
     system.defaults.controlcenter = {
       AirDrop = true;
       BatteryShowPercentage = true;

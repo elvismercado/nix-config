@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/nextcloud.nix ];
-#   custom.nextcloud.enable = true;
+#   custom.hmNextcloud.enable = true;
 
 {
   config,
@@ -12,10 +12,10 @@
 
 {
   options = {
-    custom.nextcloud.enable = lib.mkEnableOption "enables nextcloud";
+    custom.hmNextcloud.enable = lib.mkEnableOption "enables nextcloud";
   };
 
-  config = lib.mkIf config.custom.nextcloud.enable {
+  config = lib.mkIf config.custom.hmNextcloud.enable {
     services.nextcloud-client = {
       enable = true;
       # startInBackground = true;

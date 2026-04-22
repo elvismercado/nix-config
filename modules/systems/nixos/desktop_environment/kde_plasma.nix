@@ -7,10 +7,10 @@
 
 {
   options = {
-    custom.kdePlasma.enable = lib.mkEnableOption "enables KDE Plasma desktop environment";
+    custom.sysNixKdePlasma.enable = lib.mkEnableOption "enables KDE Plasma desktop environment";
   };
 
-  config = lib.mkIf config.custom.kdePlasma.enable {
+  config = lib.mkIf config.custom.sysNixKdePlasma.enable {
     # Enable the KDE Plasma Desktop Environment.
     # Note: wayland.enable is set in sddm.nix — not duplicated here.
     services.displayManager.defaultSession = "plasma"; # "plasma" "plasmax11"

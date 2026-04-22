@@ -7,10 +7,10 @@
 
 {
   options = {
-    custom.yubikey.enable = lib.mkEnableOption "enables YubiKey support";
+    custom.sysNixYubikey.enable = lib.mkEnableOption "enables YubiKey support";
   };
 
-  config = lib.mkIf config.custom.yubikey.enable {
+  config = lib.mkIf config.custom.sysNixYubikey.enable {
     # Smart card daemon (needed for YubiKey CCID/PIV)
     services.pcscd.enable = true;
 

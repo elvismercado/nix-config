@@ -5,7 +5,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/git.nix ];
-#   custom.git.enable = true;
+#   custom.hmGit.enable = true;
 
 {
   config,
@@ -16,10 +16,10 @@
 
 {
   options = {
-    custom.git.enable = lib.mkEnableOption "enables git configuration";
+    custom.hmGit.enable = lib.mkEnableOption "enables git configuration";
   };
 
-  config = lib.mkIf config.custom.git.enable {
+  config = lib.mkIf config.custom.hmGit.enable {
     programs.git = {
       enable = true;
 

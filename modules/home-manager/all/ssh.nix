@@ -9,7 +9,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/ssh.nix ];
-#   custom.ssh.enable = true;
+#   custom.hmSsh.enable = true;
 
 {
   config,
@@ -19,10 +19,10 @@
 
 {
   options = {
-    custom.ssh.enable = lib.mkEnableOption "enables SSH client configuration";
+    custom.hmSsh.enable = lib.mkEnableOption "enables SSH client configuration";
   };
 
-  config = lib.mkIf config.custom.ssh.enable {
+  config = lib.mkIf config.custom.hmSsh.enable {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;

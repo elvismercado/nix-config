@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/bash.nix ];
-#   custom.bash.enable = true;
+#   custom.hmBash.enable = true;
 
 {
   config,
@@ -13,10 +13,10 @@
 
 {
   options = {
-    custom.bash.enable = lib.mkEnableOption "enables bash";
+    custom.hmBash.enable = lib.mkEnableOption "enables bash";
   };
 
-  config = lib.mkIf config.custom.bash.enable {
+  config = lib.mkIf config.custom.hmBash.enable {
     # ── Bash shell lifecycle hooks ──────────────────────────────────────
     #
     # Home-manager generates three bash config files from these hooks:

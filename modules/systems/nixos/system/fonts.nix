@@ -12,7 +12,7 @@
     ../../shared/fonts.nix
   ];
 
-  config = lib.mkIf config.custom.fonts.enable {
+  config = lib.mkIf config.custom.sysFonts.enable {
     fonts = {
       enableDefaultPackages = true;
 

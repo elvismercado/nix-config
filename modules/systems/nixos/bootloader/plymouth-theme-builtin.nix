@@ -18,9 +18,9 @@
 #     ../../../modules/systems/nixos/bootloader/plymouth.nix
 #     ../../../modules/systems/nixos/bootloader/plymouth-theme-builtin.nix
 #   ];
-#   custom.plymouth.enable = true;
-#   custom.plymouthThemeBuiltin.enable = true;
-#   custom.plymouthThemeBuiltin.theme = "solar";
+#   custom.sysNixPlymouth.enable = true;
+#   custom.sysNixPlymouthThemeBuiltin.enable = true;
+#   custom.sysNixPlymouthThemeBuiltin.theme = "solar";
 
 {
   config,
@@ -30,9 +30,9 @@
 
 {
   options = {
-    custom.plymouthThemeBuiltin.enable = lib.mkEnableOption "enables a built-in Plymouth theme";
+    custom.sysNixPlymouthThemeBuiltin.enable = lib.mkEnableOption "enables a built-in Plymouth theme";
 
-    custom.plymouthThemeBuiltin.theme = lib.mkOption {
+    custom.sysNixPlymouthThemeBuiltin.theme = lib.mkOption {
       type = lib.types.enum [
         "bgrt"
         "spinner"
@@ -50,7 +50,7 @@
     };
   };
 
-  config = lib.mkIf config.custom.plymouthThemeBuiltin.enable {
-    boot.plymouth.theme = config.custom.plymouthThemeBuiltin.theme;
+  config = lib.mkIf config.custom.sysNixPlymouthThemeBuiltin.enable {
+    boot.plymouth.theme = config.custom.sysNixPlymouthThemeBuiltin.theme;
   };
 }

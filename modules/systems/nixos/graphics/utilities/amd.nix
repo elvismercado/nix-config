@@ -7,10 +7,10 @@
 
 {
   options = {
-    custom.amdGraphics.enable = lib.mkEnableOption "enables AMD GPU graphics support";
+    custom.sysNixAmdGraphics.enable = lib.mkEnableOption "enables AMD GPU graphics support";
   };
 
-  config = lib.mkIf config.custom.amdGraphics.enable {
+  config = lib.mkIf config.custom.sysNixAmdGraphics.enable {
     services.xserver.videoDrivers = lib.mkDefault [ "modesetting" ];
 
     hardware.graphics = {

@@ -13,9 +13,9 @@
 #   imports = [
 #     ../../../modules/systems/nixos/display_manager/sddm-input-config.nix
 #   ];
-#   custom.sddmInputConfig.enable = true;
+#   custom.sysNixSddmInputConfig.enable = true;
 #   # Optional: provide a custom kcminputrc file
-#   # custom.sddmInputConfig.kcmInputRc = ../kcminputrc;
+#   # custom.sysNixSddmInputConfig.kcmInputRc = ../kcminputrc;
 
 {
   config,
@@ -25,9 +25,9 @@
 
 {
   options = {
-    custom.sddmInputConfig.enable = lib.mkEnableOption "deploys input settings (kcminputrc) to the SDDM login screen";
+    custom.sysNixSddmInputConfig.enable = lib.mkEnableOption "deploys input settings (kcminputrc) to the SDDM login screen";
 
-    custom.sddmInputConfig.kcmInputRc = lib.mkOption {
+    custom.sysNixSddmInputConfig.kcmInputRc = lib.mkOption {
       type = lib.types.nullOr lib.types.path;
       default = null;
       description = ''
@@ -41,14 +41,14 @@
     };
   };
 
-  config = lib.mkIf config.custom.sddmInputConfig.enable {
+  config = lib.mkIf config.custom.sysNixSddmInputConfig.enable {
     # Deploy the kcminputrc to the sddm user on every rebuild/activation.
     # This ensures the SDDM Wayland greeter (which uses kwin_wayland)
     # renders with the correct input settings (tap-to-click, Wacom, etc.).
     system.activationScripts.sddmInputConfig = {
       text =
         let
-          configFile = config.custom.sddmInputConfig.kcmInputRc;
+          configFile = config.custom.sysNixSddmInputConfig.kcmInputRc;
         in
         ''
           SDDM_CONFIG="/var/lib/sddm/.config"

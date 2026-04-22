@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.wacom.enable = lib.mkEnableOption "enables Wacom tablet support";
+    custom.sysNixWacom.enable = lib.mkEnableOption "enables Wacom tablet support";
   };
 
-  config = lib.mkIf config.custom.wacom.enable {
+  config = lib.mkIf config.custom.sysNixWacom.enable {
     # Wacom kernel driver and input handling
     services.xserver.wacom.enable = true;
 

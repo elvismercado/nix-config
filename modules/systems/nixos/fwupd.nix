@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.fwupd.enable = lib.mkEnableOption "enables fwupd firmware update daemon";
+    custom.sysNixFwupd.enable = lib.mkEnableOption "enables fwupd firmware update daemon";
   };
 
-  config = lib.mkIf config.custom.fwupd.enable {
+  config = lib.mkIf config.custom.sysNixFwupd.enable {
     services.fwupd.enable = true;
   };
 }

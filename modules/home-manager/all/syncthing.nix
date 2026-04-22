@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/syncthing.nix ];
-#   custom.syncthing.enable = true;
+#   custom.hmSyncthing.enable = true;
 
 {
   config,
@@ -12,10 +12,10 @@
 
 {
   options = {
-    custom.syncthing.enable = lib.mkEnableOption "enables syncthing";
+    custom.hmSyncthing.enable = lib.mkEnableOption "enables syncthing";
   };
 
-  config = lib.mkIf config.custom.syncthing.enable {
+  config = lib.mkIf config.custom.hmSyncthing.enable {
     services.syncthing = {
       enable = true;
       tray = {

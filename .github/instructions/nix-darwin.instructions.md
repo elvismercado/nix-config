@@ -29,7 +29,7 @@ Use `pkgs.bashInteractive` (not `pkgs.bash`) for user login shells on macOS. The
 When `nix.enable = false` (Determinate Nix manages the daemon):
 
 - Do not set `nix.gc.automatic`, `nix.optimise.automatic`, or any `nix.settings`
-- Disable any garbage collection modules (`custom.gc.enable = false`)
+- Disable any garbage collection modules (`custom.sysGc.enable = false`)
 
 ### Homebrew Cask Names
 

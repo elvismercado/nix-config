@@ -44,11 +44,11 @@
   ];
 
   options = {
-    custom.intelArcIntelDriver.enable = lib.mkEnableOption "enables Intel Arc A380 with Intel driver";
+    custom.sysNixIntelArcIntelDriver.enable = lib.mkEnableOption "enables Intel Arc A380 with Intel driver";
   };
 
-  config = lib.mkIf config.custom.intelArcIntelDriver.enable {
-    custom.nvtopIntel.enable = true;
+  config = lib.mkIf config.custom.sysNixIntelArcIntelDriver.enable {
+    custom.sysNixNvtopIntel.enable = true;
 
     boot.kernelPackages = pkgs.linuxPackages_zen;
     boot.initrd.kernelModules = [ "i915" ]; # Early KMS start

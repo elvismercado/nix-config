@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.fprintd.enable = lib.mkEnableOption "enables fingerprint reader support";
+    custom.sysNixFprintd.enable = lib.mkEnableOption "enables fingerprint reader support";
   };
 
-  config = lib.mkIf config.custom.fprintd.enable {
+  config = lib.mkIf config.custom.sysNixFprintd.enable {
     services.fprintd.enable = true;
 
     # Enroll fingerprints with: fprintd-enroll

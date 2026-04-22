@@ -49,11 +49,11 @@
   ];
 
   options = {
-    custom.nvidiaRtx3070Lhr.enable = lib.mkEnableOption "enables NVIDIA RTX 3070 LHR (Ampere/GA104) graphics support";
+    custom.sysNixNvidiaRtx3070Lhr.enable = lib.mkEnableOption "enables NVIDIA RTX 3070 LHR (Ampere/GA104) graphics support";
   };
 
-  config = lib.mkIf config.custom.nvidiaRtx3070Lhr.enable {
-    custom.nvtopNvidia.enable = true;
+  config = lib.mkIf config.custom.sysNixNvidiaRtx3070Lhr.enable {
+    custom.sysNixNvtopNvidia.enable = true;
 
     boot.kernelPackages = pkgs.linuxPackages_zen; # zen — low-latency desktop/gaming, consistent with other GPU profiles
     boot.initrd.kernelModules = [

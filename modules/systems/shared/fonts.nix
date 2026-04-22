@@ -7,10 +7,10 @@
 
 {
   options = {
-    custom.fonts.enable = lib.mkEnableOption "enables shared font packages";
+    custom.sysFonts.enable = lib.mkEnableOption "enables shared font packages";
   };
 
-  config = lib.mkIf config.custom.fonts.enable {
+  config = lib.mkIf config.custom.sysFonts.enable {
     fonts.packages = with pkgs; [
       nerd-fonts.departure-mono
       google-fonts

@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.libvirtd.enable = lib.mkEnableOption "enables libvirtd virtualisation and virt-manager";
+    custom.sysNixLibvirtd.enable = lib.mkEnableOption "enables libvirtd virtualisation and virt-manager";
   };
 
-  config = lib.mkIf config.custom.libvirtd.enable {
+  config = lib.mkIf config.custom.sysNixLibvirtd.enable {
     virtualisation.libvirtd.enable = true;
     programs.virt-manager.enable = true;
   };

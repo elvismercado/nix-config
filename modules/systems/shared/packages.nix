@@ -2,7 +2,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/shared/packages.nix ];
-#   custom.systemPackages.enable = true;
+#   custom.sysPackages.enable = true;
 
 {
   config,
@@ -13,10 +13,10 @@
 
 {
   options = {
-    custom.systemPackages.enable = lib.mkEnableOption "enables base system packages";
+    custom.sysPackages.enable = lib.mkEnableOption "enables base system packages";
   };
 
-  config = lib.mkIf config.custom.systemPackages.enable {
+  config = lib.mkIf config.custom.sysPackages.enable {
     environment.systemPackages = with pkgs; [
       git
       gh

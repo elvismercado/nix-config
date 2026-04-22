@@ -10,8 +10,8 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/starship.nix ];
-#   custom.starship.enable = true;
-#   custom.starship.style = "pastel-powerline";  # or "default"
+#   custom.hmStarship.enable = true;
+#   custom.hmStarship.style = "pastel-powerline";  # or "default"
 
 {
   config,
@@ -20,7 +20,7 @@
 }:
 
 let
-  cfg = config.custom.starship;
+  cfg = config.custom.hmStarship;
 
   # ── Default style ──────────────────────────────────────────────────
   # Clean two-line prompt: user@host dir (branch) / => on next line
@@ -204,9 +204,9 @@ let
 in
 {
   options = {
-    custom.starship.enable = lib.mkEnableOption "enables Starship cross-platform shell prompt";
+    custom.hmStarship.enable = lib.mkEnableOption "enables Starship cross-platform shell prompt";
 
-    custom.starship.style = lib.mkOption {
+    custom.hmStarship.style = lib.mkOption {
       type = lib.types.enum [
         "default"
         "pastel-powerline"

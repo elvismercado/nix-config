@@ -6,8 +6,8 @@
 #     ../../../modules/systems/nixos/bootloader/plymouth.nix
 #     ../../../modules/systems/nixos/bootloader/plymouth-theme-nixos.nix
 #   ];
-#   custom.plymouth.enable = true;
-#   custom.plymouthThemeNixos.enable = true;
+#   custom.sysNixPlymouth.enable = true;
+#   custom.sysNixPlymouthThemeNixos.enable = true;
 
 {
   config,
@@ -18,10 +18,10 @@
 
 {
   options = {
-    custom.plymouthThemeNixos.enable = lib.mkEnableOption "enables NixOS BGRT Plymouth theme";
+    custom.sysNixPlymouthThemeNixos.enable = lib.mkEnableOption "enables NixOS BGRT Plymouth theme";
   };
 
-  config = lib.mkIf config.custom.plymouthThemeNixos.enable {
+  config = lib.mkIf config.custom.sysNixPlymouthThemeNixos.enable {
     boot.plymouth = {
       theme = "nixos-bgrt";
       themePackages = [ pkgs.nixos-bgrt-plymouth ];

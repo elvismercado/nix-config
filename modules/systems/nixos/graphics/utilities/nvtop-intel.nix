@@ -7,10 +7,10 @@
 
 {
   options = {
-    custom.nvtopIntel.enable = lib.mkEnableOption "enables nvtop for Intel GPUs";
+    custom.sysNixNvtopIntel.enable = lib.mkEnableOption "enables nvtop for Intel GPUs";
   };
 
-  config = lib.mkIf config.custom.nvtopIntel.enable {
+  config = lib.mkIf config.custom.sysNixNvtopIntel.enable {
     # List packages installed in system profile. (all users)
     environment.systemPackages = with pkgs; [
       nvtopPackages.intel

@@ -47,7 +47,7 @@ For each file, produce a table:
 | File              | Section             | Issue                                   | Priority             |
 | ----------------- | ------------------- | --------------------------------------- | -------------------- |
 | `NIXOS.md`        | Hosts table         | Missing FENNEC                          | P1 — missing host    |
-| `HOME-MANAGER.md` | All platforms table | Missing `fnm.nix` (`custom.fnm.enable`) | P2 — missing module  |
+| `HOME-MANAGER.md` | All platforms table | Missing `fnm.nix` (`custom.hmFnm.enable`) | P2 — missing module  |
 | `README.md`       | Structure tree      | `gaming/` directory not shown           | P3 — stale structure |
 
 Priority levels:

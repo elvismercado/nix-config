@@ -9,7 +9,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/fnm.nix ];
-#   custom.fnm.enable = true;
+#   custom.hmFnm.enable = true;
 
 {
   config,
@@ -20,10 +20,10 @@
 
 {
   options = {
-    custom.fnm.enable = lib.mkEnableOption "enables fnm Node.js version manager";
+    custom.hmFnm.enable = lib.mkEnableOption "enables fnm Node.js version manager";
   };
 
-  config = lib.mkIf config.custom.fnm.enable {
+  config = lib.mkIf config.custom.hmFnm.enable {
     home.packages = [ pkgs.fnm ];
 
     # Initialize fnm in bash (adds shims to PATH, enables auto-switching)

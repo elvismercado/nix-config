@@ -6,7 +6,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/fastfetch.nix ];
-#   custom.fastfetch.enable = true;
+#   custom.hmFastfetch.enable = true;
 
 {
   config,
@@ -17,10 +17,10 @@
 
 {
   options = {
-    custom.fastfetch.enable = lib.mkEnableOption "enables fastfetch system info tool";
+    custom.hmFastfetch.enable = lib.mkEnableOption "enables fastfetch system info tool";
   };
 
-  config = lib.mkIf config.custom.fastfetch.enable {
+  config = lib.mkIf config.custom.hmFastfetch.enable {
     home.packages = [ pkgs.fastfetch ];
 
     xdg.configFile."fastfetch/config.jsonc".text = builtins.toJSON {

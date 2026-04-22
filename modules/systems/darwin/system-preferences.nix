@@ -6,7 +6,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/darwin/system-preferences.nix ];
-#   custom.systemPreferences.enable = true;
+#   custom.sysDarPreferences.enable = true;
 
 {
   config,
@@ -16,10 +16,10 @@
 
 {
   options = {
-    custom.systemPreferences.enable = lib.mkEnableOption "enables macOS system preferences";
+    custom.sysDarPreferences.enable = lib.mkEnableOption "enables macOS system preferences";
   };
 
-  config = lib.mkIf config.custom.systemPreferences.enable {
+  config = lib.mkIf config.custom.sysDarPreferences.enable {
     system.defaults.NSGlobalDomain = {
       # Appearance
       AppleInterfaceStyle = "Dark";

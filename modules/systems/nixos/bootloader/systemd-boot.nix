@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.systemd-boot.enable = lib.mkEnableOption "enables SYSTEMD-BOOT bootloader";
+    custom.sysNixSystemdBoot.enable = lib.mkEnableOption "enables SYSTEMD-BOOT bootloader";
   };
 
-  config = lib.mkIf config.custom.systemd-boot.enable {
+  config = lib.mkIf config.custom.sysNixSystemdBoot.enable {
     boot.loader = {
       timeout = 3;
       efi = {

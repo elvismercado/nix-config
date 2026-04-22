@@ -7,10 +7,10 @@
 
 {
   options = {
-    custom.cosmicDesktop.enable = lib.mkEnableOption "enables COSMIC desktop environment";
+    custom.sysNixCosmicDesktop.enable = lib.mkEnableOption "enables COSMIC desktop environment";
   };
 
-  config = lib.mkIf config.custom.cosmicDesktop.enable {
+  config = lib.mkIf config.custom.sysNixCosmicDesktop.enable {
     # Binary cache for COSMIC packages (avoids building from source)
     nix.settings.extra-substituters = [ "https://cosmic.cachix.org/" ];
     nix.settings.extra-trusted-public-keys = [

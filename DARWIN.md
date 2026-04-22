@@ -48,7 +48,7 @@ Modules use the same `custom.*` namespace pattern as NixOS. Import and enable in
     ../../../modules/systems/darwin/alacritty.nix
   ];
 
-  custom.alacritty.enable = true;
+  custom.sysDarAlacritty.enable = true;
 }
 ```
 
@@ -56,22 +56,22 @@ Modules use the same `custom.*` namespace pattern as NixOS. Import and enable in
 
 | Module                                  | Option                            |
 | --------------------------------------- | --------------------------------- |
-| `systems/darwin/alacritty.nix`          | `custom.alacritty.enable`         |
-| `systems/darwin/control-center.nix`     | `custom.controlCenter.enable`     |
-| `systems/darwin/dock.nix`               | `custom.dock.enable`              |
-| `systems/darwin/finder.nix`             | `custom.finder.enable`            |
-| `systems/darwin/fonts.nix`              | `custom.fonts.enable`             |
-| `systems/darwin/garbage.nix`            | `custom.gc.enable`                |
-| `systems/darwin/packages.nix`           | `custom.systemPackages.enable`    |
-| `systems/darwin/power.nix`              | `custom.power.enable`             |
-| `systems/darwin/security.nix`           | `custom.security.enable`          |
-| `systems/darwin/system-preferences.nix` | `custom.systemPreferences.enable` |
-| `systems/darwin/trackpad.nix`           | `custom.trackpad.enable`          |
+| `systems/darwin/alacritty.nix`          | `custom.sysDarAlacritty.enable`         |
+| `systems/darwin/control-center.nix`     | `custom.sysDarControlCenter.enable`     |
+| `systems/darwin/dock.nix`               | `custom.sysDarDock.enable`              |
+| `systems/darwin/finder.nix`             | `custom.sysDarFinder.enable`            |
+| `systems/darwin/fonts.nix`              | `custom.sysFonts.enable`             |
+| `systems/darwin/garbage.nix`            | `custom.sysGc.enable`                |
+| `systems/darwin/packages.nix`           | `custom.sysPackages.enable`    |
+| `systems/darwin/power.nix`              | `custom.sysDarPower.enable`             |
+| `systems/darwin/security.nix`           | `custom.sysDarSecurity.enable`          |
+| `systems/darwin/system-preferences.nix` | `custom.sysDarPreferences.enable` |
+| `systems/darwin/trackpad.nix`           | `custom.sysDarTrackpad.enable`          |
 | **Shared** (cross-platform)             |                                   |
-| `systems/shared/bash.nix`               | `custom.bashCompletion.enable`    |
-| `systems/shared/fonts.nix`              | `custom.fonts.enable`             |
-| `systems/shared/packages.nix`           | `custom.systemPackages.enable`    |
-| `systems/shared/ssh-server.nix`         | `custom.sshServer.enable`         |
+| `systems/shared/bash.nix`               | `custom.sysBashCompletion.enable`    |
+| `systems/shared/fonts.nix`              | `custom.sysFonts.enable`             |
+| `systems/shared/packages.nix`           | `custom.sysPackages.enable`    |
+| `systems/shared/ssh-server.nix`         | `custom.sysSshServer.enable`         |
 
 > Darwin wrapper modules (e.g. `darwin/garbage.nix`) import the shared module and add Darwin-specific settings. Import the `darwin/` file, not the `shared/` file directly.
 

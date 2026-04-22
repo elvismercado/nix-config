@@ -6,10 +6,10 @@
 
 {
   options = {
-    custom.printing.enable = lib.mkEnableOption "enables CUPS printing";
+    custom.sysNixPrinting.enable = lib.mkEnableOption "enables CUPS printing";
   };
 
-  config = lib.mkIf config.custom.printing.enable {
+  config = lib.mkIf config.custom.sysNixPrinting.enable {
     # Enable CUPS to print documents.
     services.printing = {
       enable = true;

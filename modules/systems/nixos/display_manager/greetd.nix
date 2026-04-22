@@ -14,17 +14,17 @@
 #     ../../../modules/systems/nixos/display_manager/greetd.nix
 #     ../../../modules/systems/nixos/desktop_environment/kde_plasma.nix
 #   ];
-#   custom.greetd.enable = true;
-#   custom.kdePlasma.enable = true;
+#   custom.sysNixGreetd.enable = true;
+#   custom.sysNixKdePlasma.enable = true;
 #
 #   # Multi-monitor layout (sway output commands)
-#   custom.greetd.swayOutputConfig = ''
+#   custom.sysNixGreetd.swayOutputConfig = ''
 #     output DP-1 mode 2560x1440@100Hz position 0 0
 #     output DP-2 mode 1920x1200@100Hz transform 270 position 2560 0
 #   '';
 #
 #   # Optional: login screen wallpaper
-#   custom.greetd.background = ./wallpaper.jpg;
+#   custom.sysNixGreetd.background = ./wallpaper.jpg;
 
 {
   config,
@@ -34,7 +34,7 @@
 }:
 
 let
-  cfg = config.custom.greetd;
+  cfg = config.custom.sysNixGreetd;
 
   tomlFormat = pkgs.formats.toml { };
 
@@ -71,9 +71,9 @@ let
 in
 {
   options = {
-    custom.greetd.enable = lib.mkEnableOption "enables greetd display manager with ReGreet greeter (Sway compositor)";
+    custom.sysNixGreetd.enable = lib.mkEnableOption "enables greetd display manager with ReGreet greeter (Sway compositor)";
 
-    custom.greetd.background = lib.mkOption {
+    custom.sysNixGreetd.background = lib.mkOption {
       type = lib.types.nullOr lib.types.path;
       default = null;
       description = ''
@@ -83,7 +83,7 @@ in
       '';
     };
 
-    custom.greetd.swayOutputConfig = lib.mkOption {
+    custom.sysNixGreetd.swayOutputConfig = lib.mkOption {
       type = lib.types.lines;
       default = "";
       example = ''

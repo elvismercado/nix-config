@@ -59,57 +59,57 @@
   ];
 
   # Nix
-  custom.enableFlakes.enable = true;
-  custom.gc.enable = true;
+  custom.sysNixEnableFlakes.enable = true;
+  custom.sysGc.enable = true;
 
   # Bootloader
-  custom.grub.enable = true;
-  custom.grub.timeout = 5; # dual-boot — give time to select OS
-  custom.grubThemeSleek.enable = true;
-  custom.grubThemeSleek.style = "dark";
-  custom.plymouth.enable = true;
-  custom.plymouth.minAnimationDuration = 3; # NVMe boots fast — ensure animation plays
-  custom.plymouth.minShutdownDuration = 3;
-  custom.plymouthThemeAdi1090x.enable = true;
-  custom.plymouthThemeAdi1090x.theme = "circuit";
+  custom.sysNixGrub.enable = true;
+  custom.sysNixGrub.timeout = 5; # dual-boot — give time to select OS
+  custom.sysNixGrubThemeSleek.enable = true;
+  custom.sysNixGrubThemeSleek.style = "dark";
+  custom.sysNixPlymouth.enable = true;
+  custom.sysNixPlymouth.minAnimationDuration = 3; # NVMe boots fast — ensure animation plays
+  custom.sysNixPlymouth.minShutdownDuration = 3;
+  custom.sysNixPlymouthThemeAdi1090x.enable = true;
+  custom.sysNixPlymouthThemeAdi1090x.theme = "circuit";
 
   # Hardware
-  custom.amdRyzen95900x.enable = true;
-  custom.nvidiaRtx3080.enable = true;
-  custom.ssd.enable = true;
+  custom.sysNixAmdRyzen95900x.enable = true;
+  custom.sysNixNvidiaRtx3080.enable = true;
+  custom.sysNixSsd.enable = true;
 
   # Memory
-  custom.zram.enable = true;
-  custom.earlyoom.enable = true;
-  custom.hibernate.enable = true;
+  custom.sysNixZram.enable = true;
+  custom.sysNixEarlyoom.enable = true;
+  custom.sysNixHibernate.enable = true;
 
   # System
-  custom.systemPackages.enable = true;
-  custom.bashCompletion.enable = true;
-  custom.console.enable = true;
-  custom.timezone.enable = true;
-  custom.i18n.enable = true;
-  custom.fonts.enable = true;
-  custom.networkTuning.enable = true;
+  custom.sysPackages.enable = true;
+  custom.sysBashCompletion.enable = true;
+  custom.sysNixConsole.enable = true;
+  custom.sysNixTimezone.enable = true;
+  custom.sysNixI18n.enable = true;
+  custom.sysFonts.enable = true;
+  custom.sysNixNetworkTuning.enable = true;
 
   # Display
-  custom.sddm.enable = true;
-  custom.kdePlasma.enable = true;
+  custom.sysNixSddm.enable = true;
+  custom.sysNixKdePlasma.enable = true;
 
   # Peripherals
-  custom.bluetooth.enable = true;
-  custom.pipewire.enable = true;
-  custom.logitechMouse.enable = true;
+  custom.sysNixBluetooth.enable = true;
+  custom.sysNixPipewire.enable = true;
+  custom.sysNixLogitechMouse.enable = true;
 
   # Services
-  custom.fwupd.enable = true;
-  custom.mullvad.enable = true;
-  custom.postinstall.enable = true;
+  custom.sysNixFwupd.enable = true;
+  custom.sysNixMullvad.enable = true;
+  custom.sysNixPostinstall.enable = true;
 
   # Apps
-  custom.coolercontrol.enable = true;
-  custom.sunshine.enable = true;
+  custom.sysNixCoolercontrol.enable = true;
+  custom.sysNixSunshine.enable = true;
 
   # Gaming
-  custom.steam.enable = true;
+  custom.sysNixSteam.enable = true;
 }

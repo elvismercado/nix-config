@@ -8,10 +8,10 @@
 
 {
   options = {
-    custom.sunshine.enable = lib.mkEnableOption "enables sunshine";
+    custom.sysNixSunshine.enable = lib.mkEnableOption "enables sunshine";
   };
 
-  config = lib.mkIf config.custom.sunshine.enable {
+  config = lib.mkIf config.custom.sysNixSunshine.enable {
     environment.systemPackages = with pkgs; [
       sunshine
     ];

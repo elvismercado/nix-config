@@ -90,14 +90,14 @@
   environment.shells = [ pkgs.bashInteractive ];
   environment.variables.LANG = "en_GB.UTF-8";
 
-  custom.controlCenter.enable = true;
-  custom.dock.enable = true;
-  custom.finder.enable = true;
-  custom.systemPreferences.enable = true;
-  custom.trackpad.enable = true;
-  custom.systemPackages.enable = true;
-  custom.bashCompletion.enable = true;
-  custom.fonts.enable = true;
-  custom.power.enable = true;
-  custom.security.enable = true;
+  custom.sysDarControlCenter.enable = true;
+  custom.sysDarDock.enable = true;
+  custom.sysDarFinder.enable = true;
+  custom.sysDarPreferences.enable = true;
+  custom.sysDarTrackpad.enable = true;
+  custom.sysPackages.enable = true;
+  custom.sysBashCompletion.enable = true;
+  custom.sysFonts.enable = true;
+  custom.sysDarPower.enable = true;
+  custom.sysDarSecurity.enable = true;
 }

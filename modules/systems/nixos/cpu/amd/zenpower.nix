@@ -19,7 +19,7 @@
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/cpu/amd/zenpower.nix ];
-#   custom.amdZenpower.enable = true;
+#   custom.sysNixAmdZenpower.enable = true;
 
 {
   config,
@@ -33,12 +33,12 @@
   ];
 
   options = {
-    custom.amdZenpower.enable = lib.mkEnableOption "enables Zenpower sensor driver (replaces k10temp)";
+    custom.sysNixAmdZenpower.enable = lib.mkEnableOption "enables Zenpower sensor driver (replaces k10temp)";
   };
 
-  config = lib.mkIf config.custom.amdZenpower.enable {
+  config = lib.mkIf config.custom.sysNixAmdZenpower.enable {
     # Auto-enable the base AMD CPU module
-    custom.amdCpu.enable = true;
+    custom.sysNixAmdCpu.enable = true;
 
     # Blacklist k10temp — it conflicts with zenpower as both try to bind
     # to the same PCI device. k10temp only reports basic Tctl/Tdie temps.
