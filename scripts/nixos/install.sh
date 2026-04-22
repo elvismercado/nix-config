@@ -744,6 +744,21 @@ mount_partitions() {
 }
 
 # ──────────────────────────────────────────────────────────────
+# Validate host exists in the cloned repo
+# ──────────────────────────────────────────────────────────────
+# Called early (before interactive_config) so CLI users get a fast error
+# if --host points to a non-existent host. Skipped when FLAKE_HOST is
+# empty — interactive_config will prompt for it via prompt_host().
+validate_host() {
+  [[ -n "$FLAKE_HOST" ]] || return 0
+
+  local settings_file="${TEMP_REPO}/hosts/${FLAKE_HOST}/user-settings.nix"
+  if [[ ! -f "$settings_file" ]]; then
+    fatal "Host '${FLAKE_HOST}' not found — no file at hosts/${FLAKE_HOST}/user-settings.nix"
+  fi
+}
+
+# ──────────────────────────────────────────────────────────────
 # Clone flake repository
 # ──────────────────────────────────────────────────────────────
 clone_repo() {
@@ -763,10 +778,7 @@ clone_repo() {
 resolve_username() {
   local settings_file="${TEMP_REPO}/hosts/${FLAKE_HOST}/user-settings.nix"
 
-  if [[ ! -f "$settings_file" ]]; then
-    fatal "Host '${FLAKE_HOST}' not found — no file at hosts/${FLAKE_HOST}/user-settings.nix"
-  fi
-
+  # validate_host() already confirmed this file exists
   USERNAME=$(sed -n 's/.*username[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p' "$settings_file" | head -1) \
     || fatal "Could not extract username from ${settings_file}"
 
@@ -945,6 +957,7 @@ main() {
   check_preconditions
   parse_args "$@"
   clone_repo
+  validate_host
   interactive_config
 
   validate_disk_capacity
