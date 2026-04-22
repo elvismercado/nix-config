@@ -658,8 +658,9 @@ partition_disk() {
     parted -s "$DISK" -- mkpart swap linux-swap "${swap_start_mib}MiB" 100%
   fi
 
-  # Let the kernel re-read the partition table
+  # Let the kernel re-read the partition table and wait for udev to process
   partprobe "$DISK" 2>/dev/null || true
+  udevadm settle
 
   # Partition the dedicated home disk (entire disk = single ext4 partition)
   if [[ -n "$HOME_DISK" ]] && [[ -z "$KEEP_HOME" ]]; then
@@ -670,11 +671,10 @@ partition_disk() {
     parted -s "$HOME_DISK" -- mkpart home ext4 1MiB 100%
 
     partprobe "$HOME_DISK" 2>/dev/null || true
+    udevadm settle
   elif [[ -n "$HOME_DISK" ]] && [[ -n "$KEEP_HOME" ]]; then
     info "Keeping existing partition table on home disk ${HOME_DISK}."
   fi
-
-  sleep 2
 }
 
 # ──────────────────────────────────────────────────────────────
