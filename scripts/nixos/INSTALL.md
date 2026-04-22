@@ -16,6 +16,7 @@ For host-specific hardware details, see the README in your host's directory
 | **Boot media**  | NixOS 25.11 ISO (minimal or graphical) booted from USB          |
 | **Internet**    | Wired (DHCP) or Wi-Fi via `nmtui`                               |
 | **Target disk** | 1 or 2 disks — **all data on target disk(s) will be erased**    |
+| **Root space**  | At least 20 GiB for root (`/nix/store` grows with generations)  |
 | **This flake**  | Public repo — cloned automatically during install               |
 | **Host config** | A host directory under `hosts/<HOST>/` with `user-settings.nix` |
 

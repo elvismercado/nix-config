@@ -72,6 +72,10 @@ LABEL_ROOT="nixos"
 LABEL_HOME="home"
 LABEL_SWAP="swap"
 
+# Minimum root partition size (MiB). Root holds /nix/store which grows with
+# each NixOS generation. 20 GiB provides comfortable headroom.
+MIN_ROOT_MIB=20480
+
 # ──────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────
@@ -125,6 +129,48 @@ disk_mib() {
   local bytes
   bytes=$(blockdev --getsize64 "$device")
   echo $(( bytes / 1048576 ))
+}
+
+# Validate that the requested partitions fit on the target disk(s).
+# Must be called after all sizes are finalized, before confirm_destroy().
+validate_disk_capacity() {
+  local efi_mib swap_mib total_mib required_mib root_mib
+
+  efi_mib=$(size_mib "$EFI_SIZE")
+  swap_mib=$(size_mib "$SWAP_SIZE")
+  total_mib=$(disk_mib "$DISK")
+
+  if [[ -n "$HOME_SIZE" ]] && [[ -z "$HOME_DISK" ]]; then
+    # 4-partition layout on a single disk: EFI + root + home + swap
+    local home_mib
+    home_mib=$(size_mib "$HOME_SIZE")
+    required_mib=$(( efi_mib + MIN_ROOT_MIB + home_mib + swap_mib ))
+    root_mib=$(( total_mib - efi_mib - home_mib - swap_mib ))
+  else
+    # 3-partition layout: EFI + root + swap (home on separate disk or not used)
+    required_mib=$(( efi_mib + MIN_ROOT_MIB + swap_mib ))
+    root_mib=$(( total_mib - efi_mib - swap_mib ))
+  fi
+
+  if (( required_mib > total_mib )); then
+    echo ""
+    fatal "Partitions do not fit on ${DISK} ($(( total_mib / 1024 )) GiB).\n" \
+          "  Requested: EFI ${EFI_SIZE} + swap ${SWAP_SIZE}${HOME_SIZE:+ + home ${HOME_SIZE}} + root ≥ $(( MIN_ROOT_MIB / 1024 )) GiB = $(( required_mib / 1024 )) GiB minimum\n" \
+          "  Root would get $(( root_mib / 1024 )) GiB — need at least $(( MIN_ROOT_MIB / 1024 )) GiB.\n" \
+          "  Reduce partition sizes or use a larger disk."
+  fi
+
+  # Validate separate home disk capacity
+  if [[ -n "$HOME_DISK" ]] && [[ -n "$HOME_SIZE" ]]; then
+    local home_mib home_total_mib
+    home_mib=$(size_mib "$HOME_SIZE")
+    home_total_mib=$(disk_mib "$HOME_DISK")
+    if (( home_mib > home_total_mib )); then
+      fatal "Home partition (${HOME_SIZE}) does not fit on ${HOME_DISK} ($(( home_total_mib / 1024 )) GiB)."
+    fi
+  fi
+
+  info "Disk capacity check passed — root partition will get $(( root_mib / 1024 )) GiB."
 }
 
 # ──────────────────────────────────────────────────────────────
@@ -901,6 +947,7 @@ main() {
   clone_repo
   interactive_config
 
+  validate_disk_capacity
   confirm_destroy
   unmount_disk
   wipe_disk_signatures
