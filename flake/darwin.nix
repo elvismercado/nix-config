@@ -7,7 +7,7 @@
   selectDarwin,
 }:
 let
-  inherit (inputs) nixpkgs;
+  inherit (inputs) nixpkgs determinate;
 in
 nixpkgs.lib.genAttrs (builtins.attrNames darwinHosts) (
   hostName:
@@ -25,6 +25,7 @@ nixpkgs.lib.genAttrs (builtins.attrNames darwinHosts) (
         # Use the selected nixpkgs channel for this host
         nixpkgs.source = selectedNixpkgs.outPath;
       }
+      determinate.darwinModules.default
       selectedHomeManager.darwinModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
