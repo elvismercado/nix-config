@@ -48,6 +48,16 @@ detect_environment() {
     exit 1
   fi
 
+  if [[ ! -d "${REPO_DIR}/hosts/${HOST}" ]]; then
+    error "Hostname '${HOST}' does not match any flake host."
+    error "Available hosts:"
+    for dir in "${REPO_DIR}"/hosts/*/; do
+      [[ -d "$dir" ]] && echo "  - $(basename "$dir")"
+    done
+    error "Check that networking.hostName matches the hosts/ directory name."
+    exit 1
+  fi
+
   info "Host:     ${BOLD}${HOST}${NC}"
   info "User:     ${BOLD}${USER}${NC}"
   info "Repo:     ${BOLD}${REPO_DIR}${NC}"

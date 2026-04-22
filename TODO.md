@@ -15,7 +15,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **install.sh: Add cleanup trap on failure** — If the script fails mid-install, mounts under `/mnt` are left active. Add a trap that runs `umount -R /mnt; swapoff -a` on ERR exit.
 - [x] **install.sh: Replace `eval` with `printf -v`** — `prompt_size` and `prompt_disk` use `eval` to set variables by name. `printf -v "$varname" '%s' "$value"` is safer.
 - [x] **install.sh: Validate minimum EFI partition size** — A user could specify `--efi-size 1M` which is too small for FAT32. Enforce a minimum.
-- [ ] **postinstall.sh: Validate hostname matches flake host** — `hostname` could differ from the flake host name. Check `hosts/${HOST}/` exists before `nixos-rebuild`.
+- [x] **postinstall.sh: Validate hostname matches flake host** — `hostname` could differ from the flake host name. Check `hosts/${HOST}/` exists before `nixos-rebuild`.
 - [ ] **postinstall.sh: Add `--title` to `gh ssh-key add`** — Currently adds the key without a title. Use `--title "${USER}@${HOST}"` for identification on GitHub.
 - [ ] **postinstall.sh: Validate not running as root** — `passwd` and `$HOME` would target the wrong user if run as root.
 
