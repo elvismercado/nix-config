@@ -76,6 +76,10 @@ LABEL_SWAP="swap"
 # each NixOS generation. 20 GiB provides comfortable headroom.
 MIN_ROOT_MIB=20480
 
+# Minimum EFI partition size (MiB). FAT32 needs ~33 MiB overhead;
+# UEFI spec recommends at least 100 MiB.
+MIN_EFI_MIB=100
+
 # ──────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────
@@ -139,6 +143,10 @@ validate_disk_capacity() {
   efi_mib=$(size_mib "$EFI_SIZE")
   swap_mib=$(size_mib "$SWAP_SIZE")
   total_mib=$(disk_mib "$DISK")
+
+  if (( efi_mib < MIN_EFI_MIB )); then
+    fatal "EFI partition (${EFI_SIZE}) is too small. Minimum is ${MIN_EFI_MIB} MiB for FAT32."
+  fi
 
   if [[ -n "$HOME_SIZE" ]] && [[ -z "$HOME_DISK" ]]; then
     # 4-partition layout on a single disk: EFI + root + home + swap
