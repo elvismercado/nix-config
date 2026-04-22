@@ -712,7 +712,7 @@ clone_repo() {
 }
 
 # ──────────────────────────────────────────────────────────────
-# Resolve username from the flake host's user-settings.nix
+# Resolve username and UID from the flake host's user-settings.nix
 # ──────────────────────────────────────────────────────────────
 resolve_username() {
   local settings_file="${TEMP_REPO}/hosts/${FLAKE_HOST}/user-settings.nix"
@@ -726,9 +726,13 @@ resolve_username() {
 
   [[ -n "$USERNAME" ]] || fatal "Username is empty in ${settings_file}"
 
+  # Read uid from user-settings.nix; default to 1000 (first normal user) if absent
+  USER_UID=$(sed -n 's/.*uid[[:space:]]*=[[:space:]]*\([0-9]\+\).*/\1/p' "$settings_file" | head -1)
+  USER_UID="${USER_UID:-1000}"
+
   REPO_DIR="/mnt/home/${USERNAME}/git/${REPO_NAME}"
 
-  info "Resolved user: ${BOLD}${USERNAME}${NC} (from hosts/${FLAKE_HOST}/user-settings.nix)"
+  info "Resolved user: ${BOLD}${USERNAME}${NC} (UID ${USER_UID}) (from hosts/${FLAKE_HOST}/user-settings.nix)"
 }
 
 # ──────────────────────────────────────────────────────────────
@@ -745,13 +749,13 @@ deploy_repo() {
 
   cp -a "$TEMP_REPO" "$REPO_DIR"
 
-  # Set ownership to the target user (UID 1000 is the default for the first normal user)
+  # Set ownership to the target user (UID from user-settings.nix, GID 100 = NixOS 'users' group)
   # When keeping an existing /home, only chown the git directory to avoid a slow
   # recursive chown across all existing user data.
   if [[ -n "$KEEP_HOME" ]]; then
-    chown -R 1000:100 "/mnt/home/${USERNAME}/git"
+    chown -R "${USER_UID}:100" "/mnt/home/${USERNAME}/git"
   else
-    chown -R 1000:100 "/mnt/home/${USERNAME}"
+    chown -R "${USER_UID}:100" "/mnt/home/${USERNAME}"
   fi
 
   # Clean up temporary clone

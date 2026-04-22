@@ -341,9 +341,11 @@ Clone the repo, then look up the username from `user-settings.nix`:
 REPO_NAME=nix-config
 nix-shell -p git --run "git clone https://github.com/elvismercado/nix-config.git /tmp/${REPO_NAME}"
 
-# Read the username for this host
+# Read the username and UID for this host
 TARGET_USER=$(sed -n 's/.*username[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p' "/tmp/${REPO_NAME}/hosts/${HOST}/user-settings.nix")
-echo "Resolved user: $TARGET_USER"
+TARGET_UID=$(sed -n 's/.*uid[[:space:]]*=[[:space:]]*\([0-9]\+\).*/\1/p' "/tmp/${REPO_NAME}/hosts/${HOST}/user-settings.nix")
+TARGET_UID="${TARGET_UID:-1000}" # default to 1000 if uid not set
+echo "Resolved user: $TARGET_USER (UID $TARGET_UID)"
 ```
 
 Deploy to the target user's home directory:
@@ -352,7 +354,7 @@ Deploy to the target user's home directory:
 REPO_DIR="/mnt/home/${TARGET_USER}/git/${REPO_NAME}"
 mkdir -p "$(dirname "$REPO_DIR")"
 cp -a "/tmp/${REPO_NAME}" "$REPO_DIR"
-chown -R 1000:100 "/mnt/home/${TARGET_USER}"
+chown -R "${TARGET_UID}:100" "/mnt/home/${TARGET_USER}"
 rm -rf "/tmp/${REPO_NAME}"
 ```
 
@@ -360,7 +362,7 @@ rm -rf "/tmp/${REPO_NAME}"
 > recursive chown across all existing user data:
 >
 > ```bash
-> chown -R 1000:100 "/mnt/home/${TARGET_USER}/git"
+> chown -R "${TARGET_UID}:100" "/mnt/home/${TARGET_USER}/git"
 > ```
 
 ### 8. Generate hardware configuration

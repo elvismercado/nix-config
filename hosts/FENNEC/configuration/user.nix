@@ -18,6 +18,7 @@
   users.defaultUserShell = pkgs.bash;
 
   users.users.${userSettings.username} = {
+    uid = userSettings.uid;
     isNormalUser = true;
     description = userSettings.hostname;
     initialPassword = userSettings.username;
