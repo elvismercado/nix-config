@@ -287,6 +287,12 @@ main() {
   echo -e "${BOLD}NixOS Post-Install Setup${NC}"
   echo ""
 
+  if [[ $EUID -eq 0 ]]; then
+    error "Do not run this script as root."
+    error "Run as your normal user: bash ~/git/nix-config/scripts/nixos/postinstall.sh"
+    exit 1
+  fi
+
   detect_environment
 
   step_change_password
