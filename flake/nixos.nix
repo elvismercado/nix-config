@@ -19,6 +19,7 @@ nixpkgs.lib.genAttrs (builtins.attrNames nixosHosts) (
     system = userSettings.system;
     modules = [
       { nixpkgs.config.allowUnfree = true; }
+      { nix.settings.trusted-users = [ userSettings.username ]; }
       determinate.nixosModules.default
       selectedHomeManager.nixosModules.home-manager
       {

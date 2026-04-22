@@ -5,14 +5,6 @@
 }:
 
 {
-  nix = {
-    settings = {
-      trusted-users = [
-        userSettings.username
-      ];
-    };
-  };
-
   users.mutableUsers = true; # If set to true, you are free to add new users and groups to the system with the ordinary useradd and groupadd commands.
 
   users.defaultUserShell = pkgs.bash;

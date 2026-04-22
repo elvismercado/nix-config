@@ -5,14 +5,6 @@
 }:
 
 {
-  nix = {
-    settings = {
-      trusted-users = [
-        userSettings.username
-      ];
-    };
-  };
-
   users.mutableUsers = true;
 
   users.defaultUserShell = pkgs.bash;

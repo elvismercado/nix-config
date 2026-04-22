@@ -5,9 +5,9 @@
 }:
 
 {
-  # nix.enable is set to false (Determinate Nix manages nix.conf).
-  # Uncomment if nix.enable is ever set to true.
-  # nix.settings.trusted-users = [ userSettings.username ];
+  # nix.settings.trusted-users is set at the flake level for NixOS hosts (flake/nixos.nix).
+  # On darwin, nix.enable = false (Determinate Nix manages nix.conf) — use
+  # determinateNix.customSettings.trusted-users if needed.
 
   users.knownUsers = [ userSettings.username ];
 
