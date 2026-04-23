@@ -1,3 +1,12 @@
+# YubiKey support
+#
+# Starts pcscd for CCID/PIV access, installs the YubiKey udev rules, and adds
+# the personalization, manager, and OATH (`yubioath-flutter`) tools.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/security/yubikey.nix ];
+#   custom.sysNixYubikey.enable = true;
+
 {
   config,
   lib,

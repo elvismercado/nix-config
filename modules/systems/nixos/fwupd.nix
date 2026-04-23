@@ -1,3 +1,12 @@
+# fwupd — firmware update daemon
+#
+# Enables `services.fwupd` so `fwupdmgr` can fetch and apply UEFI/device
+# firmware updates from the Linux Vendor Firmware Service (LVFS).
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/fwupd.nix ];
+#   custom.sysNixFwupd.enable = true;
+
 {
   config,
   lib,

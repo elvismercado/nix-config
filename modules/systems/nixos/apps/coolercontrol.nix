@@ -1,3 +1,12 @@
+# CoolerControl — fan and pump control with a daemon + GUI
+#
+# Pulls in `lm_sensors` for full hardware sensor detection and enables
+# the CoolerControl daemon (`programs.coolercontrol`).
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/apps/coolercontrol.nix ];
+#   custom.sysNixCoolercontrol.enable = true;
+
 {
   config,
   lib,

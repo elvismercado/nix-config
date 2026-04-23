@@ -1,3 +1,12 @@
+# CUPS printing — enables the CUPS daemon for network/USB printers
+#
+# Daemon is socket-activated (startWhenNeeded) and runs stateless so it picks
+# up configuration purely from the Nix store.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/printing.nix ];
+#   custom.sysNixPrinting.enable = true;
+
 {
   config,
   lib,

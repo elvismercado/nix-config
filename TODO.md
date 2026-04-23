@@ -87,7 +87,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P3 — Architecture & Convention
 
-- [ ] **Add comment headers to 16 modules** — Missing purpose + Usage block: `android.nix`, `shared/bash.nix`, `shared/fonts.nix`, `darwin/fonts.nix`, `darwin/garbage.nix`, `darwin/packages.nix`, `nixos/fwupd.nix`, `nixos/printing.nix`, `nixos/apps/coolercontrol.nix`, `nixos/apps/sunshine.nix`, `nixos/desktop_environment/kde_plasma.nix`, `nixos/input/wacom.nix`, `nixos/mouse/logitech.nix`, `nixos/security/fprintd.nix`, `nixos/security/yubikey.nix`, `darwin/alacritty.nix` (has comment but no Usage block).
+- [x] **Add comment headers to 16 modules** — All 16 modules now have the standard header (purpose + brief explanation + Usage block) matching the existing convention used by `brave.nix`, `hmBash`, etc.
 - [ ] **Remove unnecessary `lib.mkDefault` on NixOS home.nix** — FENNEC and JIN `home.nix` use `lib.mkDefault` for `home.username` and `home.homeDirectory`. On NixOS with home-manager as a module, these are auto-derived — `lib.mkDefault` is unnecessary (harmless but inconsistent with EDGE which correctly omits it).
 - [ ] **Add section comments to EDGE home-manager imports** — FENNEC and JIN `home-manager/default.nix` use section comments (`# Base`, `# Shell`, `# Apps`). EDGE lacks these, making the import list harder to navigate.
 - [ ] **Add section comments to EDGE configuration imports** — FENNEC and JIN `configuration/default.nix` have detailed section comments. EDGE's is uncommented — add `# System`, `# Darwin`, `# Shared` groupings.

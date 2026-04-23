@@ -1,3 +1,12 @@
+# Wacom tablet support
+#
+# Enables the Xorg Wacom driver, which is still required for X11 sessions and
+# Wacom configuration tools. On Wayland, libinput handles the device.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/input/wacom.nix ];
+#   custom.sysNixWacom.enable = true;
+
 {
   config,
   lib,

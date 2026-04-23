@@ -1,3 +1,12 @@
+# Sunshine — self-hosted game/desktop streaming host (Moonlight-compatible)
+#
+# Enables the Sunshine service with autostart, opens the firewall, and uses
+# `userSettings.hostname` as the advertised name (overridable).
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/apps/sunshine.nix ];
+#   custom.sysNixSunshine.enable = true;
+
 {
   config,
   pkgs,

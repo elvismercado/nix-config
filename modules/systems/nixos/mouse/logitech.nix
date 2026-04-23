@@ -1,3 +1,12 @@
+# Logitech wireless mouse / Unifying receiver support
+#
+# Enables `hardware.logitech.wireless` (with the graphical Solaar manager) so
+# Unifying receivers and Logitech wireless devices are recognised and pairable.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/mouse/logitech.nix ];
+#   custom.sysNixLogitechMouse.enable = true;
+
 {
   config,
   lib,

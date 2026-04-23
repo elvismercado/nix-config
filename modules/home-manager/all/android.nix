@@ -1,3 +1,11 @@
+# Android development & device tools — installed via home-manager
+#
+# Provides adb/fastboot for device interaction and scrcpy for screen mirroring.
+#
+# Usage:
+#   imports = [ ../../../modules/home-manager/all/android.nix ];
+#   custom.hmAndroid.enable = true;
+
 {
   config,
   pkgs,

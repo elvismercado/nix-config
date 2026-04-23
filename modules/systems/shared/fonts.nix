@@ -1,3 +1,12 @@
+# Shared font packages — installed at the system level on NixOS and nix-darwin
+#
+# Installs the Nerd Font and Google Fonts collections used across hosts.
+# Re-exported by darwin/fonts.nix and nixos/system/fonts.nix.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/shared/fonts.nix ];
+#   custom.sysFonts.enable = true;
+
 {
   config,
   pkgs,

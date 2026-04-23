@@ -1,3 +1,13 @@
+# KDE Plasma 6 — desktop environment
+#
+# Enables Plasma 6 with the Wayland session as the SDDM default, trims unused
+# KDE apps (Discover, Elisa, KHelpCenter, Kate), and installs the browser /
+# system integration packages.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/desktop_environment/kde_plasma.nix ];
+#   custom.sysNixKdePlasma.enable = true;
+
 {
   config,
   pkgs,

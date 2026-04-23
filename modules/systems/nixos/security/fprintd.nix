@@ -1,3 +1,12 @@
+# fprintd — fingerprint reader support
+#
+# Enables the fprintd daemon. Once a fingerprint is enrolled
+# (`fprintd-enroll`), it can be used for login, sudo, and polkit prompts.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/security/fprintd.nix ];
+#   custom.sysNixFprintd.enable = true;
+
 {
   config,
   lib,
