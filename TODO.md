@@ -56,6 +56,6 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **install.sh: Gitignore `INSTALL-REPORT.md`** — Already gitignored (`**/INSTALL-REPORT.md` in `.gitignore`).
 - [x] **setup.sh: Add timeout to `xcode-select --install` polling** — Added 15-minute timeout (180 iterations × 5s). Exits with a clear error and manual install instructions if timed out.
 - [x] **setup.sh: Align clone method with `install.sh`** — Switched from `gh repo clone` (requires auth) to `git clone` with HTTPS URL. Existing repo prompts user before deletion. Added clone failure error check.
-- [ ] **bash.nix: Remove debug echo** — `echo "Hello HOSTNAME"` runs on every shell open including subshells. Remove or gate behind a debug flag.
+- [x] **bash.nix: Remove debug echo** — Won't fix: echos are intentional hook references. All four `programs.bash` hooks (`bashrcExtra`, `initExtra`, `profileExtra`, `logoutExtra`) are covered.
 - [ ] **JIN `default.nix`: Fix stale `gfxmodeEfi` comment** — Comment describes old 4K value, not the current `"1920x1080,auto"` value.
 - [ ] **Move group membership into system modules** — `libvirtd`, `adbusers`, `dialout` are manually listed in JIN's `user.nix` but should be auto-added by their respective modules (`libvirtd.nix`, `adb.nix`) like `docker.nix` now does.
