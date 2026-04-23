@@ -122,23 +122,28 @@ install_homebrew() {
 }
 
 download_repo() {
+  local repo_url="https://github.com/elvismercado/nix-config.git"
   mkdir -p ~/git
 
-  # Authenticate with GitHub if not already logged in
-  if nix-shell -p gh --run "gh auth status" >/dev/null 2>&1; then
-    echo "[Setup] Already authenticated with GitHub"
-  else
-    echo "[Setup] Logging in to GitHub..."
-    nix-shell -p gh --run "gh auth login"
+  if [ -d "$REPO_DIR" ]; then
+    echo "[Setup] Repo already exists at $REPO_DIR"
+    printf "[Setup] Delete and fresh clone? [y/N] "
+    read -r answer
+    case "$answer" in
+      [yY]*)
+        echo "[Setup] Removing $REPO_DIR..."
+        rm -rf "$REPO_DIR"
+        ;;
+      *)
+        echo "[Setup] Keeping existing repo, skipping clone"
+        return 0
+        ;;
+    esac
   fi
 
-  if [ -d "$REPO_DIR" ]; then
-    echo "[Setup] Repo already exists at $REPO_DIR, pulling latest..."
-    nix-shell -p git --run "git -C '$REPO_DIR' pull"
-  else
-    echo "[Setup] Cloning repo to $REPO_DIR..."
-    nix-shell -p gh --run "gh repo clone elvismercado/nix-config '$REPO_DIR'"
-  fi
+  echo "[Setup] Cloning repo to $REPO_DIR..."
+  nix-shell -p git --run "git clone '$repo_url' '$REPO_DIR'" \
+    || { echo "[Setup] ERROR: Failed to clone $repo_url. Check your network connection."; exit 1; }
 
   echo "[Setup] Ready to use nix-config"
 }
