@@ -131,6 +131,8 @@ Modules default to `false` — importing without enabling has no effect.
 | **SSD**                                                  |                                             |
 | `systems/nixos/ssd/default.nix`                          | `custom.sysNixSsd.enable`                   |
 | **System**                                               |                                             |
+| `systems/nixos/system/user.nix`                          | `custom.sysNixUser.enable`                  |
+|                                                          | `custom.sysNixUser.extraGroups`             |
 | `systems/nixos/system/console.nix`                       | `custom.sysNixConsole.enable`               |
 |                                                          | `custom.sysNixConsole.colorScheme`          |
 | `systems/nixos/system/fonts.nix`                         | `custom.sysFonts.enable`                    |

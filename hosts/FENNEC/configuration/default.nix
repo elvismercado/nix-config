@@ -5,7 +5,6 @@
     # Host
     ./hardware-configuration.nix
     ./configuration.nix
-    ./user.nix
 
     # Nix
     ../../../modules/systems/nixos/nix/enable-flakes.nix
@@ -30,6 +29,7 @@
     # System
     ../../../modules/systems/nixos/packages.nix
     ../../../modules/systems/shared/bash.nix
+    ../../../modules/systems/nixos/system/user.nix
     ../../../modules/systems/nixos/system/console.nix
     ../../../modules/systems/nixos/system/time.nix
     ../../../modules/systems/nixos/system/i18n.nix
@@ -86,6 +86,7 @@
   # System
   custom.sysPackages.enable = true;
   custom.sysBashCompletion.enable = true;
+  custom.sysNixUser.enable = true;
   custom.sysNixConsole.enable = true;
   custom.sysNixTimezone.enable = true;
   custom.sysNixI18n.enable = true;
