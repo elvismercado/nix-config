@@ -1,4 +1,7 @@
-# Brave browser — installed via home-manager with optional extensions
+# Brave browser — installed via home-manager
+#
+# Automatically enables KDE Plasma browser integration when
+# desktopEnvironment = "kde-plasma" in user-settings.nix.
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/brave.nix ];
@@ -8,6 +11,7 @@
   config,
   pkgs,
   lib,
+  userSettings,
   ...
 }:
 
@@ -20,9 +24,9 @@
     programs.brave = {
       enable = true;
 
-      nativeMessagingHosts = [
-        # pkgs.kdePackages.plasma-browser-integration # only on kde
-      ];
+      nativeMessagingHosts = lib.optionals
+        ((userSettings.desktopEnvironment or null) == "kde-plasma")
+        [ pkgs.kdePackages.plasma-browser-integration ];
     };
   };
 }

@@ -44,7 +44,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Make `EDITOR` configurable in `base.nix`** — Added `custom.hmBase.editor` option (default `"nano"`). Used by `base.nix` (`EDITOR` env var) and `git.nix` (`core.editor`).
 - [x] **Use declarative `programs.thunderbird` in `thunderbird.nix`** — Switched from raw `home.packages` to `programs.thunderbird.enable` with a default profile. Removed commented-out account config. Hunspell dictionaries kept in `home.packages`.
 - [x] **Clean up commented-out code** — Removed dead commented-out blocks from 8 files: `vscode.nix` (editor/formatter settings), `sunshine.nix` (preset config), `syncthing.nix` (optional settings), `bash.nix` (`shellOptions`), `nextcloud.nix` (`startInBackground`), `linux/packages.nix` (alt packages), `base.nix` (headsetcontrol variants), `aliases.nix` (dead aliases). Kept deliberate notes with inline explanations.
-- [ ] **Conditionally enable `plasma-browser-integration` in `brave.nix`** — KDE integration is commented out. Could be conditionally enabled based on desktop environment.
+- [x] **Conditionally enable `plasma-browser-integration` in `brave.nix`** — Auto-detects `desktopEnvironment = "kde-plasma"` from `userSettings` and includes `plasma-browser-integration` in `nativeMessagingHosts`.
 - [ ] **Add docker group membership to `docker.nix`** — Module enables Docker but doesn't add the user to the `docker` group. User can't use docker without sudo.
 - [ ] **Add Determinate Nix guard to shared `garbage.nix`** — No assertion or documentation warning about incompatibility with `nix.enable = false` (Determinate Nix).
 - [ ] **Add comment for `syncthing.nix` `urAccepted = -1`** — Missing explanation that `-1` means opt-out of usage reporting.
