@@ -51,7 +51,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ## P5 — Script Polish
 
-- [ ] **install.sh: Handle `/tmp/nix-config` collision** — A previous interrupted run could leave a corrupt/stale clone. Fresh clone or explicit cleanup instead of `git pull`.
+- [x] **install.sh: Handle `/tmp/nix-config` collision** — Stale `/tmp/nix-config` from interrupted runs is now removed before cloning. Replaced unreliable `git pull` fallback with delete + fresh clone.
 - [ ] **install.sh: Add error check after `git clone`** — Clone failure is not caught; script continues and fails later with a confusing error.
 - [ ] **install.sh: Gitignore `INSTALL-REPORT.md`** — `write_report()` creates an untracked file inside the repo. Add to `.gitignore` or document.
 - [ ] **setup.sh: Add timeout to `xcode-select --install` polling** — Loops forever if the user cancels the Xcode dialog. Add a max iteration count.

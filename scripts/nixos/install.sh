@@ -773,11 +773,11 @@ clone_repo() {
   info "Cloning flake repository to temporary location..."
 
   if [[ -d "$TEMP_REPO" ]]; then
-    warn "Temporary repo already exists at ${TEMP_REPO}, pulling latest..."
-    nix-shell -p git --run "git -C '${TEMP_REPO}' pull"
-  else
-    nix-shell -p git --run "git clone '${FLAKE_REPO}' '${TEMP_REPO}'"
+    warn "Removing stale temporary repo at ${TEMP_REPO}..."
+    rm -rf "$TEMP_REPO"
   fi
+
+  nix-shell -p git --run "git clone '${FLAKE_REPO}' '${TEMP_REPO}'"
 }
 
 # ──────────────────────────────────────────────────────────────
