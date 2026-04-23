@@ -90,7 +90,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Add comment headers to 16 modules** — All 16 modules now have the standard header (purpose + brief explanation + Usage block) matching the existing convention used by `brave.nix`, `hmBash`, etc.
 - [x] **Remove unnecessary `lib.mkDefault` on NixOS home.nix** — Dropped `lib.mkDefault` from `home.username` and `home.homeDirectory` in FENNEC and JIN `home.nix`; both now match EDGE's plain assignment. Removed unused `lib` arg.
 - [x] **Add section comments to EDGE home-manager imports** — EDGE `home-manager/default.nix` now uses the same `# Host`, `# Base`, `# Shell`, `# Apps`, `# macOS` section comments as FENNEC/JIN, in both the `imports` and `custom.hm*.enable` blocks.
-- [ ] **Add section comments to EDGE configuration imports** — FENNEC and JIN `configuration/default.nix` have detailed section comments. EDGE's is uncommented — add `# System`, `# Darwin`, `# Shared` groupings.
+- [x] **Add section comments to EDGE configuration imports** — EDGE `configuration/default.nix` now uses `# Host`, `# Darwin / UI`, `# Darwin / System`, `# Shared` section comments in both the `imports` and `custom.*.enable` blocks.
 
 ### P4 — Module Quality
 
