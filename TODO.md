@@ -104,3 +104,31 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **INSTALL.md: Align manual steps with automated script** — Removed duplicate `SWAP_MIB`/`HOME_MIB` variables from Step 0 (now derived from `*_SIZE` via `numfmt`, mirroring `size_mib()` in install.sh). Added `-F` to `mkfs.ext4` and `partprobe` + `udevadm settle --timeout=30` after each parted block, matching the script.
 - [x] **README.md: Document channel selection** — Expanded the channel table with the `nix-darwin` input row, added a 'Switching a host's channel' subsection (edit `user-settings.nix` → rebuild), and added a Quickstart pointer noting hosts default to `stable`.
 - [x] **setup.sh: Consistent error handling pattern** — Added a `fatal()` helper at the top (matching `install.sh`'s style) and replaced all `|| { echo "...ERROR..."; exit 1; }` blocks and the bare xcode-select `exit 1` with `|| fatal "..."`. Single uniform pattern throughout.
+
+---
+
+## Round 3
+
+### P1 — Security & Correctness
+
+- [ ] **setup.sh: `local` keyword incompatible with `#!/bin/sh`** — `setup.sh` uses `local` at lines 105, 106, 159 but the shebang is `#!/bin/sh`. On systems where `/bin/sh` is dash (Debian/Ubuntu), `local` is undefined and the script aborts. Either change the shebang to `#!/bin/bash` (matches `install.sh`) or drop `local` and use plain assignments.
+
+### P2 — Robustness & Reliability
+
+- [ ] **EDGE enables `hmAndroid` but adb/scrcpy use is unusual on macOS** — `hosts/EDGE/home-manager/default.nix` enables `custom.hmAndroid.enable = true`. Both `android-tools` and `scrcpy` work on macOS, so this isn't broken — but it pulls a non-trivial closure for what's typically a Linux-dev concern. Decide: keep (and document under Round 2 P4 #1's host-coverage notes) or drop.
+- [ ] **`scripts/windows/` directory referenced in README but missing on disk** — `README.md` repository structure block lists `scripts/windows/` (FancyZones layout, keyboard manager, README), but the directory doesn't exist in the workspace. Either restore the files from history or remove the reference.
+
+### P3 — Architecture & Convention
+
+- [ ] **copilot-instructions.md: stale `userSettings` field list** — Line 47 documents `username, hostname, system, channel, timeZone, uid` but actual `user-settings.nix` files also include `repoPath` (all hosts) and `desktopEnvironment` (FENNEC, JIN). Update the list and note `desktopEnvironment` is optional (consumed by `brave.nix` and host wiring via `or null`).
+- [ ] **copilot-instructions.md contradicts README/HOME-MANAGER.md on `home-manager switch`** — Line 56 says "Home-manager config is applied via `nixos-rebuild switch` / `darwin-rebuild switch`, not `home-manager switch`", but `README.md`, `HOME-MANAGER.md`, `flake/hosts.nix` comments, and `add-host.prompt.md` all show `home-manager switch --flake .#<HOST>` as a valid lightweight path. Reconcile — either fix the instructions or remove the misleading examples elsewhere.
+- [ ] **EDGE `user-settings.nix` missing `desktopEnvironment` field** — FENNEC and JIN explicitly set `desktopEnvironment = "kde-plasma"`. EDGE omits it (resolved via `or null`). For schema consistency, add `desktopEnvironment = null; # macOS — managed by the OS` so all hosts declare the field.
+
+### P4 — Module Quality
+
+- [ ] **`android.nix` lives in `all/` but is Linux/Android-developer focused** — `modules/home-manager/all/android.nix` is enabled on EDGE (macOS). `android-tools` works on macOS but the module's primary use case (USB device management, scrcpy mirroring) is far more common on Linux dev hosts. Either move to `linux/` (and switch EDGE to a Homebrew cask if needed) or document why it's cross-platform.
+- [ ] **`postinstall.nix` doesn't validate `userSettings.repoPath` shape** — `modules/systems/nixos/postinstall.nix` interpolates `userSettings.repoPath` into `bash ~/${userSettings.repoPath}/scripts/nixos/postinstall.sh` with no validation. A leading `/`, empty value, or `..` would silently produce a broken alias. Add a `config.assertions` entry requiring a relative path with no `..` segments — matching the "auto-derive + assert" pattern from copilot-instructions.
+
+### P5 — Script & Documentation Polish
+
+- [ ] **README.md repository structure: stale module listings** — The block under `modules/systems/nixos/apps/` shows "ADB, Coolercontrol, libvirtd, sunshine" but `embedded.nix` (Round 1 P5) is missing. The `system/` line lists "Console, fonts, i18n, time, network tuning" but the new `user.nix` (Round 2 P4 #3) is missing. Refresh both listings to match the current tree.

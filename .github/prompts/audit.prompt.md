@@ -1,0 +1,12 @@
+Perform a comprehensive audit of this nix-config repo. Look for issues in 5 categories:
+
+P1 — Security & Correctness: Things that could cause data loss, security holes, or wrong behavior.
+P2 — Robustness & Reliability: Failure modes, missing validation, silent errors, race conditions.
+P3 — Architecture & Convention: Inconsistencies with the repo's documented module conventions, missing comment headers, inconsistent grouping.
+P4 — Module Quality: Duplication, modules in the wrong location, host-level inconsistencies, dead code.
+P5 — Script & Documentation Polish: Drift between scripts and their docs, inconsistent error patterns, missing user-facing documentation.
+For each finding, write a TODO.md entry in the format:
+
+- [ ] **<Short title>** — <One-sentence problem statement with concrete file/line reference and suggested fix.>
+
+Group by priority. Skip anything already covered by Round 1 (collapsed in <details>). Aim for ~3 items per priority bucket.
