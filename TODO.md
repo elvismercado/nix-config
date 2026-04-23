@@ -94,8 +94,8 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P4 — Module Quality
 
-- [ ] **Decide host-level module coverage** — Several modules are enabled on some hosts but not others without clear justification. Review and decide for each: `fnm.nix` (FENNEC+JIN yes, EDGE no), `pyenv.nix` (FENNEC+JIN yes, EDGE no), `ansible.nix` (EDGE yes, FENNEC+JIN no), `syncthing.nix` (FENNEC yes, JIN+EDGE no). Either enable consistently or document why each host differs.
-- [ ] **enable-flakes.nix: Clean up stale comments** — Lines 2–6 contain commented-out examples and notes about other distros / Determinate Nix. Module header should follow standard pattern; move reference notes to docs or inline.
+- [x] **Decide host-level module coverage** — Confirmed current state is intentional: dev tools (`fnm`, `pyenv`, `ansible`) on JIN+EDGE only (FENNEC is a gaming/media host); Syncthing on FENNEC+JIN via `hmSyncthing` and on EDGE via the `syncthing-app` Homebrew cask (per macOS GUI-app convention). Per-host `default.nix` is the install manifest — no module change needed.
+- [x] **enable-flakes.nix: Clean up stale comments** — Replaced ad-hoc top-of-file notes with the standard module header (purpose + Determinate Nix note + Usage block).
 - [ ] **Deduplicate FENNEC/JIN `user.nix`** — Both NixOS `user.nix` files are near-identical (`mutableUsers`, `defaultUserShell`, `isNormalUser`, `initialPassword`, `useDefaultShell`, `networking.hostName`). Extract common config to a shared NixOS user module, with host-specific `extraGroups` merged in.
 - [ ] **Deduplicate FENNEC/JIN `configuration.nix`** — Both set `system.stateVersion`, `nixpkgs.config.allowUnfree`, and `programs.nix-ld.enable` identically. Extract to shared module or flake builder.
 
