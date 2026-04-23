@@ -36,7 +36,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Add comment headers to 13 modules** — Missing purpose + Usage block: `base.nix`, `packages.nix`, `vscode.nix`, `bash.nix`, `brave.nix`, `syncthing.nix`, `thunderbird.nix`, `nextcloud.nix`, `docker.nix`, `mullvad.nix`, `garbage.nix` (shared), `packages.nix` (shared), partial `aliases.nix`.
 - [x] **Standardise option prefixes** — All modules now use prefixed naming: `hm*` (home-manager), `sys*` (shared system), `sysDar*` (darwin system), `sysNix*` (NixOS system). Updated all module files, host configs, and documentation.
 - [x] **Deduplicate `nil` package** — Removed from `vscode.nix`; kept in `base.nix` where it's available to all hosts.
-- [ ] **Remove `mpv` from `packages.nix`** — A dedicated `mpv.nix` module exists. Having it in `packages.nix` too is confusing.
+- [x] **Remove `mpv` from `packages.nix`** — Removed from `packages.nix`; JIN now imports `mpv.nix` module (FENNEC already had it, EDGE uses Homebrew brew).
 - [ ] **Move Linux-only packages from `all/packages.nix` to `linux/`** — `cameractrls`, `rpi-imager` are Linux-only but placed in cross-platform `all/`.
 - [ ] **Add platform guard to `vscode.nix` and `nextcloud.nix`** — GUI apps in `all/` that shouldn't be enabled on macOS per repo conventions. Add assertion or move to `linux/`.
 - [ ] **Move AMD/NVIDIA aliases from `all/` to `linux/`** — `custom.hmAliasesAmdCpu` and `custom.hmAliasesNvidiaGpu` reference `/proc/cpuinfo`, `dmesg`, `lspci` — Linux-only commands.

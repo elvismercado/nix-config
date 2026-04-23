@@ -26,6 +26,7 @@
     # Apps
     ../../../modules/home-manager/all/android.nix
     ../../../modules/home-manager/all/brave.nix
+    ../../../modules/home-manager/all/mpv.nix
     ../../../modules/home-manager/all/thunderbird.nix
     ../../../modules/home-manager/all/vscode.nix
 
@@ -77,6 +78,7 @@
   # Apps
   custom.hmAndroid.enable = true;
   custom.hmBrave.enable = true;
+  custom.hmMpv.enable = true;
   custom.hmPlasmaConfig.enable = true;
   custom.hmWindowShortcuts.enable = true;
   custom.hmThunderbird.enable = true;

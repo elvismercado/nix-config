@@ -41,8 +41,6 @@
 
       moonlight-qt # Open source game streaming client
 
-      mpv
-
       beeper # all chats in one app
 
       # stuff that should always be in the "systemtray"
