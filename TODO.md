@@ -171,3 +171,9 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P4 — Module Quality
 
 - [x] **`modules/home-manager/all/base.nix` declared unused `userSettings` arg** — The function signature took `userSettings,` but nothing in the config body referenced it. Removed the argument so the module's function signature reflects its actual dependencies.
+
+## Round 9
+
+### P5 — Script & Documentation Polish
+
+- [x] **FENNEC README's "Next steps" had a stale manual `resumeDevice` instruction** — Step 3 told the user to set `custom.sysNixHibernate.resumeDevice` to the swap UUID, but `modules/systems/nixos/memory/hibernation.nix` has auto-derived `resumeDevice` from `swapDevices` since Round 4. Dropped the step entirely — the explicit override is now an edge-case escape hatch (swap files), documented in the module header, not a normal install step.

@@ -108,8 +108,7 @@ OS at boot.
 
 1. Boot NixOS installer on the machine
 2. Generate hardware config: `nixos-generate-config --show-hardware-config > hosts/FENNEC/configuration/hardware-configuration.nix`
-3. Set `custom.sysNixHibernate.resumeDevice` in `configuration/default.nix` to the swap partition UUID
-4. Run `sudo nixos-rebuild switch --flake .#FENNEC`
+3. Run `sudo nixos-rebuild switch --flake .#FENNEC`
 
 ## Hardware diagnostics
 
