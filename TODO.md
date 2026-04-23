@@ -154,3 +154,9 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P2 — Robustness & Reliability
 
 - [x] **`shutdown-disable-outputs.nix`: enabling with empty `connectors` was a silent no-op and bypassed the KDE assertion** — Split the `config` block: assertions (KDE Plasma + non-empty connectors) now run on `cfg.enable` alone, while the systemd user service still requires connectors. Misconfig now fails at evaluation time instead of silently doing nothing.
+
+## Round 7
+
+### P2 — Robustness & Reliability
+
+- [x] **Install scripts hardcoded `git/nix-config` while `userSettings.repoPath` exists to make this configurable** — `install.sh` now reads `repoPath` from the host's `user-settings.nix` (same sed pattern as `username`/`uid`, with the same shape validation as `modules/systems/nixos/postinstall.nix`'s assertion). `postinstall.sh` now derives `REPO_DIR` from its own script path (`readlink -f "$0"` → up 3 levels), so it always uses whatever path the user chose without re-parsing. Both scripts now honour `repoPath` end-to-end.

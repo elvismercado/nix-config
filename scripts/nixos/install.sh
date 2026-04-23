@@ -806,7 +806,20 @@ resolve_username() {
     fatal "Invalid UID '${USER_UID}' in ${settings_file}. Must be in range 1000-65533 (normal user)."
   fi
 
-  REPO_DIR="/mnt/home/${USERNAME}/git/${REPO_NAME}"
+  # Read repoPath from user-settings.nix; default to "git/${REPO_NAME}" if absent.
+  # Must be a relative path (no leading '/') with no '..' segments — matches the
+  # assertion in modules/systems/nixos/postinstall.nix.
+  REPO_PATH=$(sed -n 's/.*repoPath[[:space:]]*=[[:space:]]*"\([^"]*\)".*/\1/p' "$settings_file" | head -1)
+  REPO_PATH="${REPO_PATH:-git/${REPO_NAME}}"
+
+  if [[ "$REPO_PATH" == /* ]]; then
+    fatal "Invalid repoPath '${REPO_PATH}' in ${settings_file}. Must be relative to \$HOME (no leading '/')."
+  fi
+  case "/${REPO_PATH}/" in
+    */../*) fatal "Invalid repoPath '${REPO_PATH}' in ${settings_file}. Must not contain '..' segments." ;;
+  esac
+
+  REPO_DIR="/mnt/home/${USERNAME}/${REPO_PATH}"
 
   info "Resolved user: ${BOLD}${USERNAME}${NC} (UID ${USER_UID}) (from hosts/${FLAKE_HOST}/user-settings.nix)"
 }

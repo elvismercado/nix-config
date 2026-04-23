@@ -40,8 +40,16 @@ confirm() {
 # ──────────────────────────────────────────────────────────────
 detect_environment() {
   HOST=$(hostname)
-  REPO_NAME="nix-config"
-  REPO_DIR="$HOME/git/$REPO_NAME"
+
+  # Derive REPO_DIR from the script's own location: scripts/nixos/postinstall.sh
+  # → repo root is three levels up. This honours whatever path the user chose
+  # in userSettings.repoPath without re-parsing the file.
+  local script_path
+  script_path=$(readlink -f "$0") \
+    || { error "Could not resolve script path via readlink."; exit 1; }
+  REPO_DIR=$(cd "$(dirname "$script_path")/../.." && pwd) \
+    || { error "Could not derive REPO_DIR from script path: $script_path"; exit 1; }
+  REPO_NAME=$(basename "$REPO_DIR")
 
   if [[ ! -d "$REPO_DIR" ]]; then
     error "Config repo not found at ${REPO_DIR}"
@@ -290,7 +298,7 @@ main() {
 
   if [[ $EUID -eq 0 ]]; then
     error "Do not run this script as root."
-    error "Run as your normal user: bash ~/git/${REPO_NAME}/scripts/nixos/postinstall.sh"
+    error "Run as your normal user: bash <repo>/scripts/nixos/postinstall.sh (or use the 'postinstall' alias)."
     exit 1
   fi
 
