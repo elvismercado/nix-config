@@ -46,7 +46,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Clean up commented-out code** — Removed dead commented-out blocks from 8 files: `vscode.nix` (editor/formatter settings), `sunshine.nix` (preset config), `syncthing.nix` (optional settings), `bash.nix` (`shellOptions`), `nextcloud.nix` (`startInBackground`), `linux/packages.nix` (alt packages), `base.nix` (headsetcontrol variants), `aliases.nix` (dead aliases). Kept deliberate notes with inline explanations.
 - [x] **Conditionally enable `plasma-browser-integration` in `brave.nix`** — Auto-detects `desktopEnvironment = "kde-plasma"` from `userSettings` and includes `plasma-browser-integration` in `nativeMessagingHosts`.
 - [x] **Add docker group membership to `docker.nix`** — Module now adds the user to the `docker` group automatically via `userSettings.username`. Removed redundant manual entry from JIN's `user.nix`.
-- [ ] **Add Determinate Nix guard to shared `garbage.nix`** — No assertion or documentation warning about incompatibility with `nix.enable = false` (Determinate Nix).
+- [x] **Add Determinate Nix guard to shared `garbage.nix`** — Auto-disables GC/optimise when `nix.enable = false` (Determinate Nix hosts). Enabling `custom.sysGc` is a safe no-op on those hosts.
 - [ ] **Add comment for `syncthing.nix` `urAccepted = -1`** — Missing explanation that `-1` means opt-out of usage reporting.
 
 ## P5 — Script Polish
