@@ -77,7 +77,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 - [x] **install.sh: Validate extracted USERNAME** — `resolve_username()` now validates `USERNAME` matches `^[a-z_][a-z0-9_-]{0,31}$` (POSIX) and `USER_UID` is in range 1000–65533. Defense-in-depth before values are interpolated into shell paths.
 - [x] **install.sh: Add timeout to `udevadm settle`** — Both `udevadm settle` calls now use `--timeout=30` to fail fast on a stuck udev queue instead of hanging silently for 3 minutes.
-- [ ] **flake/hosts.nix: Assert valid channel value** — `selectNixpkgs`/`selectHomeManager`/`selectDarwin` use `if settings.channel == "stable"` with no assertion. A typo like `channel = "stble"` silently falls through to unstable.
+- [x] **flake/hosts.nix: Assert valid channel value** — `mkHost` now validates `userSettings.channel` is `"stable"` or `"unstable"` and `throw`s a clear error at flake evaluation otherwise. Catches typos before any rebuild starts.
 
 ### P2 — Robustness & Reliability
 

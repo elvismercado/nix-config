@@ -1,10 +1,23 @@
 { inputs }:
 let
-  mkHost = hostName: {
-    configuration = ../hosts/${hostName}/configuration;
-    home = ../hosts/${hostName}/home-manager;
-    userSettings = import ../hosts/${hostName}/user-settings.nix;
-  };
+  validChannels = [
+    "stable"
+    "unstable"
+  ];
+
+  mkHost =
+    hostName:
+    let
+      userSettings = import ../hosts/${hostName}/user-settings.nix;
+    in
+    if !(builtins.elem userSettings.channel validChannels) then
+      throw "Host '${hostName}': channel must be one of ${builtins.toJSON validChannels}, got '${toString userSettings.channel}'"
+    else
+      {
+        configuration = ../hosts/${hostName}/configuration;
+        home = ../hosts/${hostName}/home-manager;
+        inherit userSettings;
+      };
 
   # Select inputs based on the host's channel setting ("stable" or "unstable")
   selectNixpkgs =
