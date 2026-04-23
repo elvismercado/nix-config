@@ -70,36 +70,37 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
 |                                    | `custom.hmAliasesAmdCpu.enable`    |
 |                                    | `custom.hmAliasesNvidiaGpu.enable` |
 | `home-manager/all/packages.nix`    | `custom.hmPackages.enable`         |
-| `home-manager/all/android.nix`     | `custom.hmAndroid.enable`            |
-| `home-manager/all/ansible.nix`     | `custom.hmAnsible.enable`            |
-| `home-manager/all/bash.nix`        | `custom.hmBash.enable`               |
-| `home-manager/all/brave.nix`       | `custom.hmBrave.enable`              |
-| `home-manager/all/fastfetch.nix`   | `custom.hmFastfetch.enable`          |
-| `home-manager/all/fnm.nix`         | `custom.hmFnm.enable`                |
-| `home-manager/all/git.nix`         | `custom.hmGit.enable`                |
+| `home-manager/all/android.nix`     | `custom.hmAndroid.enable`          |
+| `home-manager/all/ansible.nix`     | `custom.hmAnsible.enable`          |
+| `home-manager/all/bash.nix`        | `custom.hmBash.enable`             |
+| `home-manager/all/brave.nix`       | `custom.hmBrave.enable`            |
+| `home-manager/all/fastfetch.nix`   | `custom.hmFastfetch.enable`        |
+| `home-manager/all/fnm.nix`         | `custom.hmFnm.enable`              |
+| `home-manager/all/git.nix`         | `custom.hmGit.enable`              |
 | `home-manager/all/mpv.nix`         | `custom.hmMpv.enable`              |
-| `home-manager/all/nextcloud.nix`   | `custom.hmNextcloud.enable`          |
-| `home-manager/all/pyenv.nix`       | `custom.hmPyenv.enable`              |
-| `home-manager/all/ssh.nix`         | `custom.hmSsh.enable`                |
-| `home-manager/all/starship.nix`    | `custom.hmStarship.enable`           |
-|                                    | `custom.hmStarship.style`            |
-| `home-manager/all/syncthing.nix`   | `custom.hmSyncthing.enable`          |
-| `home-manager/all/thunderbird.nix` | `custom.hmThunderbird.enable`        |
-| `home-manager/all/vscode.nix`      | `custom.hmVscode.enable`             |
+| `home-manager/all/nextcloud.nix`   | `custom.hmNextcloud.enable`        |
+| `home-manager/all/pyenv.nix`       | `custom.hmPyenv.enable`            |
+| `home-manager/all/ssh.nix`         | `custom.hmSsh.enable`              |
+| `home-manager/all/starship.nix`    | `custom.hmStarship.enable`         |
+|                                    | `custom.hmStarship.style`          |
+| `home-manager/all/syncthing.nix`   | `custom.hmSyncthing.enable`        |
+| `home-manager/all/thunderbird.nix` | `custom.hmThunderbird.enable`      |
+| `home-manager/all/vscode.nix`      | `custom.hmVscode.enable`           |
 
 **Linux — KDE Plasma** (`home-manager/linux/`):
 
-| Module                                            | Option                                 |
-| ------------------------------------------------- | -------------------------------------- |
-| `home-manager/linux/aliases.nix`                  | `custom.hmLinuxAliases.enable`         |
+| Module                                            | Option                                   |
+| ------------------------------------------------- | ---------------------------------------- |
+| `home-manager/linux/aliases.nix`                  | `custom.hmLinuxAliases.enable`           |
 | `home-manager/linux/display-profiles.nix`         | `custom.hmDisplayProfiles.enable`        |
-| `home-manager/linux/gaming.nix`                   | `custom.hmGaming.enable`               |
-| `home-manager/linux/handbrake.nix`                | `custom.hmHandbrake.enable`            |
-| `home-manager/linux/linutil.nix`                  | `custom.hmLinutil.enable`              |
+| `home-manager/linux/gaming.nix`                   | `custom.hmGaming.enable`                 |
+| `home-manager/linux/handbrake.nix`                | `custom.hmHandbrake.enable`              |
+| `home-manager/linux/linutil.nix`                  | `custom.hmLinutil.enable`                |
+| `home-manager/linux/packages.nix`                 | `custom.hmLinuxPackages.enable`          |
 | `home-manager/linux/plasma-config.nix`            | `custom.hmPlasmaConfig.enable`           |
 | `home-manager/linux/shutdown-disable-outputs.nix` | `custom.hmShutdownDisableOutputs.enable` |
-| `home-manager/linux/strawberry.nix`               | `custom.hmStrawberry.enable`           |
-| `home-manager/linux/vesktop.nix`                  | `custom.hmVesktop.enable`              |
+| `home-manager/linux/strawberry.nix`               | `custom.hmStrawberry.enable`             |
+| `home-manager/linux/vesktop.nix`                  | `custom.hmVesktop.enable`                |
 | `home-manager/linux/window-shortcuts.nix`         | `custom.hmWindowShortcuts.enable`        |
 
 **macOS** (`home-manager/darwin/`):
@@ -107,7 +108,7 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
 | Module                              | Option                          |
 | ----------------------------------- | ------------------------------- |
 | `home-manager/darwin/aliases.nix`   | `custom.hmDarwinAliases.enable` |
-| `home-manager/darwin/rectangle.nix` | `custom.hmRectangle.enable`       |
+| `home-manager/darwin/rectangle.nix` | `custom.hmRectangle.enable`     |
 
 > `systems/shared/ssh-server.nix` (`custom.sysSshServer.enable`) is a **system** module — use it in `configuration/default.nix`, not in `home-manager/default.nix`.
 

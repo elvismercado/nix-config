@@ -37,7 +37,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Standardise option prefixes** — All modules now use prefixed naming: `hm*` (home-manager), `sys*` (shared system), `sysDar*` (darwin system), `sysNix*` (NixOS system). Updated all module files, host configs, and documentation.
 - [x] **Deduplicate `nil` package** — Removed from `vscode.nix`; kept in `base.nix` where it's available to all hosts.
 - [x] **Remove `mpv` from `packages.nix`** — Removed from `packages.nix`; JIN now imports `mpv.nix` module (FENNEC already had it, EDGE uses Homebrew brew).
-- [ ] **Move Linux-only packages from `all/packages.nix` to `linux/`** — `cameractrls`, `rpi-imager` are Linux-only but placed in cross-platform `all/`.
+- [x] **Move Linux-only packages from `all/packages.nix` to `linux/`** — Created `linux/packages.nix` (`custom.hmLinuxPackages`) with 6 Linux-only packages; `all/packages.nix` now only has cross-platform packages.
 - [ ] **Add platform guard to `vscode.nix` and `nextcloud.nix`** — GUI apps in `all/` that shouldn't be enabled on macOS per repo conventions. Add assertion or move to `linux/`.
 - [ ] **Move AMD/NVIDIA aliases from `all/` to `linux/`** — `custom.hmAliasesAmdCpu` and `custom.hmAliasesNvidiaGpu` reference `/proc/cpuinfo`, `dmesg`, `lspci` — Linux-only commands.
 - [ ] **Move `cowsay`/`lolcat` out of `base.nix`** — Novelty packages don't belong in the base config. Move to `packages.nix` or a separate module.

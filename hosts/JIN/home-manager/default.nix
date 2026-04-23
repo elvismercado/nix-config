@@ -48,6 +48,7 @@
 
     # Packages
     ../../../modules/home-manager/all/packages.nix
+    ../../../modules/home-manager/linux/packages.nix
   ];
 
   # Host
@@ -185,4 +186,5 @@
 
   # Packages
   custom.hmPackages.enable = true;
+  custom.hmLinuxPackages.enable = true;
 }

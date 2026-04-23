@@ -1,4 +1,6 @@
-# Additional user packages not managed by a dedicated module
+# Additional cross-platform user packages not managed by a dedicated module
+#
+# Linux-only packages belong in linux/packages.nix instead.
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/all/packages.nix ];
@@ -29,26 +31,11 @@
 
       # sweethome3d.application # find the rest of the things needed
 
-      cameractrls # Camera controls for Linux
-      # cameractrls-gtk3
-      # cameractrls-gtk4
-
       headsetcontrol # Sidetone and Battery status for Logitech G930, G533, G633, G933 SteelSeries Arctis 7/PRO 2019 and Corsair VOID (Pro)
       # headsetcontrol-notificationd
       # HeadsetControl-Qt
 
-      rpi-imager # Raspberry Pi Imaging Utility
-
       moonlight-qt # Open source game streaming client
-
-      beeper # all chats in one app
-
-      # stuff that should always be in the "systemtray"
-      ferdium # browser for always on services
-      protonmail-bridge-gui # ProtonMail bridge
-      insync # Google Drive, OneDrive, and Dropbox
-      # insync-nautilus # gnome
-      # insync-emblem-icons # file manager emblem icons for Insync file manager extensions
     ];
   };
 }
