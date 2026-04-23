@@ -126,13 +126,12 @@ DISK=/dev/nvme0n1         # OS disk
 HOME_DISK=/dev/nvme1n1    # (optional) dedicated /home disk — leave empty if single-disk
 EFI_SIZE=2GiB             # EFI partition size
 SWAP_SIZE=48GiB           # swap partition size
-SWAP_MIB=49152            # swap in MiB (48 × 1024) for partition arithmetic
 # HOME_SIZE=200GiB        # uncomment if using single-disk with /home partition
-# HOME_MIB=204800         # home in MiB (200 × 1024)
 ```
 
 > Adjust all values for your machine. Use `lsblk -o NAME,SIZE,MODEL` to
-> identify your disk(s).
+> identify your disk(s). Sizes use `parted`-compatible units (e.g. `2GiB`,
+> `512MiB`); MiB-aligned offsets are derived from these in Step 4.
 
 ### 1. Boot and become root
 
@@ -207,9 +206,13 @@ Create a GPT partition table with the ext4 layout.
 
 Compute the swap start position using absolute MiB offsets (avoids
 alignment warnings from negative parted offsets on disks whose total
-size is not an exact MiB multiple):
+size is not an exact MiB multiple). The MiB values are derived from the
+`*_SIZE` variables in Step 0 — mirroring how `install.sh` does it via
+`size_mib()`.
 
 ```bash
+# Strip GiB/MiB suffix and convert to MiB
+SWAP_MIB=$(numfmt --from=iec --to-unit=Mi "${SWAP_SIZE%i*}B")
 DISK_MIB=$(( $(blockdev --getsize64 "$DISK") / 1048576 ))
 SWAP_START=$(( DISK_MIB - SWAP_MIB ))
 ```
@@ -226,6 +229,10 @@ parted -s "$DISK" -- mkpart ESP fat32 1MiB "$EFI_SIZE"
 parted -s "$DISK" -- set 1 esp on
 parted -s "$DISK" -- mkpart root ext4 "$EFI_SIZE" "${SWAP_START}MiB"
 parted -s "$DISK" -- mkpart swap linux-swap "${SWAP_START}MiB" 100%
+
+# Let the kernel re-read the partition table and wait for udev
+partprobe "$DISK" 2>/dev/null || true
+udevadm settle --timeout=30
 ```
 
 #### Dedicated home disk (if using 2 drives)
@@ -237,6 +244,9 @@ parted -s "$DISK" -- mkpart swap linux-swap "${SWAP_START}MiB" 100%
 ```bash
 parted -s "$HOME_DISK" -- mklabel gpt
 parted -s "$HOME_DISK" -- mkpart home ext4 1MiB 100%
+
+partprobe "$HOME_DISK" 2>/dev/null || true
+udevadm settle --timeout=30
 ```
 
 > **Keep existing /home (`--keep-home` equivalent):** If you want to
@@ -246,10 +256,12 @@ parted -s "$HOME_DISK" -- mkpart home ext4 1MiB 100%
 
 #### Alternative: single-disk with /home partition
 
-If you only have one disk and want a separate `/home` partition, use the
-`HOME_MIB` and `SWAP_MIB` variables from Step 0:
+If you only have one disk and want a separate `/home` partition, derive
+`HOME_MIB` from `HOME_SIZE` the same way as `SWAP_MIB`:
 
 ```bash
+HOME_MIB=$(numfmt --from=iec --to-unit=Mi "${HOME_SIZE%i*}B")
+SWAP_MIB=$(numfmt --from=iec --to-unit=Mi "${SWAP_SIZE%i*}B")
 DISK_MIB=$(( $(blockdev --getsize64 "$DISK") / 1048576 ))
 SWAP_START=$(( DISK_MIB - SWAP_MIB ))
 HOME_START=$(( DISK_MIB - SWAP_MIB - HOME_MIB ))
@@ -260,6 +272,9 @@ parted -s "$DISK" -- set 1 esp on
 parted -s "$DISK" -- mkpart root ext4 "$EFI_SIZE" "${HOME_START}MiB"
 parted -s "$DISK" -- mkpart home ext4 "${HOME_START}MiB" "${SWAP_START}MiB"
 parted -s "$DISK" -- mkpart swap linux-swap "${SWAP_START}MiB" 100%
+
+partprobe "$DISK" 2>/dev/null || true
+udevadm settle --timeout=30
 ```
 
 Verify the layout:
@@ -273,23 +288,26 @@ lsblk "$HOME_DISK"   # if using 2 drives
 
 NVMe partitions are named `p1`, `p2`, etc. SATA drives use `1`, `2`, etc.
 
+> `mkfs.ext4 -F` forces formatting even if `wipefs` left signatures behind —
+> matches `install.sh`. Omit `-F` if you want a confirmation prompt.
+
 #### 2-drive setup
 
 ```bash
 mkfs.fat -F 32 -n BOOT "${DISK}p1"
-mkfs.ext4 -L nixos "${DISK}p2"
+mkfs.ext4 -F -L nixos "${DISK}p2"
 mkswap -L swap "${DISK}p3"
-mkfs.ext4 -L home "${HOME_DISK}p1"
+mkfs.ext4 -F -L home "${HOME_DISK}p1"
 ```
 
-> **Keep existing /home:** Skip the `mkfs.ext4 -L home` command above.
+> **Keep existing /home:** Skip the `mkfs.ext4 -F -L home` command above.
 > The existing data and label on the home disk are preserved.
 
 #### Single-disk without /home
 
 ```bash
 mkfs.fat -F 32 -n BOOT "${DISK}p1"
-mkfs.ext4 -L nixos "${DISK}p2"
+mkfs.ext4 -F -L nixos "${DISK}p2"
 mkswap -L swap "${DISK}p3"
 ```
 
@@ -297,8 +315,8 @@ mkswap -L swap "${DISK}p3"
 
 ```bash
 mkfs.fat -F 32 -n BOOT "${DISK}p1"
-mkfs.ext4 -L nixos "${DISK}p2"
-mkfs.ext4 -L home "${DISK}p3"
+mkfs.ext4 -F -L nixos "${DISK}p2"
+mkfs.ext4 -F -L home "${DISK}p3"
 mkswap -L swap "${DISK}p4"
 ```
 

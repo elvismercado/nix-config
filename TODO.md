@@ -101,6 +101,6 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P5 — Script & Documentation Polish
 
-- [ ] **INSTALL.md: Align manual steps with automated script** — Manual "step-by-step" section uses different variable names/calculations than `install.sh`. Users comparing manual vs automated could get confused.
+- [x] **INSTALL.md: Align manual steps with automated script** — Removed duplicate `SWAP_MIB`/`HOME_MIB` variables from Step 0 (now derived from `*_SIZE` via `numfmt`, mirroring `size_mib()` in install.sh). Added `-F` to `mkfs.ext4` and `partprobe` + `udevadm settle --timeout=30` after each parted block, matching the script.
 - [ ] **README.md: Document channel selection** — Quickstart shows `setup.sh` but doesn't explain how `channel` in `user-settings.nix` selects between stable/unstable. New users won't know how to switch.
 - [ ] **setup.sh: Consistent error handling pattern** — Uses `|| { ...; exit 1; }` for git clone but bare `exit 1` for xcode-select timeout. Standardize on one pattern throughout.
