@@ -140,6 +140,7 @@ Modules default to `false` — importing without enabling has no effect.
 | **Apps**                                                 |                                       |
 | `systems/nixos/apps/adb.nix`                             | `custom.sysNixAdb.enable`                   |
 | `systems/nixos/apps/coolercontrol.nix`                   | `custom.sysNixCoolercontrol.enable`         |
+| `systems/nixos/apps/embedded.nix`                        | `custom.sysNixEmbedded.enable`              |
 | `systems/nixos/apps/libvirtd.nix`                        | `custom.sysNixLibvirtd.enable`              |
 | `systems/nixos/apps/sunshine.nix`                        | `custom.sysNixSunshine.enable`              |
 | **Shared** (cross-platform)                              |                                       |

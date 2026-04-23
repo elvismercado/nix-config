@@ -58,4 +58,4 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **setup.sh: Align clone method with `install.sh`** — Switched from `gh repo clone` (requires auth) to `git clone` with HTTPS URL. Existing repo prompts user before deletion. Added clone failure error check.
 - [x] **bash.nix: Remove debug echo** — Won't fix: echos are intentional hook references. All four `programs.bash` hooks (`bashrcExtra`, `initExtra`, `profileExtra`, `logoutExtra`) are covered.
 - [x] **JIN `default.nix`: Fix stale `gfxmodeEfi` comment** — Updated value to full resolution chain (`3840x2160,2560x1440,1920x1200,1920x1080,auto`) and fixed comment. Removed stale commented-out line.
-- [ ] **Move group membership into system modules** — `libvirtd`, `adbusers`, `dialout` are manually listed in JIN's `user.nix` but should be auto-added by their respective modules (`libvirtd.nix`, `adb.nix`) like `docker.nix` now does.
+- [x] **Move group membership into system modules** — `libvirtd` and `adbusers` auto-added by their modules. Created `embedded.nix` (`custom.sysNixEmbedded`) for `dialout` group + `arduino-ide`. Removed all three from JIN's `user.nix`.

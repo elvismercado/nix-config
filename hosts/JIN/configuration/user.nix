@@ -22,9 +22,6 @@
       "wheel" # sudo access
       "video" # GPU and display device access
       "render" # GPU rendering (e.g. Vulkan, OpenCL)
-      "libvirtd" # QEMU/KVM virtual machine management
-      "dialout" # Serial device access (Arduino, embedded development)
-      "adbusers" # Android Debug Bridge (ADB) device access
       # "audio" # Direct audio device access (rarely needed with PipeWire/PulseAudio)
     ];
   };
