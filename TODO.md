@@ -94,8 +94,8 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P4 — Module Quality
 
-- [x] **Decide host-level module coverage** — Confirmed current state is intentional: dev tools (`fnm`, `pyenv`, `ansible`) on JIN+EDGE only (FENNEC is a gaming/media host); Syncthing on FENNEC+JIN via `hmSyncthing` and on EDGE via the `syncthing-app` Homebrew cask (per macOS GUI-app convention). Per-host `default.nix` is the install manifest — no module change needed.
-- [x] **enable-flakes.nix: Clean up stale comments** — Replaced ad-hoc top-of-file notes with the standard module header (purpose + Determinate Nix note + Usage block).
+- [x] **Decide host-level module coverage** — Reviewed and confirmed current state is intentional: dev tools (`fnm`, `pyenv`, `ansible`) on JIN + EDGE (dev hosts), absent on FENNEC (gaming/media). Syncthing on FENNEC + JIN via `hmSyncthing`; EDGE uses the `syncthing-app` Homebrew cask per the macOS-GUI-via-cask convention. Per-host `default.nix` is the install manifest.
+- [x] **enable-flakes.nix: Clean up stale comments** — Verified: the file already has the standard header (purpose, Determinate Nix note, Usage block). No stale commented-out examples remain. No code change needed.
 - [ ] **Deduplicate FENNEC/JIN `user.nix`** — Both NixOS `user.nix` files are near-identical (`mutableUsers`, `defaultUserShell`, `isNormalUser`, `initialPassword`, `useDefaultShell`, `networking.hostName`). Extract common config to a shared NixOS user module, with host-specific `extraGroups` merged in.
 - [ ] **Deduplicate FENNEC/JIN `configuration.nix`** — Both set `system.stateVersion`, `nixpkgs.config.allowUnfree`, and `programs.nix-ld.enable` identically. Extract to shared module or flake builder.
 
