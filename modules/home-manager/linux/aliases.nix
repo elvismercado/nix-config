@@ -19,9 +19,9 @@
 
 {
   options = {
-    custom.hmLinuxAliases.enable = lib.mkEnableOption "enables Linux-specific shell aliases";
-    custom.hmAliasesAmdCpu.enable = lib.mkEnableOption "enables AMD CPU diagnostic shell aliases";
-    custom.hmAliasesNvidiaGpu.enable = lib.mkEnableOption "enables NVIDIA GPU diagnostic shell aliases";
+    custom.hmLinuxAliases.enable = lib.mkEnableOption "Linux/NixOS shell aliases (postinstall, switch/rebuild, nixdiag)";
+    custom.hmAliasesAmdCpu.enable = lib.mkEnableOption "AMD CPU diagnostic shell aliases";
+    custom.hmAliasesNvidiaGpu.enable = lib.mkEnableOption "NVIDIA GPU diagnostic shell aliases";
   };
 
   config = lib.mkMerge [

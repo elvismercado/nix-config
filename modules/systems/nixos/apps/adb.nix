@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysNixAdb.enable = lib.mkEnableOption "enables ADB udev rules and adbusers group";
+    custom.sysNixAdb.enable = lib.mkEnableOption "Android Debug Bridge (adb udev rules + adbusers group membership)";
   };
 
   config = lib.mkIf config.custom.sysNixAdb.enable {

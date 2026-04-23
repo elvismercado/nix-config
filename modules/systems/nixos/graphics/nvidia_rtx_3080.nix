@@ -36,7 +36,7 @@
   ];
 
   options = {
-    custom.sysNixNvidiaRtx3080.enable = lib.mkEnableOption "enables NVIDIA RTX 3080 graphics support";
+    custom.sysNixNvidiaRtx3080.enable = lib.mkEnableOption "NVIDIA RTX 3080 graphics with proprietary driver, Zen kernel, and nvtop";
   };
 
   config = lib.mkIf config.custom.sysNixNvidiaRtx3080.enable {

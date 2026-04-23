@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.hmDarwinAliases.enable = lib.mkEnableOption "enables macOS-specific shell aliases";
+    custom.hmDarwinAliases.enable = lib.mkEnableOption "macOS shell aliases (darwin-rebuild switch/build helpers)";
   };
 
   config = lib.mkIf config.custom.hmDarwinAliases.enable {

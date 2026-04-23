@@ -19,7 +19,7 @@
 
 {
   options = {
-    custom.sysNixGrubThemeSleek.enable = lib.mkEnableOption "enables Sleek GRUB theme";
+    custom.sysNixGrubThemeSleek.enable = lib.mkEnableOption "Sleek GRUB theme (light/dark/orange/bigSur, banner = hostname)";
     custom.sysNixGrubThemeSleek.style = lib.mkOption {
       type = lib.types.enum [
         "light"

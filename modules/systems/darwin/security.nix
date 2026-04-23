@@ -14,7 +14,7 @@
 
 {
   options = {
-    custom.sysDarSecurity.enable = lib.mkEnableOption "enables macOS security settings (Touch ID sudo)";
+    custom.sysDarSecurity.enable = lib.mkEnableOption "macOS Touch ID authentication for sudo (via PAM)";
   };
 
   config = lib.mkIf config.custom.sysDarSecurity.enable {

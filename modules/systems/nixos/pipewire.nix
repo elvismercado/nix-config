@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.sysNixPipewire.enable = lib.mkEnableOption "enables PipeWire audio server";
+    custom.sysNixPipewire.enable = lib.mkEnableOption "PipeWire audio/video server with PulseAudio + 32-bit ALSA compatibility and rtkit";
   };
 
   config = lib.mkIf config.custom.sysNixPipewire.enable {

@@ -14,7 +14,7 @@
 
 {
   options = {
-    custom.sysNixGrubThemeNixos.enable = lib.mkEnableOption "enables NixOS GRUB theme";
+    custom.sysNixGrubThemeNixos.enable = lib.mkEnableOption "NixOS-branded GRUB theme (from nixpkgs)";
   };
 
   config = lib.mkIf config.custom.sysNixGrubThemeNixos.enable {

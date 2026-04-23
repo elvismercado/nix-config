@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysBashCompletion.enable = lib.mkEnableOption "enables system-level bash completion";
+    custom.sysBashCompletion.enable = lib.mkEnableOption "system-level bash completion (programs.bash.completion)";
   };
 
   config = lib.mkIf config.custom.sysBashCompletion.enable {

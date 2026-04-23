@@ -31,7 +31,7 @@
 
 {
   options = {
-    custom.hmWindowShortcuts.enable = lib.mkEnableOption "enables unified Meta+Alt window tiling shortcuts";
+    custom.hmWindowShortcuts.enable = lib.mkEnableOption "unified Meta+Alt KWin window-tiling shortcuts (matches Rectangle/PowerToys)";
   };
 
   config = lib.mkIf config.custom.hmWindowShortcuts.enable {

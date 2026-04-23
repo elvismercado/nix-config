@@ -14,7 +14,7 @@
 
 {
   options = {
-    custom.sysDarPower.enable = lib.mkEnableOption "enables macOS power management settings";
+    custom.sysDarPower.enable = lib.mkEnableOption "macOS sleep timers and power-button sleep policy";
   };
 
   config = lib.mkIf config.custom.sysDarPower.enable {

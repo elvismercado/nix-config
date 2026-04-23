@@ -30,7 +30,7 @@
 
 {
   options = {
-    custom.sysNixPlymouthThemeBuiltin.enable = lib.mkEnableOption "enables a built-in Plymouth theme";
+    custom.sysNixPlymouthThemeBuiltin.enable = lib.mkEnableOption "a built-in Plymouth theme (bgrt, spinner, spinfinity, fade-in, etc.)";
 
     custom.sysNixPlymouthThemeBuiltin.theme = lib.mkOption {
       type = lib.types.enum [

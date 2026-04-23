@@ -6,7 +6,7 @@
 
 {
   options = {
-    custom.sysNixSystemdBoot.enable = lib.mkEnableOption "enables SYSTEMD-BOOT bootloader";
+    custom.sysNixSystemdBoot.enable = lib.mkEnableOption "systemd-boot EFI bootloader";
   };
 
   config = lib.mkIf config.custom.sysNixSystemdBoot.enable {

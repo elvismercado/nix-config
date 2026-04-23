@@ -60,7 +60,7 @@
 
 {
   options = {
-    custom.sysNixPlymouthThemeAdi1090x.enable = lib.mkEnableOption "enables an adi1090x Plymouth theme";
+    custom.sysNixPlymouthThemeAdi1090x.enable = lib.mkEnableOption "adi1090x Plymouth theme (selectable from packs 1–3)";
 
     custom.sysNixPlymouthThemeAdi1090x.theme = lib.mkOption {
       type = lib.types.enum [

@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.sysNixCoolercontrol.enable = lib.mkEnableOption "enables CoolerControl fan control";
+    custom.sysNixCoolercontrol.enable = lib.mkEnableOption "CoolerControl fan/pump control daemon and GUI (with lm_sensors)";
   };
 
   config = lib.mkIf config.custom.sysNixCoolercontrol.enable {

@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.hmVesktop.enable = lib.mkEnableOption "enables Vesktop (Discord with Vencord)";
+    custom.hmVesktop.enable = lib.mkEnableOption "Vesktop Discord client with Vencord and Wayland screen-share audio";
   };
 
   config = lib.mkIf config.custom.hmVesktop.enable {

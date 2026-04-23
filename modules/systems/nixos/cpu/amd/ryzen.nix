@@ -21,7 +21,7 @@
   ];
 
   options = {
-    custom.sysNixAmdRyzenCpu.enable = lib.mkEnableOption "enables AMD Ryzen CPU support";
+    custom.sysNixAmdRyzenCpu.enable = lib.mkEnableOption "AMD Ryzen (Zen 1–5+) extras: virtualisation security, power monitoring, diagnostics";
   };
 
   config = lib.mkIf config.custom.sysNixAmdRyzenCpu.enable {

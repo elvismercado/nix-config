@@ -21,7 +21,7 @@
 
 {
   options = {
-    custom.sysNixPlymouthThemeBreeze.enable = lib.mkEnableOption "enables KDE Breeze Plymouth theme";
+    custom.sysNixPlymouthThemeBreeze.enable = lib.mkEnableOption "KDE Breeze Plymouth theme";
   };
 
   config = lib.mkIf config.custom.sysNixPlymouthThemeBreeze.enable {

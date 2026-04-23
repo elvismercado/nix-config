@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysNixPrinting.enable = lib.mkEnableOption "enables CUPS printing";
+    custom.sysNixPrinting.enable = lib.mkEnableOption "CUPS printing daemon (socket-activated, stateless)";
   };
 
   config = lib.mkIf config.custom.sysNixPrinting.enable {

@@ -20,7 +20,7 @@
 
 {
   options = {
-    custom.hmGaming.enable = lib.mkEnableOption "enables gaming desktop shortcuts";
+    custom.hmGaming.enable = lib.mkEnableOption "MangoHud overlay and desktop shortcuts for gaming reference sites";
   };
 
   config = lib.mkIf config.custom.hmGaming.enable {

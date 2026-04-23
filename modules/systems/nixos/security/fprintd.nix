@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysNixFprintd.enable = lib.mkEnableOption "enables fingerprint reader support";
+    custom.sysNixFprintd.enable = lib.mkEnableOption "fprintd fingerprint reader daemon (login, sudo, and polkit)";
   };
 
   config = lib.mkIf config.custom.sysNixFprintd.enable {

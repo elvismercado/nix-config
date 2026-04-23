@@ -29,7 +29,7 @@
 
 {
   options = {
-    custom.sysNixSteam.enable = lib.mkEnableOption "enables Steam with gaming tools";
+    custom.sysNixSteam.enable = lib.mkEnableOption "Steam with gaming tools (Proton, GameMode, Gamescope, etc.)";
   };
 
   config = lib.mkIf config.custom.sysNixSteam.enable {

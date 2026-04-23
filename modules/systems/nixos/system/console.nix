@@ -20,7 +20,7 @@
 
 {
   options = {
-    custom.sysNixConsole.enable = lib.mkEnableOption "enables console configuration";
+    custom.sysNixConsole.enable = lib.mkEnableOption "Linux virtual console (TTY) keymap configuration";
   };
 
   config = lib.mkIf config.custom.sysNixConsole.enable {

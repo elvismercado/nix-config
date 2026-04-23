@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.hmGit.enable = lib.mkEnableOption "enables git configuration";
+    custom.hmGit.enable = lib.mkEnableOption "Git with user identity, common aliases, and delta diff pager";
   };
 
   config = lib.mkIf config.custom.hmGit.enable {

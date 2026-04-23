@@ -14,7 +14,7 @@
 
 {
   options = {
-    custom.hmMpv.enable = lib.mkEnableOption "enables mpv video player";
+    custom.hmMpv.enable = lib.mkEnableOption "mpv lightweight keyboard-driven video player";
   };
 
   config = lib.mkIf config.custom.hmMpv.enable {

@@ -7,7 +7,7 @@
 
 {
   options = {
-    custom.sysNixNvtopIntel.enable = lib.mkEnableOption "enables nvtop for Intel GPUs";
+    custom.sysNixNvtopIntel.enable = lib.mkEnableOption "nvtop GPU process viewer with Intel support";
   };
 
   config = lib.mkIf config.custom.sysNixNvtopIntel.enable {

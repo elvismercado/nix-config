@@ -12,7 +12,7 @@
 
 {
   options = {
-    custom.sysNixMullvad.enable = lib.mkEnableOption "enables Mullvad VPN daemon";
+    custom.sysNixMullvad.enable = lib.mkEnableOption "Mullvad VPN daemon (with loose rp_filter for WireGuard kill-switch)";
   };
 
   config = lib.mkIf config.custom.sysNixMullvad.enable {

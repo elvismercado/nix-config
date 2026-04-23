@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysDarTrackpad.enable = lib.mkEnableOption "enables macOS trackpad configuration";
+    custom.sysDarTrackpad.enable = lib.mkEnableOption "macOS trackpad clicking, scrolling, and gesture behaviour";
   };
 
   config = lib.mkIf config.custom.sysDarTrackpad.enable {

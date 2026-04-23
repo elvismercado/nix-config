@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysNixBluetooth.enable = lib.mkEnableOption "enables Bluetooth support with A2DP audio";
+    custom.sysNixBluetooth.enable = lib.mkEnableOption "Bluetooth hardware (audio profiles managed by PipeWire/WirePlumber)";
   };
 
   config = lib.mkIf config.custom.sysNixBluetooth.enable {

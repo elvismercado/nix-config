@@ -69,7 +69,7 @@
 
 {
   options = {
-    custom.sysNixPlymouth.enable = lib.mkEnableOption "enables Plymouth boot splash (silent boot + systemd initrd)";
+    custom.sysNixPlymouth.enable = lib.mkEnableOption "Plymouth boot splash with silent boot and systemd initrd";
 
     custom.sysNixPlymouth.bootVideoParams = lib.mkOption {
       type = lib.types.listOf lib.types.str;

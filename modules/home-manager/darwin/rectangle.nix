@@ -29,7 +29,7 @@
 
 {
   options = {
-    custom.hmRectangle.enable = lib.mkEnableOption "enables Rectangle window tiling with Cmd+Option shortcuts";
+    custom.hmRectangle.enable = lib.mkEnableOption "Rectangle window tiling for macOS with unified Cmd+Option shortcuts";
   };
 
   config = lib.mkIf config.custom.hmRectangle.enable {

@@ -14,7 +14,7 @@
 
 {
   options = {
-    custom.sysNixSddm.enable = lib.mkEnableOption "enables SDDM display manager";
+    custom.sysNixSddm.enable = lib.mkEnableOption "SDDM display manager (Wayland kwin greeter, Breeze cursor, NumLock on, virtual keyboard)";
   };
 
   config = lib.mkIf config.custom.sysNixSddm.enable {

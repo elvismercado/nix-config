@@ -21,7 +21,7 @@
 
 {
   options = {
-    custom.sysNixEarlyoom.enable = lib.mkEnableOption "enables earlyoom OOM prevention daemon";
+    custom.sysNixEarlyoom.enable = lib.mkEnableOption "earlyoom userspace OOM-prevention daemon";
   };
 
   config = lib.mkIf config.custom.sysNixEarlyoom.enable {

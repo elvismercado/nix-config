@@ -23,7 +23,7 @@
 
 {
   options = {
-    custom.sysNixZenKernel.enable = lib.mkEnableOption "enables the Linux Zen kernel (desktop-optimised)";
+    custom.sysNixZenKernel.enable = lib.mkEnableOption "Linux Zen kernel (desktop-optimised scheduler and tunings)";
   };
 
   config = lib.mkIf config.custom.sysNixZenKernel.enable {

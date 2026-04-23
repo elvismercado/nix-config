@@ -71,7 +71,7 @@ let
 in
 {
   options = {
-    custom.sysNixGreetd.enable = lib.mkEnableOption "enables greetd display manager with ReGreet greeter (Sway compositor)";
+    custom.sysNixGreetd.enable = lib.mkEnableOption "greetd display manager with ReGreet greeter on a Sway compositor";
 
     custom.sysNixGreetd.background = lib.mkOption {
       type = lib.types.nullOr lib.types.path;

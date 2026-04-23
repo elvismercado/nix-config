@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysDarControlCenter.enable = lib.mkEnableOption "enables macOS Control Center menu bar items";
+    custom.sysDarControlCenter.enable = lib.mkEnableOption "macOS Control Center menu bar items (AirDrop, battery %, Bluetooth, etc.)";
   };
 
   config = lib.mkIf config.custom.sysDarControlCenter.enable {

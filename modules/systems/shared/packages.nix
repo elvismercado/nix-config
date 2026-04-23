@@ -13,7 +13,7 @@
 
 {
   options = {
-    custom.sysPackages.enable = lib.mkEnableOption "enables base system packages";
+    custom.sysPackages.enable = lib.mkEnableOption "base system packages shared across NixOS and darwin (git, gh, nano)";
   };
 
   config = lib.mkIf config.custom.sysPackages.enable {

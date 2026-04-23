@@ -6,7 +6,7 @@
 
 {
   options = {
-    custom.sysNixSsd.enable = lib.mkEnableOption "enables SSD optimizations";
+    custom.sysNixSsd.enable = lib.mkEnableOption "SSD optimisations (periodic fstrim)";
   };
 
   config = lib.mkIf config.custom.sysNixSsd.enable {

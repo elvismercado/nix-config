@@ -19,7 +19,7 @@
 
 {
   options = {
-    custom.sysSshServer.enable = lib.mkEnableOption "enables OpenSSH server for inbound SSH access";
+    custom.sysSshServer.enable = lib.mkEnableOption "OpenSSH server for inbound SSH (key-only, restricted to userSettings.username)";
     custom.sysSshServer.passwordAuth = lib.mkEnableOption "allow SSH password authentication (less secure than key-only)";
   };
 

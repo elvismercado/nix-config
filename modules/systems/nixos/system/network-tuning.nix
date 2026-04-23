@@ -23,7 +23,7 @@
 
 {
   options = {
-    custom.sysNixNetworkTuning.enable = lib.mkEnableOption "enables network and I/O tuning";
+    custom.sysNixNetworkTuning.enable = lib.mkEnableOption "network and I/O sysctl tuning";
   };
 
   config = lib.mkIf config.custom.sysNixNetworkTuning.enable {

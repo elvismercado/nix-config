@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.sysFonts.enable = lib.mkEnableOption "enables shared font packages";
+    custom.sysFonts.enable = lib.mkEnableOption "shared system fonts (Departure Mono Nerd Font + Google Fonts)";
   };
 
   config = lib.mkIf config.custom.sysFonts.enable {

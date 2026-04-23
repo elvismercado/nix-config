@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.sysDarPreferences.enable = lib.mkEnableOption "enables macOS system preferences";
+    custom.sysDarPreferences.enable = lib.mkEnableOption "macOS system defaults (NSGlobalDomain, screencapture, login window, menu bar clock, etc.)";
   };
 
   config = lib.mkIf config.custom.sysDarPreferences.enable {

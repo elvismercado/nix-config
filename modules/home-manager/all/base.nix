@@ -14,7 +14,7 @@
 
 {
   options.custom.hmBase = {
-    enable = lib.mkEnableOption "enables shared Home Manager base config";
+    enable = lib.mkEnableOption "shared Home Manager base config (env vars, core packages, default editor)";
     editor = lib.mkOption {
       type = lib.types.str;
       default = "nano";

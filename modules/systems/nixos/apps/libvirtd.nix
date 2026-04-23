@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysNixLibvirtd.enable = lib.mkEnableOption "enables libvirtd virtualisation and virt-manager";
+    custom.sysNixLibvirtd.enable = lib.mkEnableOption "libvirtd QEMU/KVM virtualisation with virt-manager";
   };
 
   config = lib.mkIf config.custom.sysNixLibvirtd.enable {

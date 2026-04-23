@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysDarFinder.enable = lib.mkEnableOption "enables macOS Finder configuration";
+    custom.sysDarFinder.enable = lib.mkEnableOption "macOS Finder view, sidebar, sorting, and trash policy";
   };
 
   config = lib.mkIf config.custom.sysDarFinder.enable {

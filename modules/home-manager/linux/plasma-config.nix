@@ -25,7 +25,7 @@
 
 {
   options = {
-    custom.hmPlasmaConfig.enable = lib.mkEnableOption "enables macOS-style Plasma desktop configuration";
+    custom.hmPlasmaConfig.enable = lib.mkEnableOption "macOS-style KDE Plasma layout (top menu bar, floating dock, centered KRunner)";
   };
 
   config = lib.mkIf config.custom.hmPlasmaConfig.enable {

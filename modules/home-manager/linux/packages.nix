@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.hmLinuxPackages.enable = lib.mkEnableOption "enables Linux-only Home Manager packages";
+    custom.hmLinuxPackages.enable = lib.mkEnableOption "Linux-only Home Manager packages (LocalSend, Mullvad VPN client, etc.)";
   };
 
   config = lib.mkIf config.custom.hmLinuxPackages.enable {

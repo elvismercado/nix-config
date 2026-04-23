@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysDarDock.enable = lib.mkEnableOption "enables macOS Dock configuration";
+    custom.sysDarDock.enable = lib.mkEnableOption "macOS Dock appearance, behavior, hot corners, and pinned apps";
   };
 
   config = lib.mkIf config.custom.sysDarDock.enable {

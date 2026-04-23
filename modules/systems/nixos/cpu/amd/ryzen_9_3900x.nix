@@ -34,7 +34,7 @@
   ];
 
   options = {
-    custom.sysNixAmdRyzen93900x.enable = lib.mkEnableOption "enables AMD Ryzen 9 3900X CPU profile";
+    custom.sysNixAmdRyzen93900x.enable = lib.mkEnableOption "AMD Ryzen 9 3900X profile bundle (ryzen + pstate + zenpower + zen kernel + mitigations-off)";
   };
 
   config = lib.mkIf config.custom.sysNixAmdRyzen93900x.enable {

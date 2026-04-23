@@ -18,7 +18,7 @@
 
 {
   options = {
-    custom.sysDarAlacritty.enable = lib.mkEnableOption "enables Alacritty terminal";
+    custom.sysDarAlacritty.enable = lib.mkEnableOption "Alacritty terminal at the system level (so mkalias can register it for Spotlight)";
   };
 
   config = lib.mkIf config.custom.sysDarAlacritty.enable {

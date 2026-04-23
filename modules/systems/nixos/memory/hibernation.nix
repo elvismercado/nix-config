@@ -57,7 +57,7 @@ let
 in
 {
   options = {
-    custom.sysNixHibernate.enable = lib.mkEnableOption "enables hibernation (suspend-to-disk) support";
+    custom.sysNixHibernate.enable = lib.mkEnableOption "hibernation (suspend-to-disk) with auto-derived swap resume device";
 
     custom.sysNixHibernate.resumeDevice = lib.mkOption {
       type = lib.types.nullOr lib.types.str;

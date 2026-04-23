@@ -10,7 +10,7 @@
 
 {
   options = {
-    custom.sysNixAmdCpu.enable = lib.mkEnableOption "enables AMD CPU support";
+    custom.sysNixAmdCpu.enable = lib.mkEnableOption "AMD CPU base support (microcode updates) — typically auto-enabled by ryzen/pstate/zenpower";
   };
 
   config = lib.mkIf config.custom.sysNixAmdCpu.enable {

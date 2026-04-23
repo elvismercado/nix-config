@@ -31,7 +31,7 @@
 
 {
   options = {
-    custom.sysNixNomodeset.enable = lib.mkEnableOption "enables nomodeset (basic framebuffer driver)";
+    custom.sysNixNomodeset.enable = lib.mkEnableOption "nomodeset basic framebuffer driver (recovery / no-GPU-driver fallback)";
 
     custom.sysNixNomodeset.efifbMode = lib.mkOption {
       type = lib.types.nullOr lib.types.str;

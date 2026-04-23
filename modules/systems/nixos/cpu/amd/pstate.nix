@@ -30,7 +30,7 @@
   ];
 
   options = {
-    custom.sysNixAmdPstate.enable = lib.mkEnableOption "enables AMD P-State CPU frequency scaling driver";
+    custom.sysNixAmdPstate.enable = lib.mkEnableOption "AMD P-State EPP CPU frequency scaling driver (active mode)";
   };
 
   config = lib.mkIf config.custom.sysNixAmdPstate.enable {

@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.hmHandbrake.enable = lib.mkEnableOption "enables HandBrake video transcoder";
+    custom.hmHandbrake.enable = lib.mkEnableOption "HandBrake video transcoder GUI";
   };
 
   config = lib.mkIf config.custom.hmHandbrake.enable {

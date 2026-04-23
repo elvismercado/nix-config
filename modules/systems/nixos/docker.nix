@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.sysNixDocker.enable = lib.mkEnableOption "enables Docker container runtime";
+    custom.sysNixDocker.enable = lib.mkEnableOption "Docker container runtime (adds user to docker group)";
   };
 
   config = lib.mkIf config.custom.sysNixDocker.enable {

@@ -22,7 +22,7 @@
 
 {
   options = {
-    custom.sysNixLy.enable = lib.mkEnableOption "enables Ly TUI display manager";
+    custom.sysNixLy.enable = lib.mkEnableOption "Ly TUI display manager";
   };
 
   config = lib.mkIf config.custom.sysNixLy.enable {

@@ -7,7 +7,7 @@
 
 {
   options = {
-    custom.sysNixTimezone.enable = lib.mkEnableOption "enables timezone configuration";
+    custom.sysNixTimezone.enable = lib.mkEnableOption "timezone configuration from userSettings.timeZone";
   };
 
   config = lib.mkIf config.custom.sysNixTimezone.enable {

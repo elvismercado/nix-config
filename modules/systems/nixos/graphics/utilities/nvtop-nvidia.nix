@@ -7,7 +7,7 @@
 
 {
   options = {
-    custom.sysNixNvtopNvidia.enable = lib.mkEnableOption "enables nvtop for NVIDIA GPUs";
+    custom.sysNixNvtopNvidia.enable = lib.mkEnableOption "nvtop GPU process viewer with NVIDIA support";
   };
 
   config = lib.mkIf config.custom.sysNixNvtopNvidia.enable {

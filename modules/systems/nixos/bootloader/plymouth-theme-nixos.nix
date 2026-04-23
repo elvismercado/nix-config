@@ -18,7 +18,7 @@
 
 {
   options = {
-    custom.sysNixPlymouthThemeNixos.enable = lib.mkEnableOption "enables NixOS BGRT Plymouth theme";
+    custom.sysNixPlymouthThemeNixos.enable = lib.mkEnableOption "NixOS BGRT Plymouth theme (snowflake logo over UEFI vendor logo)";
   };
 
   config = lib.mkIf config.custom.sysNixPlymouthThemeNixos.enable {

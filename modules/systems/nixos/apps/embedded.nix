@@ -17,7 +17,7 @@
 
 {
   options = {
-    custom.sysNixEmbedded.enable = lib.mkEnableOption "enables embedded development tools and serial device access";
+    custom.sysNixEmbedded.enable = lib.mkEnableOption "embedded development: Arduino IDE and dialout group for serial devices";
   };
 
   config = lib.mkIf config.custom.sysNixEmbedded.enable {

@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.hmLinutil.enable = lib.mkEnableOption "enables LinUtil desktop shortcut";
+    custom.hmLinutil.enable = lib.mkEnableOption "LinUtil (Chris Titus Tech Linux Toolbox) desktop shortcut";
   };
 
   config = lib.mkIf config.custom.hmLinutil.enable {

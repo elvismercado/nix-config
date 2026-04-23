@@ -204,7 +204,7 @@ let
 in
 {
   options = {
-    custom.hmStarship.enable = lib.mkEnableOption "enables Starship cross-platform shell prompt";
+    custom.hmStarship.enable = lib.mkEnableOption "Starship cross-platform shell prompt (default or pastel-powerline style)";
 
     custom.hmStarship.style = lib.mkOption {
       type = lib.types.enum [

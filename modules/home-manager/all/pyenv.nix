@@ -19,7 +19,7 @@
 
 {
   options = {
-    custom.hmPyenv.enable = lib.mkEnableOption "enables pyenv Python version manager";
+    custom.hmPyenv.enable = lib.mkEnableOption "pyenv Python version manager (auto-installs latest on first activation)";
   };
 
   config = lib.mkIf config.custom.hmPyenv.enable {

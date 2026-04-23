@@ -14,7 +14,7 @@
 
 {
   options = {
-    custom.sysNixGrubThemeBreeze.enable = lib.mkEnableOption "enables KDE Breeze GRUB theme";
+    custom.sysNixGrubThemeBreeze.enable = lib.mkEnableOption "KDE Breeze GRUB theme";
   };
 
   config = lib.mkIf config.custom.sysNixGrubThemeBreeze.enable {

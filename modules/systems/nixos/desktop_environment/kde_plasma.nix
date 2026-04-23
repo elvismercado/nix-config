@@ -17,7 +17,7 @@
 
 {
   options = {
-    custom.sysNixKdePlasma.enable = lib.mkEnableOption "enables KDE Plasma desktop environment";
+    custom.sysNixKdePlasma.enable = lib.mkEnableOption "KDE Plasma 6 (Wayland session, trimmed default apps, browser/system integration)";
   };
 
   config = lib.mkIf config.custom.sysNixKdePlasma.enable {

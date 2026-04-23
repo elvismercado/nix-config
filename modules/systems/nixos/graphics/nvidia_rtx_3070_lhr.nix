@@ -49,7 +49,7 @@
   ];
 
   options = {
-    custom.sysNixNvidiaRtx3070Lhr.enable = lib.mkEnableOption "enables NVIDIA RTX 3070 LHR (Ampere/GA104) graphics support";
+    custom.sysNixNvidiaRtx3070Lhr.enable = lib.mkEnableOption "NVIDIA RTX 3070 LHR (Ampere/GA104) graphics with proprietary driver and nvtop";
   };
 
   config = lib.mkIf config.custom.sysNixNvidiaRtx3070Lhr.enable {

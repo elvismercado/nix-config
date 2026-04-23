@@ -142,3 +142,9 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P4 — Module Quality
 
 - [x] **Vague `mkEnableOption` descriptions across 8 modules** — Rewrote descriptions in brave, bash, ansible, thunderbird, syncthing, nextcloud, vscode, and sunshine to summarise what each module actually configures (matching its header comment).
+
+## Round 5
+
+### P3 — Architecture & Convention
+
+- [x] **`mkEnableOption "enables ..."` prefix violates style guide and produces ungrammatical generated docs (93 modules)** — Stripped the `"enables "` prefix from all 93 modules across `modules/home-manager/` and `modules/systems/` and rewrote each description to summarise what the module configures (matches the header comment). Verified with grep: zero remaining instances.

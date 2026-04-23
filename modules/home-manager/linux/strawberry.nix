@@ -17,7 +17,7 @@
 
 {
   options = {
-    custom.hmStrawberry.enable = lib.mkEnableOption "enables Strawberry music player";
+    custom.hmStrawberry.enable = lib.mkEnableOption "Strawberry Qt6/KDE music player for local and network libraries";
   };
 
   config = lib.mkIf config.custom.hmStrawberry.enable {

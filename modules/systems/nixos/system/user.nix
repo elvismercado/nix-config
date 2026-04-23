@@ -21,7 +21,7 @@
 
 {
   options = {
-    custom.sysNixUser.enable = lib.mkEnableOption "enables the standard NixOS user account";
+    custom.sysNixUser.enable = lib.mkEnableOption "standard NixOS user account from userSettings (with NetworkManager and default groups)";
 
     custom.sysNixUser.extraGroups = lib.mkOption {
       type = lib.types.listOf lib.types.str;

@@ -44,7 +44,7 @@
   ];
 
   options = {
-    custom.sysNixIntelArcIntelDriver.enable = lib.mkEnableOption "enables Intel Arc A380 with Intel driver";
+    custom.sysNixIntelArcIntelDriver.enable = lib.mkEnableOption "Intel Arc A380 graphics with the Intel driver and intel-nvtop";
   };
 
   config = lib.mkIf config.custom.sysNixIntelArcIntelDriver.enable {

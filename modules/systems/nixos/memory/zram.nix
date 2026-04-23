@@ -26,7 +26,7 @@
 
 {
   options = {
-    custom.sysNixZram.enable = lib.mkEnableOption "enables zram compressed swap";
+    custom.sysNixZram.enable = lib.mkEnableOption "zram compressed swap (in-RAM swap device)";
   };
 
   config = lib.mkIf config.custom.sysNixZram.enable {

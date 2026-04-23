@@ -45,7 +45,7 @@
   ];
 
   options = {
-    custom.sysNixNvidiaGtx1060.enable = lib.mkEnableOption "enables NVIDIA GTX 1060 6GB (Pascal/GP106) graphics support";
+    custom.sysNixNvidiaGtx1060.enable = lib.mkEnableOption "NVIDIA GTX 1060 6GB (Pascal/GP106) graphics with proprietary driver and nvtop";
   };
 
   config = lib.mkIf config.custom.sysNixNvidiaGtx1060.enable {

@@ -17,7 +17,7 @@
 
 {
   options = {
-    custom.hmFastfetch.enable = lib.mkEnableOption "enables fastfetch system info tool";
+    custom.hmFastfetch.enable = lib.mkEnableOption "Fastfetch system info on login (small logo, minimal modules)";
   };
 
   config = lib.mkIf config.custom.hmFastfetch.enable {

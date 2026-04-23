@@ -20,7 +20,7 @@
 
 {
   options = {
-    custom.hmFnm.enable = lib.mkEnableOption "enables fnm Node.js version manager";
+    custom.hmFnm.enable = lib.mkEnableOption "fnm Fast Node Manager (auto-installs latest LTS on first activation)";
   };
 
   config = lib.mkIf config.custom.hmFnm.enable {

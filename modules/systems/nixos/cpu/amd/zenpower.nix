@@ -33,7 +33,7 @@
   ];
 
   options = {
-    custom.sysNixAmdZenpower.enable = lib.mkEnableOption "enables Zenpower sensor driver (replaces k10temp)";
+    custom.sysNixAmdZenpower.enable = lib.mkEnableOption "Zenpower sensor driver for full AMD Ryzen telemetry (replaces k10temp)";
   };
 
   config = lib.mkIf config.custom.sysNixAmdZenpower.enable {

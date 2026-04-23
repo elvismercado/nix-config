@@ -18,7 +18,7 @@
 
 {
   options = {
-    custom.sysNixPostinstall.enable = lib.mkEnableOption "enables system-level postinstall alias";
+    custom.sysNixPostinstall.enable = lib.mkEnableOption "system-level `postinstall` shell alias (available before home-manager activation)";
   };
 
   config = lib.mkIf config.custom.sysNixPostinstall.enable {

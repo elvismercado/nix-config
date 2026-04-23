@@ -12,7 +12,7 @@
 
 {
   options = {
-    custom.sysNixGrub.enable = lib.mkEnableOption "enables GRUB bootloader";
+    custom.sysNixGrub.enable = lib.mkEnableOption "GRUB EFI bootloader (configurable timeout)";
 
     custom.sysNixGrub.timeout = lib.mkOption {
       type = lib.types.int;

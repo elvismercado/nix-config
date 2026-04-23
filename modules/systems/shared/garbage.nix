@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.sysGc.enable = lib.mkEnableOption "enables automatic Nix garbage collection";
+    custom.sysGc.enable = lib.mkEnableOption "automatic Nix garbage collection (no-op on Determinate Nix hosts)";
   };
 
   config = lib.mkIf (config.custom.sysGc.enable && config.nix.enable) {

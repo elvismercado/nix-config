@@ -19,7 +19,7 @@
 
 {
   options = {
-    custom.hmSsh.enable = lib.mkEnableOption "enables SSH client configuration";
+    custom.hmSsh.enable = lib.mkEnableOption "SSH client with agent integration, keep-alive, and connection reuse";
   };
 
   config = lib.mkIf config.custom.hmSsh.enable {

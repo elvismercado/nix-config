@@ -13,7 +13,7 @@
 
 {
   options = {
-    custom.hmAliases.enable = lib.mkEnableOption "enables Home Manager shell aliases";
+    custom.hmAliases.enable = lib.mkEnableOption "cross-platform Home Manager shell aliases (nix workflow, diagnostics)";
   };
 
   config = lib.mkIf config.custom.hmAliases.enable {

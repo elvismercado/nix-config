@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.sysNixEnableFlakes.enable = lib.mkEnableOption "enables Nix flakes and nix-command";
+    custom.sysNixEnableFlakes.enable = lib.mkEnableOption "the `nix-command` and `flakes` experimental features (stock NixOS only — Determinate Nix already enables them)";
   };
 
   config = lib.mkIf config.custom.sysNixEnableFlakes.enable {

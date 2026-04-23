@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysNixWacom.enable = lib.mkEnableOption "enables Wacom tablet support";
+    custom.sysNixWacom.enable = lib.mkEnableOption "Wacom tablet support (Xorg driver for X11; libinput on Wayland)";
   };
 
   config = lib.mkIf config.custom.sysNixWacom.enable {

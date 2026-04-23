@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysNixLogitechMouse.enable = lib.mkEnableOption "enables Logitech wireless mouse support";
+    custom.sysNixLogitechMouse.enable = lib.mkEnableOption "Logitech wireless mouse / Unifying receiver support (with Solaar)";
   };
 
   config = lib.mkIf config.custom.sysNixLogitechMouse.enable {

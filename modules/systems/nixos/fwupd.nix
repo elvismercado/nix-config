@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.sysNixFwupd.enable = lib.mkEnableOption "enables fwupd firmware update daemon";
+    custom.sysNixFwupd.enable = lib.mkEnableOption "fwupd firmware update daemon (LVFS via fwupdmgr)";
   };
 
   config = lib.mkIf config.custom.sysNixFwupd.enable {

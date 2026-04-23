@@ -31,7 +31,7 @@
   imports = [ ./utilities/amd.nix ];
 
   options = {
-    custom.sysNixAmdRadeonR7430.enable = lib.mkEnableOption "enables AMD Radeon R7 430 (Oland/SI) with amdgpu driver";
+    custom.sysNixAmdRadeonR7430.enable = lib.mkEnableOption "AMD Radeon R7 430 (Oland/SI) with amdgpu driver and early KMS";
   };
 
   config = lib.mkIf config.custom.sysNixAmdRadeonR7430.enable {

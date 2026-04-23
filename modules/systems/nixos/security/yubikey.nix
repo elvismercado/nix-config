@@ -16,7 +16,7 @@
 
 {
   options = {
-    custom.sysNixYubikey.enable = lib.mkEnableOption "enables YubiKey support";
+    custom.sysNixYubikey.enable = lib.mkEnableOption "YubiKey support (pcscd, udev rules, personalization/manager/OATH tools)";
   };
 
   config = lib.mkIf config.custom.sysNixYubikey.enable {
