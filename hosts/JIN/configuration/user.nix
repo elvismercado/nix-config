@@ -22,7 +22,6 @@
       "wheel" # sudo access
       "video" # GPU and display device access
       "render" # GPU rendering (e.g. Vulkan, OpenCL)
-      "docker" # Run Docker containers without sudo
       "libvirtd" # QEMU/KVM virtual machine management
       "dialout" # Serial device access (Arduino, embedded development)
       "adbusers" # Android Debug Bridge (ADB) device access
