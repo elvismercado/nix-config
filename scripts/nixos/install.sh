@@ -847,7 +847,15 @@ generate_hardware_config() {
   local hw_config="${REPO_DIR}/hosts/${FLAKE_HOST}/configuration/hardware-configuration.nix"
 
   info "Generating hardware configuration..."
-  nixos-generate-config --show-hardware-config --root /mnt > "$hw_config"
+  nixos-generate-config --show-hardware-config --root /mnt > "$hw_config" \
+    || fatal "nixos-generate-config failed. Check that /mnt is properly mounted."
+
+  # Validate the generated file is non-empty and contains fileSystems
+  # (the critical attribute defining root/boot mounts).
+  [[ -s "$hw_config" ]] \
+    || fatal "Generated hardware-configuration.nix is empty: ${hw_config}"
+  grep -q 'fileSystems' "$hw_config" \
+    || fatal "Generated hardware-configuration.nix is missing fileSystems definitions: ${hw_config}"
 
   info "Hardware config written to: ${hw_config}"
   echo ""

@@ -81,7 +81,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P2 — Robustness & Reliability
 
-- [ ] **install.sh: Validate `nixos-generate-config` output** — `generate_hardware_config()` redirects output to file but doesn't check if the command succeeded or produced valid content. An empty/corrupt `hardware-configuration.nix` would cause a cryptic build failure.
+- [x] **install.sh: Validate `nixos-generate-config` output** — `generate_hardware_config()` now fails fast with a clear message if the command fails, the file is empty, or the file is missing `fileSystems` definitions.
 - [ ] **install.sh: Use `mktemp` for temporary repo** — `TEMP_REPO="/tmp/${REPO_NAME}"` is predictable. Concurrent installs or a malicious symlink at `/tmp/nix-config` could cause issues. Use `mktemp -d` instead.
 - [ ] **setup.sh: Validate Determinate Nix installer download** — `curl | sh` pipe (line ~60) has no checksum verification. Same for Homebrew installer (line ~113). Add `--fail` flag at minimum and check exit code.
 
