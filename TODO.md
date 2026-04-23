@@ -103,4 +103,4 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 - [x] **INSTALL.md: Align manual steps with automated script** — Removed duplicate `SWAP_MIB`/`HOME_MIB` variables from Step 0 (now derived from `*_SIZE` via `numfmt`, mirroring `size_mib()` in install.sh). Added `-F` to `mkfs.ext4` and `partprobe` + `udevadm settle --timeout=30` after each parted block, matching the script.
 - [x] **README.md: Document channel selection** — Expanded the channel table with the `nix-darwin` input row, added a 'Switching a host's channel' subsection (edit `user-settings.nix` → rebuild), and added a Quickstart pointer noting hosts default to `stable`.
-- [ ] **setup.sh: Consistent error handling pattern** — Uses `|| { ...; exit 1; }` for git clone but bare `exit 1` for xcode-select timeout. Standardize on one pattern throughout.
+- [x] **setup.sh: Consistent error handling pattern** — Added a `fatal()` helper at the top (matching `install.sh`'s style) and replaced all `|| { echo "...ERROR..."; exit 1; }` blocks and the bare xcode-select `exit 1` with `|| fatal "..."`. Single uniform pattern throughout.

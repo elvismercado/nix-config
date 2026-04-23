@@ -4,6 +4,11 @@ set -e
 REPO_NAME="nix-config"
 REPO_DIR="$HOME/git/$REPO_NAME"
 
+fatal() {
+  echo "[Setup] ERROR: $*" >&2
+  exit 1
+}
+
 get_os_name() {
   [ -f /etc/os-release ] || return 1
   awk -F= '/^ID=/{gsub(/"/, "", $2); print $2}' /etc/os-release
@@ -62,16 +67,13 @@ run_determinite_installer() {
   # Avoids the silent-failure trap of `curl | sh` (where a failed curl can
   # still leave the pipeline exit status as 0, or pipe a partial script to sh).
   installer=$(mktemp -t determinate-nix-installer.XXXXXX) \
-    || { echo "[Setup] ERROR: Failed to create temp file for installer."; exit 1; }
+    || fatal "Failed to create temp file for installer."
   trap 'rm -f "$installer"' EXIT
 
   curl --proto '=https' --tlsv1.2 -fsSL https://install.determinate.systems/nix -o "$installer" \
-    || { echo "[Setup] ERROR: Failed to download Determinate Nix installer."; exit 1; }
+    || fatal "Failed to download Determinate Nix installer."
 
-  if [ ! -s "$installer" ]; then
-    echo "[Setup] ERROR: Downloaded installer is empty."
-    exit 1
-  fi
+  [ -s "$installer" ] || fatal "Downloaded Determinate Nix installer is empty."
 
   sh "$installer" install --determinate
 
@@ -105,9 +107,7 @@ install_xcode_clt() {
   until /usr/bin/xcode-select -p >/dev/null 2>&1; do
     attempt=$((attempt + 1))
     if [ "$attempt" -ge "$max_attempts" ]; then
-      echo "[Setup] ERROR: Timed out waiting for Xcode CLT installation (15 minutes)."
-      echo "[Setup] Install manually with: xcode-select --install"
-      exit 1
+      fatal "Timed out waiting for Xcode CLT installation (15 minutes). Install manually with: xcode-select --install"
     fi
     sleep 5
   done
@@ -133,16 +133,13 @@ install_homebrew() {
   # Download installer to a temp file and verify before executing.
   # Avoids silent failure when `curl` returns an empty/partial script.
   installer=$(mktemp -t homebrew-installer.XXXXXX) \
-    || { echo "[Setup] ERROR: Failed to create temp file for installer."; exit 1; }
+    || fatal "Failed to create temp file for installer."
   trap 'rm -f "$installer"' EXIT
 
   curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -o "$installer" \
-    || { echo "[Setup] ERROR: Failed to download Homebrew installer."; exit 1; }
+    || fatal "Failed to download Homebrew installer."
 
-  if [ ! -s "$installer" ]; then
-    echo "[Setup] ERROR: Downloaded installer is empty."
-    exit 1
-  fi
+  [ -s "$installer" ] || fatal "Downloaded Homebrew installer is empty."
 
   /bin/bash "$installer"
 
@@ -180,7 +177,7 @@ download_repo() {
 
   echo "[Setup] Cloning repo to $REPO_DIR..."
   nix-shell -p git --run "git clone '$repo_url' '$REPO_DIR'" \
-    || { echo "[Setup] ERROR: Failed to clone $repo_url. Check your network connection."; exit 1; }
+    || fatal "Failed to clone $repo_url. Check your network connection."
 
   echo "[Setup] Ready to use nix-config"
 }
