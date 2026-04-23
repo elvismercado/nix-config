@@ -131,4 +131,4 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P5 — Script & Documentation Polish
 
-- [ ] **README.md repository structure: stale module listings** — The block under `modules/systems/nixos/apps/` shows "ADB, Coolercontrol, libvirtd, sunshine" but `embedded.nix` (Round 1 P5) is missing. The `system/` line lists "Console, fonts, i18n, time, network tuning" but the new `user.nix` (Round 2 P4 #3) is missing. Refresh both listings to match the current tree.
+- [x] **README.md repository structure: stale module listings** — Added `embedded` to the `nixos/apps/` listing and `user` to the `nixos/system/` listing so README matches the current tree.

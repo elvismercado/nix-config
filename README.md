@@ -72,7 +72,7 @@ hosts/
 modules/
   systems/
     nixos/                   # NixOS system modules (toggleable, custom.* namespace)
-      apps/                  #   ADB, Coolercontrol, libvirtd, sunshine
+      apps/                  #   ADB, Coolercontrol, embedded, libvirtd, sunshine
       bootloader/            #   GRUB, systemd-boot, Plymouth, GRUB/Plymouth themes
       cpu/amd/               #   AMD base, Ryzen, P-State, Zenpower, zen-kernel, mitigations-off + CPU profiles (3900X, 5900X)
       desktop_environment/   #   KDE Plasma, COSMIC
@@ -85,7 +85,7 @@ modules/
       nix/                   #   Flakes, garbage collection
       security/              #   YubiKey, fprintd
       ssd/                   #   SSD optimisations (fstrim)
-      system/                #   Console, fonts, i18n, time, network tuning
+      system/                #   Console, fonts, i18n, network tuning, time, user
       bluetooth.nix          #   Bluetooth + A2DP audio
       pipewire.nix           #   PipeWire audio server
     darwin/                  # Darwin-specific modules (Alacritty, Control Center, Dock, Finder,
