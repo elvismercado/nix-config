@@ -64,7 +64,7 @@ SWAP_SIZE=""
 HOME_SIZE=""              # empty = no separate /home partition (single-disk mode)
 HOME_DISK=""              # empty = no dedicated /home disk (set via --home-disk)
 KEEP_HOME=""              # non-empty = mount existing /home disk without formatting
-TEMP_REPO="/tmp/${REPO_NAME}"
+TEMP_REPO=""              # set by clone_repo() via mktemp -d
 
 # Labels (used for mounting by label)
 LABEL_BOOT="BOOT"
@@ -772,10 +772,8 @@ validate_host() {
 clone_repo() {
   info "Cloning flake repository to temporary location..."
 
-  if [[ -d "$TEMP_REPO" ]]; then
-    warn "Removing stale temporary repo at ${TEMP_REPO}..."
-    rm -rf "$TEMP_REPO"
-  fi
+  TEMP_REPO=$(mktemp -d -t "${REPO_NAME}.XXXXXX") \
+    || fatal "Failed to create temporary directory for clone."
 
   nix-shell -p git --run "git clone '${FLAKE_REPO}' '${TEMP_REPO}'" \
     || fatal "Failed to clone ${FLAKE_REPO}. Check your network connection and repository URL."
