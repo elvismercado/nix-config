@@ -44,7 +44,7 @@ When an app is cross-platform in nixpkgs but only used on Linux hosts in this re
 ## Host Wiring
 
 - `default.nix` is the import entry point for both `configuration/` and `home-manager/`
-- `user-settings.nix` provides `username`, `hostname`, `system`, `channel`, `timeZone`, `uid`
+- `user-settings.nix` provides `username`, `hostname`, `system`, `channel`, `timeZone`, `uid`, `repoPath` (relative to `$HOME`), and optionally `desktopEnvironment` (e.g. `"kde-plasma"`; consumed by `brave.nix` and read elsewhere via `userSettings.desktopEnvironment or null`)
 - Modules receive `userSettings` via `extraSpecialArgs` (home-manager) or `specialArgs` (system)
 - Host-identifying values (hostname, computer name, SMB name, etc.) must use `userSettings.hostname` — never hardcode the hostname string
 
