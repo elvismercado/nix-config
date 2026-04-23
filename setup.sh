@@ -57,7 +57,26 @@ run_determinite_installer() {
   fi
 
   echo "[Setup] Running the Determinate installer"
-  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate
+
+  # Download installer to a temp file and verify before executing.
+  # Avoids the silent-failure trap of `curl | sh` (where a failed curl can
+  # still leave the pipeline exit status as 0, or pipe a partial script to sh).
+  installer=$(mktemp -t determinate-nix-installer.XXXXXX) \
+    || { echo "[Setup] ERROR: Failed to create temp file for installer."; exit 1; }
+  trap 'rm -f "$installer"' EXIT
+
+  curl --proto '=https' --tlsv1.2 -fsSL https://install.determinate.systems/nix -o "$installer" \
+    || { echo "[Setup] ERROR: Failed to download Determinate Nix installer."; exit 1; }
+
+  if [ ! -s "$installer" ]; then
+    echo "[Setup] ERROR: Downloaded installer is empty."
+    exit 1
+  fi
+
+  sh "$installer" install --determinate
+
+  rm -f "$installer"
+  trap - EXIT
 
   # Make nix available in this shell session
   source_nix
@@ -110,7 +129,25 @@ install_homebrew() {
   fi
 
   echo "[Setup] Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Download installer to a temp file and verify before executing.
+  # Avoids silent failure when `curl` returns an empty/partial script.
+  installer=$(mktemp -t homebrew-installer.XXXXXX) \
+    || { echo "[Setup] ERROR: Failed to create temp file for installer."; exit 1; }
+  trap 'rm -f "$installer"' EXIT
+
+  curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh -o "$installer" \
+    || { echo "[Setup] ERROR: Failed to download Homebrew installer."; exit 1; }
+
+  if [ ! -s "$installer" ]; then
+    echo "[Setup] ERROR: Downloaded installer is empty."
+    exit 1
+  fi
+
+  /bin/bash "$installer"
+
+  rm -f "$installer"
+  trap - EXIT
 
   # Add Homebrew to PATH for this session
   if [ -f /opt/homebrew/bin/brew ]; then

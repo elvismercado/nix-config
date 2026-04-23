@@ -83,7 +83,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 - [x] **install.sh: Validate `nixos-generate-config` output** — `generate_hardware_config()` now fails fast with a clear message if the command fails, the file is empty, or the file is missing `fileSystems` definitions.
 - [x] **install.sh: Use `mktemp` for temporary repo** — `clone_repo()` now uses `mktemp -d -t nix-config.XXXXXX` for a unique, race-free path with restrictive permissions. Eliminates symlink attack surface and concurrent-install collisions.
-- [ ] **setup.sh: Validate Determinate Nix installer download** — `curl | sh` pipe (line ~60) has no checksum verification. Same for Homebrew installer (line ~113). Add `--fail` flag at minimum and check exit code.
+- [x] **setup.sh: Validate Determinate Nix installer download** — Both Determinate Nix and Homebrew installers now use download-then-execute via `mktemp` + `curl -fsSL -o` + non-empty check + trap-based cleanup. Eliminates silent failure when `curl | sh` pipes an empty/partial script.
 
 ### P3 — Architecture & Convention
 
