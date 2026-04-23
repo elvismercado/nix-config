@@ -1,7 +1,7 @@
 # Visual Studio Code — extensions and settings via home-manager
 #
 # Usage:
-#   imports = [ ../../../modules/home-manager/all/vscode.nix ];
+#   imports = [ ../../../modules/home-manager/linux/vscode.nix ];
 #   custom.hmVscode.enable = true;
 
 {

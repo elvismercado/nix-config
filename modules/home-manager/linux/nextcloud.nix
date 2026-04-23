@@ -1,7 +1,7 @@
 # Nextcloud desktop client
 #
 # Usage:
-#   imports = [ ../../../modules/home-manager/all/nextcloud.nix ];
+#   imports = [ ../../../modules/home-manager/linux/nextcloud.nix ];
 #   custom.hmNextcloud.enable = true;
 
 {

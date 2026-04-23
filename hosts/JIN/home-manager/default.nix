@@ -28,7 +28,7 @@
     ../../../modules/home-manager/all/brave.nix
     ../../../modules/home-manager/all/mpv.nix
     ../../../modules/home-manager/all/thunderbird.nix
-    ../../../modules/home-manager/all/vscode.nix
+    ../../../modules/home-manager/linux/vscode.nix
 
     # Linux
     ../../../modules/home-manager/linux/aliases.nix
@@ -43,7 +43,7 @@
     ../../../modules/home-manager/linux/linutil.nix
 
     # Services
-    ../../../modules/home-manager/all/nextcloud.nix
+    ../../../modules/home-manager/linux/nextcloud.nix
     ../../../modules/home-manager/all/syncthing.nix
 
     # Packages

@@ -50,7 +50,7 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
   imports = [
     ../../../modules/home-manager/all/aliases.nix
     ../../../modules/home-manager/all/bash.nix
-    ../../../modules/home-manager/all/vscode.nix
+    ../../../modules/home-manager/linux/vscode.nix
   ];
 
   custom.hmAliases.enable = true;
@@ -63,29 +63,28 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
 
 **All platforms** (`home-manager/all/`):
 
-| Module                             | Option                             |
-| ---------------------------------- | ---------------------------------- |
-| `home-manager/all/base.nix`        | `custom.hmBase.enable`             |
-| `home-manager/all/aliases.nix`     | `custom.hmAliases.enable`          |
-|                                    | `custom.hmAliasesAmdCpu.enable`    |
-|                                    | `custom.hmAliasesNvidiaGpu.enable` |
-| `home-manager/all/packages.nix`    | `custom.hmPackages.enable`         |
-| `home-manager/all/android.nix`     | `custom.hmAndroid.enable`          |
-| `home-manager/all/ansible.nix`     | `custom.hmAnsible.enable`          |
-| `home-manager/all/bash.nix`        | `custom.hmBash.enable`             |
-| `home-manager/all/brave.nix`       | `custom.hmBrave.enable`            |
-| `home-manager/all/fastfetch.nix`   | `custom.hmFastfetch.enable`        |
-| `home-manager/all/fnm.nix`         | `custom.hmFnm.enable`              |
-| `home-manager/all/git.nix`         | `custom.hmGit.enable`              |
-| `home-manager/all/mpv.nix`         | `custom.hmMpv.enable`              |
-| `home-manager/all/nextcloud.nix`   | `custom.hmNextcloud.enable`        |
-| `home-manager/all/pyenv.nix`       | `custom.hmPyenv.enable`            |
-| `home-manager/all/ssh.nix`         | `custom.hmSsh.enable`              |
-| `home-manager/all/starship.nix`    | `custom.hmStarship.enable`         |
-|                                    | `custom.hmStarship.style`          |
-| `home-manager/all/syncthing.nix`   | `custom.hmSyncthing.enable`        |
-| `home-manager/all/thunderbird.nix` | `custom.hmThunderbird.enable`      |
-| `home-manager/all/vscode.nix`      | `custom.hmVscode.enable`           |
+| Module                           | Option                             |
+| -------------------------------- | ---------------------------------- |
+| `home-manager/all/base.nix`      | `custom.hmBase.enable`             |
+| `home-manager/all/aliases.nix`   | `custom.hmAliases.enable`          |
+|                                  | `custom.hmAliasesAmdCpu.enable`    |
+|                                  | `custom.hmAliasesNvidiaGpu.enable` |
+| `home-manager/all/packages.nix`  | `custom.hmPackages.enable`         |
+| `home-manager/all/android.nix`   | `custom.hmAndroid.enable`          |
+| `home-manager/all/ansible.nix`   | `custom.hmAnsible.enable`          |
+| `home-manager/all/bash.nix`      | `custom.hmBash.enable`             |
+| `home-manager/all/brave.nix`     | `custom.hmBrave.enable`            |
+| `home-manager/all/fastfetch.nix` | `custom.hmFastfetch.enable`        |
+| `home-manager/all/fnm.nix`       | `custom.hmFnm.enable`              |
+| `home-manager/all/git.nix`       | `custom.hmGit.enable`              |
+| `home-manager/all/mpv.nix`       | `custom.hmMpv.enable`              |
+
+| `home-manager/all/pyenv.nix` | `custom.hmPyenv.enable` |
+| `home-manager/all/ssh.nix` | `custom.hmSsh.enable` |
+| `home-manager/all/starship.nix` | `custom.hmStarship.enable` |
+| | `custom.hmStarship.style` |
+| `home-manager/all/syncthing.nix` | `custom.hmSyncthing.enable` |
+| `home-manager/all/thunderbird.nix` | `custom.hmThunderbird.enable` |
 
 **Linux — KDE Plasma** (`home-manager/linux/`):
 
@@ -96,7 +95,9 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
 | `home-manager/linux/gaming.nix`                   | `custom.hmGaming.enable`                 |
 | `home-manager/linux/handbrake.nix`                | `custom.hmHandbrake.enable`              |
 | `home-manager/linux/linutil.nix`                  | `custom.hmLinutil.enable`                |
+| `home-manager/linux/nextcloud.nix`                | `custom.hmNextcloud.enable`              |
 | `home-manager/linux/packages.nix`                 | `custom.hmLinuxPackages.enable`          |
+| `home-manager/linux/vscode.nix`                   | `custom.hmVscode.enable`                 |
 | `home-manager/linux/plasma-config.nix`            | `custom.hmPlasmaConfig.enable`           |
 | `home-manager/linux/shutdown-disable-outputs.nix` | `custom.hmShutdownDisableOutputs.enable` |
 | `home-manager/linux/strawberry.nix`               | `custom.hmStrawberry.enable`             |

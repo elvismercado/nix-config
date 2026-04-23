@@ -23,7 +23,7 @@
     # Apps
     ../../../modules/home-manager/all/brave.nix
     ../../../modules/home-manager/all/mpv.nix
-    ../../../modules/home-manager/all/vscode.nix
+    ../../../modules/home-manager/linux/vscode.nix
     ../../../modules/home-manager/all/syncthing.nix
 
     # Linux
