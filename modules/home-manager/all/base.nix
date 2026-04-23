@@ -33,8 +33,6 @@
       mullvad-closest # Find Mullvad servers with the lowest latency at your location
 
       headsetcontrol # Sidetone and Battery status for Logitech G930, G533, G633, G933 SteelSeries Arctis 7/PRO 2019 and Corsair VOID (Pro)
-      # headsetcontrol-notificationd
-      # HeadsetControl-Qt
     ];
 
     home.sessionVariables = {

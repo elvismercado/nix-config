@@ -18,7 +18,6 @@
   config = lib.mkIf config.custom.hmNextcloud.enable {
     services.nextcloud-client = {
       enable = true;
-      # startInBackground = true;
     };
   };
 }

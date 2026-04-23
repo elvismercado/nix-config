@@ -26,8 +26,6 @@
       moonlight-qt # Open source game streaming client
 
       cameractrls # Camera controls for Linux
-      # cameractrls-gtk3
-      # cameractrls-gtk4
 
       rpi-imager # Raspberry Pi Imaging Utility
 
@@ -37,8 +35,6 @@
       ferdium # browser for always on services
       protonmail-bridge-gui # ProtonMail bridge
       insync # Google Drive, OneDrive, and Dropbox
-      # insync-nautilus # gnome
-      # insync-emblem-icons # file manager emblem icons for Insync file manager extensions
     ];
   };
 }

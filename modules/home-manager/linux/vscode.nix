@@ -26,33 +26,6 @@
           "update.mode" = "none";
           "extensions.autoCheckUpdates" = false;
           "extensions.autoUpdate" = false;
-
-          /*
-          "editor.tabSize" = 2;
-          "editor.formatOnPaste" = true;
-          "editor.formatOnSave" = true;
-          "files.trimTrailingWhitespace" = true;
-          "files.insertFinalNewline" = true;
-          "editor.codeActionsOnSave" = {
-            "source.fixAll" = "explicit";
-            "source.organizeImports" = "explicit";
-          };
-
-          "nix.enableLanguageServer" = true;
-          # "nix.formatterPath" = "nixfmt"; # LSP Plugin Support
-          "nix.serverSettings" = {
-            "nil" = {
-              "formatting" = {
-                "command" = [ "nixfmt" ];
-              };
-              "nix" = {
-                "flake" = {
-                  autoArchive = true;
-                };
-              };
-            };
-          };
-          */
         };
 
         extensions = with pkgs.vscode-extensions; [

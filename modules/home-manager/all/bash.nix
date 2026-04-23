@@ -57,7 +57,6 @@
       sessionVariables = { };
       shellAliases = {
       };
-      # shellOptions = [];
     };
   };
 }

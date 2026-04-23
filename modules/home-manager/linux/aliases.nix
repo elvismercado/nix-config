@@ -62,13 +62,10 @@
         vlkcube = "nix-shell -p vulkan-tools --run vkcube";
         checkallvulkan = "vlkinstalleddrivers; vlkinfo; vlkinfosummary;";
 
-        # openclinfo = "nix-shell -p clinfo --run 'clinfo'";
         openclinfo = "nix-shell -p clinfo --run 'clinfo | head -n3'";
 
         vaapiinfo = "nix-shell -p libva-utils --run vainfo";
         vdpauinfo = "nix-shell -p vdpauinfo --run vdpauinfo";
-
-        # checkblacklistedgpus = "lsmod |grep -E 'i915|amdgpu'";
 
         checkallgpufeatures = "gpuinfo; openglinfo; openclinfo; vaapiinfo; vdpauinfo;";
       };
