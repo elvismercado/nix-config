@@ -13,7 +13,14 @@
 }:
 
 {
-  options.custom.hmBase.enable = lib.mkEnableOption "enables shared Home Manager base config";
+  options.custom.hmBase = {
+    enable = lib.mkEnableOption "enables shared Home Manager base config";
+    editor = lib.mkOption {
+      type = lib.types.str;
+      default = "nano";
+      description = "Default editor for EDITOR env var and git core.editor.";
+    };
+  };
 
   config = lib.mkIf config.custom.hmBase.enable {
     home.packages = with pkgs; [
@@ -31,7 +38,7 @@
     ];
 
     home.sessionVariables = {
-      EDITOR = "nano";
+      EDITOR = config.custom.hmBase.editor;
     };
   };
 }

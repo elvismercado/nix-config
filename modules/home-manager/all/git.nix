@@ -41,7 +41,7 @@
         };
 
         init.defaultBranch = "main";
-        core.editor = "nano";
+        core.editor = config.custom.hmBase.editor;
         pull.rebase = false;
 
         # gh auth login writes a credential helper entry after authenticating.

@@ -66,6 +66,7 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
 | Module                           | Option                      |
 | -------------------------------- | --------------------------- |
 | `home-manager/all/base.nix`      | `custom.hmBase.enable`      |
+|                                  | `custom.hmBase.editor`      |
 | `home-manager/all/aliases.nix`   | `custom.hmAliases.enable`   |
 | `home-manager/all/android.nix`   | `custom.hmAndroid.enable`   |
 | `home-manager/all/ansible.nix`   | `custom.hmAnsible.enable`   |

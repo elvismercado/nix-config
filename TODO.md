@@ -41,7 +41,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Add platform guard to `vscode.nix` and `nextcloud.nix`** — Moved both from `all/` to `linux/`. macOS hosts use Homebrew casks instead.
 - [x] **Move AMD/NVIDIA aliases from `all/` to `linux/`** — Moved `hmAliasesAmdCpu`, `hmAliasesNvidiaGpu`, and `nixdiag` to `linux/aliases.nix`. All use Linux-only commands.
 - [x] **Move `cowsay`/`lolcat` out of `base.nix`** — Moved to `all/packages.nix`, then merged `all/packages.nix` into `all/base.nix` (eliminated redundant module). Moved 4 GUI apps (`localsend`, `mullvad-vpn`, `handbrake`, `moonlight-qt`) to `linux/packages.nix` to avoid Homebrew conflicts on macOS.
-- [ ] **Make `EDITOR` configurable in `base.nix`** — `EDITOR = "nano"` is hardcoded. Add a `custom.hmBase.editor` option with `"nano"` as default.
+- [x] **Make `EDITOR` configurable in `base.nix`** — Added `custom.hmBase.editor` option (default `"nano"`). Used by `base.nix` (`EDITOR` env var) and `git.nix` (`core.editor`).
 - [ ] **Use declarative `programs.thunderbird` in `thunderbird.nix`** — Currently installed as a raw package with the declarative config commented out. Switch to the home-manager module.
 - [ ] **Clean up commented-out code** — Large commented-out blocks in `vscode.nix` (editor/formatter settings) and `packages.nix` (multiple packages). Remove or track in issues.
 - [ ] **Conditionally enable `plasma-browser-integration` in `brave.nix`** — KDE integration is commented out. Could be conditionally enabled based on desktop environment.
