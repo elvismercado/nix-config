@@ -148,3 +148,9 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P3 — Architecture & Convention
 
 - [x] **`mkEnableOption "enables ..."` prefix violates style guide and produces ungrammatical generated docs (93 modules)** — Stripped the `"enables "` prefix from all 93 modules across `modules/home-manager/` and `modules/systems/` and rewrote each description to summarise what the module configures (matches the header comment). Verified with grep: zero remaining instances.
+
+## Round 6
+
+### P2 — Robustness & Reliability
+
+- [x] **`shutdown-disable-outputs.nix`: enabling with empty `connectors` was a silent no-op and bypassed the KDE assertion** — Split the `config` block: assertions (KDE Plasma + non-empty connectors) now run on `cfg.enable` alone, while the systemd user service still requires connectors. Misconfig now fails at evaluation time instead of silently doing nothing.

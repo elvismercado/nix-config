@@ -111,29 +111,37 @@ in
     };
   };
 
-  config = lib.mkIf (cfg.enable && cfg.connectors != [ ]) {
-    assertions = [
-      {
-        assertion = (userSettings.desktopEnvironment or null) == "kde-plasma";
-        message = "custom.hmShutdownDisableOutputs requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
-      }
-    ];
+  config = lib.mkMerge [
+    (lib.mkIf cfg.enable {
+      assertions = [
+        {
+          assertion = (userSettings.desktopEnvironment or null) == "kde-plasma";
+          message = "custom.hmShutdownDisableOutputs requires KDE Plasma (set desktopEnvironment = \"kde-plasma\" in user-settings.nix)";
+        }
+        {
+          assertion = cfg.connectors != [ ];
+          message = "custom.hmShutdownDisableOutputs.connectors must be a non-empty list of DRM connector names (e.g. [ \"DP-2\" ]) when the module is enabled";
+        }
+      ];
+    })
 
-    systemd.user.services.shutdown-disable-outputs = {
-      Unit = {
-        Description = "Disable secondary monitors before shutdown/reboot splash";
-        After = [ "plasma-kwin_wayland.service" ];
-        BindsTo = [ "plasma-kwin_wayland.service" ];
+    (lib.mkIf (cfg.enable && cfg.connectors != [ ]) {
+      systemd.user.services.shutdown-disable-outputs = {
+        Unit = {
+          Description = "Disable secondary monitors before shutdown/reboot splash";
+          After = [ "plasma-kwin_wayland.service" ];
+          BindsTo = [ "plasma-kwin_wayland.service" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${daemonScript}/bin/shutdown-disable-outputs";
+          Restart = "on-failure";
+          RestartSec = 5;
+        };
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
+        };
       };
-      Service = {
-        Type = "simple";
-        ExecStart = "${daemonScript}/bin/shutdown-disable-outputs";
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
-  };
+    })
+  ];
 }
