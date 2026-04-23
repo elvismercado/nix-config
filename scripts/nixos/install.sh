@@ -793,9 +793,20 @@ resolve_username() {
 
   [[ -n "$USERNAME" ]] || fatal "Username is empty in ${settings_file}"
 
+  # Validate USERNAME against POSIX spec: ^[a-z_][a-z0-9_-]{0,31}$
+  # Defense-in-depth: USERNAME is interpolated into shell paths and chown commands.
+  [[ "$USERNAME" =~ ^[a-z_][a-z0-9_-]{0,31}$ ]] \
+    || fatal "Invalid username '${USERNAME}' in ${settings_file}. Must match ^[a-z_][a-z0-9_-]{0,31}$ (POSIX, max 32 chars)."
+
   # Read uid from user-settings.nix; default to 1000 (first normal user) if absent
   USER_UID=$(sed -n 's/.*uid[[:space:]]*=[[:space:]]*\([0-9]\+\).*/\1/p' "$settings_file" | head -1)
   USER_UID="${USER_UID:-1000}"
+
+  # Validate USER_UID is in the normal user range (1000-65533).
+  # Excludes 0 (root), system UIDs (<1000), and nobody (65534).
+  if (( USER_UID < 1000 || USER_UID > 65533 )); then
+    fatal "Invalid UID '${USER_UID}' in ${settings_file}. Must be in range 1000-65533 (normal user)."
+  fi
 
   REPO_DIR="/mnt/home/${USERNAME}/git/${REPO_NAME}"
 

@@ -75,7 +75,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P1 — Security & Correctness
 
-- [ ] **install.sh: Validate extracted USERNAME** — `resolve_username()` extracts `USERNAME` from `user-settings.nix` via `sed` with no sanitization. Malformed nix file could inject shell metacharacters. Validate `USERNAME` contains only `[a-z_][a-z0-9_-]*`.
+- [x] **install.sh: Validate extracted USERNAME** — `resolve_username()` now validates `USERNAME` matches `^[a-z_][a-z0-9_-]{0,31}$` (POSIX) and `USER_UID` is in range 1000–65533. Defense-in-depth before values are interpolated into shell paths.
 - [ ] **install.sh: Add timeout to `udevadm settle`** — Two `udevadm settle` calls (lines 671, 682) have no timeout. Could hang indefinitely on slow or broken udev. Add `--timeout=30`.
 - [ ] **flake/hosts.nix: Assert valid channel value** — `selectNixpkgs`/`selectHomeManager`/`selectDarwin` use `if settings.channel == "stable"` with no assertion. A typo like `channel = "stble"` silently falls through to unstable.
 
