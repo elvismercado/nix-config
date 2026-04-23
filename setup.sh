@@ -81,7 +81,15 @@ install_xcode_clt() {
 
   # Wait for installation to complete (the installer runs in the background)
   echo "[Setup] Waiting for Xcode CLT installation to complete..."
+  local max_attempts=180 # 15 minutes (180 × 5s)
+  local attempt=0
   until /usr/bin/xcode-select -p >/dev/null 2>&1; do
+    attempt=$((attempt + 1))
+    if [ "$attempt" -ge "$max_attempts" ]; then
+      echo "[Setup] ERROR: Timed out waiting for Xcode CLT installation (15 minutes)."
+      echo "[Setup] Install manually with: xcode-select --install"
+      exit 1
+    fi
     sleep 5
   done
   echo "[Setup] Xcode Command Line Tools installed"

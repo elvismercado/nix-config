@@ -53,8 +53,8 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 - [x] **install.sh: Handle `/tmp/nix-config` collision** — Stale `/tmp/nix-config` from interrupted runs is now removed before cloning. Replaced unreliable `git pull` fallback with delete + fresh clone.
 - [x] **install.sh: Add error check after `git clone`** — Added explicit `fatal` message on clone failure instead of relying on cryptic `set -e` exit.
-- [ ] **install.sh: Gitignore `INSTALL-REPORT.md`** — `write_report()` creates an untracked file inside the repo. Add to `.gitignore` or document.
-- [ ] **setup.sh: Add timeout to `xcode-select --install` polling** — Loops forever if the user cancels the Xcode dialog. Add a max iteration count.
+- [x] **install.sh: Gitignore `INSTALL-REPORT.md`** — Already gitignored (`**/INSTALL-REPORT.md` in `.gitignore`).
+- [x] **setup.sh: Add timeout to `xcode-select --install` polling** — Added 15-minute timeout (180 iterations × 5s). Exits with a clear error and manual install instructions if timed out.
 - [ ] **setup.sh: Align clone method with `install.sh`** — `setup.sh` uses `gh repo clone` (requires auth) while `install.sh` uses `git clone` (no auth needed). Inconsistent.
 - [ ] **bash.nix: Remove debug echo** — `echo "Hello HOSTNAME"` runs on every shell open including subshells. Remove or gate behind a debug flag.
 - [ ] **JIN `default.nix`: Fix stale `gfxmodeEfi` comment** — Comment describes old 4K value, not the current `"1920x1080,auto"` value.
