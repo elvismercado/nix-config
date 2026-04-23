@@ -82,8 +82,7 @@
   # Bootloader
   custom.sysNixGrub.enable = true;
   custom.sysNixGrub.timeout = 1;
-  # custom.sysNixGrub.gfxmodeEfi = "3840x2160,2560x1440,1920x1080,auto"; # 4K preferred, 1440p fallback, 1080p fallback, auto last resort
-  custom.sysNixGrub.gfxmodeEfi = "1920x1080,auto"; # 4K preferred, 1440p fallback, 1080p fallback, auto last resort
+  custom.sysNixGrub.gfxmodeEfi = "3840x2160,2560x1440,1920x1200,1920x1080,auto"; # 4K → 1440p → 1200p → 1080p → auto fallback
   custom.sysNixGrubThemeSleek.enable = true;
   custom.sysNixGrubThemeSleek.style = "dark";
   custom.sysNixPlymouth.enable = true;
