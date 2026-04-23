@@ -93,11 +93,10 @@ modules/
     shared/                  # Cross-platform modules (bash, fonts, garbage, packages, ssh)
   home-manager/              # Home Manager modules (toggleable, custom.* namespace)
     all/                     #   Aliases, Android, Ansible, Base, Bash, Brave, Fastfetch, fnm, Git,
-                             #   mpv, Nextcloud, Packages, pyenv, SSH, Starship, Syncthing,
-                             #   Thunderbird, VS Code
-    linux/                   #   Aliases, Display profiles, Gaming, HandBrake, LinUtil,
-                             #   Plasma config, Shutdown disable outputs, Strawberry,
-                             #   Vesktop, Window shortcuts
+                             #   mpv, pyenv, SSH, Starship, Syncthing, Thunderbird
+    linux/                   #   Aliases, Display profiles, Gaming, HandBrake, LinUtil, Nextcloud,
+                             #   Packages, Plasma config, Shutdown disable outputs, Strawberry,
+                             #   Vesktop, VS Code, Window shortcuts
     darwin/                  #   Rectangle
 ```
 
