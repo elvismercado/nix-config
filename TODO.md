@@ -126,7 +126,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P4 — Module Quality
 
-- [ ] **`android.nix` lives in `all/` but is Linux/Android-developer focused** — `modules/home-manager/all/android.nix` is enabled on EDGE (macOS). `android-tools` works on macOS but the module's primary use case (USB device management, scrcpy mirroring) is far more common on Linux dev hosts. Either move to `linux/` (and switch EDGE to a Homebrew cask if needed) or document why it's cross-platform.
+- [x] **`android.nix` lives in `all/` but is Linux/Android-developer focused** — Resolved by Round 3 P2 #1: EDGE confirmed as a genuine consumer (adb/scrcpy used for device work on macOS), so module stays in `all/`. Added a one-line cross-platform note to the module header.
 - [ ] **`postinstall.nix` doesn't validate `userSettings.repoPath` shape** — `modules/systems/nixos/postinstall.nix` interpolates `userSettings.repoPath` into `bash ~/${userSettings.repoPath}/scripts/nixos/postinstall.sh` with no validation. A leading `/`, empty value, or `..` would silently produce a broken alias. Add a `config.assertions` entry requiring a relative path with no `..` segments — matching the "auto-derive + assert" pattern from copilot-instructions.
 
 ### P5 — Script & Documentation Polish
