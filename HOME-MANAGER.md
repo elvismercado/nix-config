@@ -63,21 +63,19 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
 
 **All platforms** (`home-manager/all/`):
 
-| Module                           | Option                             |
-| -------------------------------- | ---------------------------------- |
-| `home-manager/all/base.nix`      | `custom.hmBase.enable`             |
-| `home-manager/all/aliases.nix`   | `custom.hmAliases.enable`          |
-|                                  | `custom.hmAliasesAmdCpu.enable`    |
-|                                  | `custom.hmAliasesNvidiaGpu.enable` |
-| `home-manager/all/packages.nix`  | `custom.hmPackages.enable`         |
-| `home-manager/all/android.nix`   | `custom.hmAndroid.enable`          |
-| `home-manager/all/ansible.nix`   | `custom.hmAnsible.enable`          |
-| `home-manager/all/bash.nix`      | `custom.hmBash.enable`             |
-| `home-manager/all/brave.nix`     | `custom.hmBrave.enable`            |
-| `home-manager/all/fastfetch.nix` | `custom.hmFastfetch.enable`        |
-| `home-manager/all/fnm.nix`       | `custom.hmFnm.enable`              |
-| `home-manager/all/git.nix`       | `custom.hmGit.enable`              |
-| `home-manager/all/mpv.nix`       | `custom.hmMpv.enable`              |
+| Module                           | Option                      |
+| -------------------------------- | --------------------------- |
+| `home-manager/all/base.nix`      | `custom.hmBase.enable`      |
+| `home-manager/all/aliases.nix`   | `custom.hmAliases.enable`   |
+| `home-manager/all/packages.nix`  | `custom.hmPackages.enable`  |
+| `home-manager/all/android.nix`   | `custom.hmAndroid.enable`   |
+| `home-manager/all/ansible.nix`   | `custom.hmAnsible.enable`   |
+| `home-manager/all/bash.nix`      | `custom.hmBash.enable`      |
+| `home-manager/all/brave.nix`     | `custom.hmBrave.enable`     |
+| `home-manager/all/fastfetch.nix` | `custom.hmFastfetch.enable` |
+| `home-manager/all/fnm.nix`       | `custom.hmFnm.enable`       |
+| `home-manager/all/git.nix`       | `custom.hmGit.enable`       |
+| `home-manager/all/mpv.nix`       | `custom.hmMpv.enable`       |
 
 | `home-manager/all/pyenv.nix` | `custom.hmPyenv.enable` |
 | `home-manager/all/ssh.nix` | `custom.hmSsh.enable` |
@@ -91,6 +89,8 @@ Home Manager modules use the same `custom.*` namespace pattern. Import and enabl
 | Module                                            | Option                                   |
 | ------------------------------------------------- | ---------------------------------------- |
 | `home-manager/linux/aliases.nix`                  | `custom.hmLinuxAliases.enable`           |
+|                                                   | `custom.hmAliasesAmdCpu.enable`          |
+|                                                   | `custom.hmAliasesNvidiaGpu.enable`       |
 | `home-manager/linux/display-profiles.nix`         | `custom.hmDisplayProfiles.enable`        |
 | `home-manager/linux/gaming.nix`                   | `custom.hmGaming.enable`                 |
 | `home-manager/linux/handbrake.nix`                | `custom.hmHandbrake.enable`              |

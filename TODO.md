@@ -39,7 +39,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Remove `mpv` from `packages.nix`** — Removed from `packages.nix`; JIN now imports `mpv.nix` module (FENNEC already had it, EDGE uses Homebrew brew).
 - [x] **Move Linux-only packages from `all/packages.nix` to `linux/`** — Created `linux/packages.nix` (`custom.hmLinuxPackages`) with 6 Linux-only packages; `all/packages.nix` now only has cross-platform packages.
 - [x] **Add platform guard to `vscode.nix` and `nextcloud.nix`** — Moved both from `all/` to `linux/`. macOS hosts use Homebrew casks instead.
-- [ ] **Move AMD/NVIDIA aliases from `all/` to `linux/`** — `custom.hmAliasesAmdCpu` and `custom.hmAliasesNvidiaGpu` reference `/proc/cpuinfo`, `dmesg`, `lspci` — Linux-only commands.
+- [x] **Move AMD/NVIDIA aliases from `all/` to `linux/`** — Moved `hmAliasesAmdCpu`, `hmAliasesNvidiaGpu`, and `nixdiag` to `linux/aliases.nix`. All use Linux-only commands.
 - [ ] **Move `cowsay`/`lolcat` out of `base.nix`** — Novelty packages don't belong in the base config. Move to `packages.nix` or a separate module.
 - [ ] **Make `EDITOR` configurable in `base.nix`** — `EDITOR = "nano"` is hardcoded. Add a `custom.hmBase.editor` option with `"nano"` as default.
 - [ ] **Use declarative `programs.thunderbird` in `thunderbird.nix`** — Currently installed as a raw package with the declarative config commented out. Switch to the home-manager module.

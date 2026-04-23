@@ -130,6 +130,6 @@
       # WINE_VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
     };
 
-    # Diagnostic shell aliases moved to modules/home-manager/all/aliases.nix (custom.hmAliasesNvidiaGpu)
+    # Diagnostic shell aliases moved to modules/home-manager/linux/aliases.nix (custom.hmAliasesNvidiaGpu)
   };
 }

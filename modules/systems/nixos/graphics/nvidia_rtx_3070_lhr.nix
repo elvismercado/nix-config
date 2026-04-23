@@ -135,7 +135,7 @@
       MOZ_ENABLE_WAYLAND = "1";
     };
 
-    # Diagnostic shell aliases moved to modules/home-manager/all/aliases.nix (custom.hmAliasesNvidiaGpu)
+    # Diagnostic shell aliases moved to modules/home-manager/linux/aliases.nix (custom.hmAliasesNvidiaGpu)
   };
 }
 
