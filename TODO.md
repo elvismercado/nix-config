@@ -52,7 +52,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ## P5 — Script Polish
 
 - [x] **install.sh: Handle `/tmp/nix-config` collision** — Stale `/tmp/nix-config` from interrupted runs is now removed before cloning. Replaced unreliable `git pull` fallback with delete + fresh clone.
-- [ ] **install.sh: Add error check after `git clone`** — Clone failure is not caught; script continues and fails later with a confusing error.
+- [x] **install.sh: Add error check after `git clone`** — Added explicit `fatal` message on clone failure instead of relying on cryptic `set -e` exit.
 - [ ] **install.sh: Gitignore `INSTALL-REPORT.md`** — `write_report()` creates an untracked file inside the repo. Add to `.gitignore` or document.
 - [ ] **setup.sh: Add timeout to `xcode-select --install` polling** — Loops forever if the user cancels the Xcode dialog. Add a max iteration count.
 - [ ] **setup.sh: Align clone method with `install.sh`** — `setup.sh` uses `gh repo clone` (requires auth) while `install.sh` uses `git clone` (no auth needed). Inconsistent.

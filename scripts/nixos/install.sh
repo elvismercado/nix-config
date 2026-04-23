@@ -777,7 +777,8 @@ clone_repo() {
     rm -rf "$TEMP_REPO"
   fi
 
-  nix-shell -p git --run "git clone '${FLAKE_REPO}' '${TEMP_REPO}'"
+  nix-shell -p git --run "git clone '${FLAKE_REPO}' '${TEMP_REPO}'" \
+    || fatal "Failed to clone ${FLAKE_REPO}. Check your network connection and repository URL."
 }
 
 # ──────────────────────────────────────────────────────────────
