@@ -166,13 +166,9 @@ Configured — registered in `flake/hosts.nix`. Pending `hardware-configuration.
 
 \`\`\`bash
 
-# Rebuild system
+# Rebuild system (also applies Home Manager via the system module)
 
 sudo nixos-rebuild switch --flake .#<HOSTNAME>
-
-# Update user config
-
-home-manager switch --flake .#<HOSTNAME>
 \`\`\`
 ```
 
@@ -183,11 +179,10 @@ Add the host to [flake/hosts.nix](../../flake/hosts.nix):
 - NixOS → `nixosHosts` block
 - Darwin → `darwinHosts` block
 
-Include rebuild command comments in the same format as existing entries:
+Include the rebuild command comment in the same format as existing entries:
 
 ```nix
 # `sudo nixos-rebuild switch --flake .#<HOSTNAME>`
-# `home-manager switch --flake .#<HOSTNAME>`
 <HOSTNAME> = mkHost "<HOSTNAME>";
 ```
 
@@ -198,7 +193,7 @@ Update 3-4 files:
 ### README.md (root)
 
 - Add row to hosts table (sorted alphabetically)
-- Add rebuild + HM switch commands to Quick Commands section
+- Add rebuild command to Quick Commands section
 
 ### NIXOS.md or DARWIN.md
 

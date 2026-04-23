@@ -26,12 +26,9 @@ sudo nixos-rebuild switch --flake .#FENNEC
 
 # macOS — rebuild system
 darwin-rebuild switch --flake .#EDGE
-
-# Home Manager — update user config (any host)
-home-manager switch --flake .#JIN
-home-manager switch --flake .#FENNEC
-home-manager switch --flake .#EDGE
 ```
+
+> Home Manager is integrated as a system module on all hosts, so it is applied as part of the system rebuild above. Standalone `home-manager switch` is reserved for future non-NixOS/non-darwin hosts (e.g. Ubuntu, Arch) registered in `homeManagerHosts`.
 
 ## Quickstart
 

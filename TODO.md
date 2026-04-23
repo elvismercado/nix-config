@@ -121,7 +121,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P3 — Architecture & Convention
 
 - [x] **copilot-instructions.md: stale `userSettings` field list** — Updated the Host Wiring section to include `repoPath` (all hosts) and `desktopEnvironment` (optional, e.g. `"kde-plasma"`; consumed via `or null`).
-- [ ] **copilot-instructions.md contradicts README/HOME-MANAGER.md on `home-manager switch`** — Line 56 says "Home-manager config is applied via `nixos-rebuild switch` / `darwin-rebuild switch`, not `home-manager switch`", but `README.md`, `HOME-MANAGER.md`, `flake/hosts.nix` comments, and `add-host.prompt.md` all show `home-manager switch --flake .#<HOST>` as a valid lightweight path. Reconcile — either fix the instructions or remove the misleading examples elsewhere.
+- [x] **copilot-instructions.md contradicts README/HOME-MANAGER.md on `home-manager switch`** — copilot-instructions.md was correct (standalone HM is not wired up since `homeManagerHosts` is empty). Removed misleading `home-manager switch` examples from `README.md` Quick Commands, `HOME-MANAGER.md` (rewrote intro/Switch/How It Works to reflect system-module integration), and `add-host.prompt.md` (per-host README template + flake entry comment). `homeManagerHosts` stays reserved for future non-NixOS/non-darwin hosts.
 - [ ] **EDGE `user-settings.nix` missing `desktopEnvironment` field** — FENNEC and JIN explicitly set `desktopEnvironment = "kde-plasma"`. EDGE omits it (resolved via `or null`). For schema consistency, add `desktopEnvironment = null; # macOS — managed by the OS` so all hosts declare the field.
 
 ### P4 — Module Quality

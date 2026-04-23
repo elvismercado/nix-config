@@ -1,44 +1,42 @@
 # Home Manager
 
-Home Manager manages user-level configuration: dotfiles, shell settings, and user applications. It works across all system types (NixOS, macOS, standalone Linux).
+Home Manager manages user-level configuration: dotfiles, shell settings, and user applications.
 
-The standalone Home Manager configuration is built by `flake/home.nix`. **All hosts** (both NixOS and Darwin) automatically get a `homeConfiguration` entry.
+In this repo, Home Manager is integrated as a **system module** on every NixOS and nix-darwin host — it is applied as part of `nixos-rebuild switch` / `darwin-rebuild switch`. Standalone `home-manager switch` is **not** wired up for these hosts; it is reserved for future hosts without a NixOS/darwin system layer (e.g. Ubuntu, Arch) which would be added to the `homeManagerHosts` set in `flake/hosts.nix`.
 
 ## Current Hosts
 
-| Host   | System        | Channel |
-| ------ | ------------- | ------- |
-| JIN    | x86_64-linux  | stable  |
-| FENNEC | x86_64-linux  | stable  |
-| EDGE   | x86_64-darwin | stable  |
+| Host   | System        | Channel | HM Integration |
+| ------ | ------------- | ------- | -------------- |
+| JIN    | x86_64-linux  | stable  | NixOS module   |
+| FENNEC | x86_64-linux  | stable  | NixOS module   |
+| EDGE   | x86_64-darwin | stable  | darwin module  |
 
-## Switch
+## Apply
 
-Apply the Home Manager configuration independently from the system rebuild:
+Home Manager config is applied as part of the system rebuild:
 
 ```bash
-# Switch to the host's Home Manager configuration
-home-manager switch --flake .#JIN
-home-manager switch --flake .#FENNEC
-home-manager switch --flake .#EDGE
+sudo nixos-rebuild switch --flake .#JIN
+sudo nixos-rebuild switch --flake .#FENNEC
+darwin-rebuild switch --flake .#EDGE
 ```
 
-> Home Manager is **also** integrated as a module in both NixOS and nix-darwin system rebuilds. The standalone `home-manager switch` is useful for updating user configuration without a full system rebuild.
+> There is no standalone `home-manager switch --flake .#<HOST>` for these hosts — `homeManagerHosts` in `flake/hosts.nix` is currently empty. To enable standalone use for a future non-NixOS/non-darwin host, add it to `homeManagerHosts`.
 
 ## How It Works
 
-1. `flake/hosts.nix` defines `homeManagerHosts = nixosHosts // darwinHosts` — every host gets a Home Manager config
-2. `flake/home.nix` iterates over all hosts and builds a `homeManagerConfiguration` for each
-3. The nixpkgs channel and system architecture are selected per-host from `user-settings.nix` via `selectNixpkgs`
-4. The Home Manager version (stable/unstable) is also selected per-host via `selectHomeManager` — a `"stable"` host uses `home-manager-stable.lib.homeManagerConfiguration`, an `"unstable"` host uses `home-manager.lib.homeManagerConfiguration`
-5. The `pkgs` set is derived from the selected channel: `selectedNixpkgs.legacyPackages.${userSettings.system}`
+1. `flake/hosts.nix` defines three host sets: `nixosHosts`, `darwinHosts`, and `homeManagerHosts` (the last is for standalone-HM hosts only — currently empty).
+2. `flake/nixos.nix` and `flake/darwin.nix` pull in `home-manager.nixosModules.home-manager` / `home-manager.darwinModules.home-manager`, applying each host's `home-manager/` directory as part of the system rebuild.
+3. `flake/home.nix` iterates over `homeManagerHosts` and builds a `homeManagerConfiguration` for each — these are exposed as `homeConfigurations.<HOST>` for `home-manager switch`.
+4. The nixpkgs channel and system architecture are selected per-host from `user-settings.nix` via `selectNixpkgs`. The Home Manager version is selected per-host via `selectHomeManager` — a `"stable"` host uses `home-manager-stable`, an `"unstable"` host uses `home-manager`.
 
 ### What gets passed to modules
 
 Every Home Manager module receives these via `extraSpecialArgs`:
 
 - `inputs` — all flake inputs
-- `userSettings` — the host's `user-settings.nix` (`username`, `hostname`, `system`, `channel`, `timeZone`)
+- `userSettings` — the host's `user-settings.nix` (`username`, `hostname`, `system`, `channel`, `timeZone`, `uid`, `repoPath`, and optionally `desktopEnvironment`)
 - `outputs` — the flake's own outputs
 
 ## Toggleable Modules
