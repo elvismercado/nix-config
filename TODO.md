@@ -177,3 +177,9 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P5 — Script & Documentation Polish
 
 - [x] **FENNEC README's "Next steps" had a stale manual `resumeDevice` instruction** — Step 3 told the user to set `custom.sysNixHibernate.resumeDevice` to the swap UUID, but `modules/systems/nixos/memory/hibernation.nix` has auto-derived `resumeDevice` from `swapDevices` since Round 4. Dropped the step entirely — the explicit override is now an edge-case escape hatch (swap files), documented in the module header, not a normal install step.
+
+## Round 10
+
+### P3 — Architecture & Convention
+
+- [x] **Four NixOS modules missing or incomplete header comments** — Round 2's header sweep missed `system/time.nix`, `system/i18n.nix`, `system/fonts.nix`, and `desktop_environment/cosmic.nix`. Added the standard `# Purpose / explanation / Usage:` block to each, tailored to what the module actually configures (timezone from userSettings, en_GB+nl_NL locale layering, NixOS-specific fontconfig over `shared/fonts.nix`, and the COSMIC desktop+cachix binary cache respectively).

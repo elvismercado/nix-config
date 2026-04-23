@@ -1,12 +1,18 @@
+# Locale / i18n configuration
+#
+# Default locale: en_GB.UTF-8 for UI, messages, and sorting.
+# Regional formats (dates, numbers, currency, paper, addresses) use nl_NL.UTF-8.
+# Extra locales (nl_NL, es_ES, en_US) are generated for occasional use.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/system/i18n.nix ];
+#   custom.sysNixI18n.enable = true;
+
 {
   config,
   lib,
   ...
 }:
-
-{
-  options = {
-    custom.sysNixI18n.enable = lib.mkEnableOption "i18n / locale configuration (en_GB.UTF-8)";
   };
 
   config = lib.mkIf config.custom.sysNixI18n.enable {

@@ -1,5 +1,13 @@
-# NixOS-specific font config: imports shared font packages,
-# adds enableDefaultPackages and fontconfig defaults (for SDDM, console, all-user access).
+# NixOS-specific font config
+#
+# Imports shared/fonts.nix (the cross-platform font package set) and
+# adds NixOS-only settings: enableDefaultPackages and a fontconfig
+# default-font block so SDDM, the console, and all user sessions pick
+# up consistent serif/sans/mono families.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/system/fonts.nix ];
+#   custom.sysFonts.enable = true;
 
 {
   config,

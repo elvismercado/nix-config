@@ -1,3 +1,12 @@
+# Timezone configuration
+#
+# Sets time.timeZone from userSettings.timeZone so the host clock and
+# log timestamps match the location configured in user-settings.nix.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/system/time.nix ];
+#   custom.sysNixTimezone.enable = true;
+
 {
   config,
   lib,

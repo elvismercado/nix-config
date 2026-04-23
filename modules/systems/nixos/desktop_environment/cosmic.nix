@@ -1,13 +1,20 @@
+# COSMIC desktop environment
+#
+# Enables the COSMIC desktop manager and cosmic-greeter login manager,
+# plus the cosmic.cachix.org binary cache so packages don't have to be
+# built from source. Also exports COSMIC_DATA_CONTROL_ENABLED so the
+# clipboard manager can talk to cosmic-comp.
+#
+# Usage:
+#   imports = [ ../../../modules/systems/nixos/desktop_environment/cosmic.nix ];
+#   custom.sysNixCosmicDesktop.enable = true;
+
 {
   config,
   pkgs,
   lib,
   ...
 }:
-
-{
-  options = {
-    custom.sysNixCosmicDesktop.enable = lib.mkEnableOption "COSMIC desktop environment (with cosmic.cachix.org binary cache)";
   };
 
   config = lib.mkIf config.custom.sysNixCosmicDesktop.enable {
