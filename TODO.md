@@ -111,7 +111,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P1 — Security & Correctness
 
-- [ ] **setup.sh: `local` keyword incompatible with `#!/bin/sh`** — `setup.sh` uses `local` at lines 105, 106, 159 but the shebang is `#!/bin/sh`. On systems where `/bin/sh` is dash (Debian/Ubuntu), `local` is undefined and the script aborts. Either change the shebang to `#!/bin/bash` (matches `install.sh`) or drop `local` and use plain assignments.
+- [x] **setup.sh: `local` keyword incompatible with `#!/bin/sh`** — Switched shebang to `#!/bin/bash` (matches `install.sh`). Resolves the dash incompatibility for the three `local` declarations.
 
 ### P2 — Robustness & Reliability
 
