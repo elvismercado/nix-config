@@ -47,7 +47,7 @@
   custom.hmStarship.style = "pastel-powerline";
 
   # Apps
-  custom.hmAndroid.enable = true;
+  custom.hmAndroid.enable = true; # adb/scrcpy used on macOS for device work
 
   # macOS
   custom.hmRectangle.enable = true;

@@ -115,7 +115,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P2 — Robustness & Reliability
 
-- [ ] **EDGE enables `hmAndroid` but adb/scrcpy use is unusual on macOS** — `hosts/EDGE/home-manager/default.nix` enables `custom.hmAndroid.enable = true`. Both `android-tools` and `scrcpy` work on macOS, so this isn't broken — but it pulls a non-trivial closure for what's typically a Linux-dev concern. Decide: keep (and document under Round 2 P4 #1's host-coverage notes) or drop.
+- [x] **EDGE enables `hmAndroid` but adb/scrcpy use is unusual on macOS** — Confirmed intentional: adb/scrcpy are used on EDGE for Android device work. Added an inline comment next to the enable line to document the rationale.
 - [ ] **`scripts/windows/` directory referenced in README but missing on disk** — `README.md` repository structure block lists `scripts/windows/` (FancyZones layout, keyboard manager, README), but the directory doesn't exist in the workspace. Either restore the files from history or remove the reference.
 
 ### P3 — Architecture & Convention
