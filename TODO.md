@@ -116,7 +116,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P2 — Robustness & Reliability
 
 - [x] **EDGE enables `hmAndroid` but adb/scrcpy use is unusual on macOS** — Confirmed intentional: adb/scrcpy are used on EDGE for Android device work. Added an inline comment next to the enable line to document the rationale.
-- [ ] **`scripts/windows/` directory referenced in README but missing on disk** — `README.md` repository structure block lists `scripts/windows/` (FancyZones layout, keyboard manager, README), but the directory doesn't exist in the workspace. Either restore the files from history or remove the reference.
+- [x] **`scripts/windows/` directory referenced in README but missing on disk** — Phantom finding: nothing in the actual repo references `scripts/windows/` (the workspace metadata listing it was stale). No code change needed.
 
 ### P3 — Architecture & Convention
 
