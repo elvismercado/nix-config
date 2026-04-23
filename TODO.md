@@ -47,7 +47,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Conditionally enable `plasma-browser-integration` in `brave.nix`** — Auto-detects `desktopEnvironment = "kde-plasma"` from `userSettings` and includes `plasma-browser-integration` in `nativeMessagingHosts`.
 - [x] **Add docker group membership to `docker.nix`** — Module now adds the user to the `docker` group automatically via `userSettings.username`. Removed redundant manual entry from JIN's `user.nix`.
 - [x] **Add Determinate Nix guard to shared `garbage.nix`** — Auto-disables GC/optimise when `nix.enable = false` (Determinate Nix hosts). Enabling `custom.sysGc` is a safe no-op on those hosts.
-- [ ] **Add comment for `syncthing.nix` `urAccepted = -1`** — Missing explanation that `-1` means opt-out of usage reporting.
+- [x] **Add comment for `syncthing.nix` `urAccepted = -1`** — Added inline comment explaining `-1` means opt-out of anonymous usage reporting.
 
 ## P5 — Script Polish
 
