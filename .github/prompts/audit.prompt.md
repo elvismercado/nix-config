@@ -10,3 +10,5 @@ For each finding, write a TODO.md entry in the format:
 - [ ] **<Short title>** — <One-sentence problem statement with concrete file/line reference and suggested fix.>
 
 Group by priority. Skip anything already covered by Round 1 (collapsed in <details>). Aim for ~3 items per priority bucket.
+
+If using a subagent to gather findings, treat its output as a draft: independently verify each finding against the actual file before adding to TODO. Reject phantom findings (claims about files/lines that don't exist or don't match), and consolidate items that are facets of one underlying pattern into a single entry.

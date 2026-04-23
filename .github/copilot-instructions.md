@@ -24,6 +24,8 @@ All modules use a `custom.*.enable` toggle pattern with a **scope prefix**:
 }
 ```
 
+The `mkEnableOption` description should summarise _what the module configures_ (matching the header comment), not restate the option name. Avoid `"enables foo"` — prefer e.g. `"Brave browser with KDE Plasma integration"` or `"Bash shell with history, completion, and login hooks"`.
+
 Modules are imported in the host's `home-manager/default.nix` or `configuration/default.nix`, then explicitly enabled with `custom.<prefix><Name>.enable = true`.
 
 New modules should include a comment header with: one-line purpose, brief explanation, and a `Usage:` block showing the import path and enable flag.
@@ -86,4 +88,4 @@ Do not install GUI apps via nixpkgs on macOS — they lack Spotlight indexing, G
 - When asked to plan: present the plan and wait for explicit approval before implementing
 - When creating new modules: follow the `custom.*.enable` pattern above
 - When adding a module to a host: import in `default.nix` AND set `custom.*.enable = true`
-- When adding new modules or hosts: update the module tables in `NIXOS.md`, `HOME-MANAGER.md`, or `DARWIN.md` and the hosts tables in `README.md` as part of the same change
+- When adding new modules or hosts: update the module tables in `NIXOS.md`, `HOME-MANAGER.md`, or `DARWIN.md`, the hosts tables in `README.md`, and the directory listing block under "Repository Structure" in `README.md` as part of the same change
