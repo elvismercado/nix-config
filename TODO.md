@@ -2,14 +2,21 @@
 
 Comprehensive audit findings for iterative improvement. Check items off as they are completed.
 
-## P1 — Security & Correctness
+---
+
+## Completed — Round 1
+
+<details>
+<summary>P1–P5: 43 items (all completed)</summary>
+
+### P1 — Security & Correctness
 
 - [x] **install.sh: Hardcoded UID 1000:100** — `deploy_repo()` uses `chown -R 1000:100`. Read from `user-settings.nix` `uid` field instead.
 - [x] **install.sh: No disk space validation** — EFI + swap + home could exceed disk size, causing confusing `parted` errors. Validate before destructive operations.
 - [x] **install.sh: Late `--host` validation** — `--host` value not validated until `resolve_username()`. User goes through disk prompts before learning the host doesn't exist. Validate right after `clone_repo`.
 - [x] **ssh-server.nix: Permissive SSH defaults** — `PasswordAuthentication = true` and `AllowUsers = null` (allows all users). Consider key-only default or restrict `AllowUsers` to `userSettings.username`.
 
-## P2 — Robustness & Reliability
+### P2 — Robustness & Reliability
 
 - [x] **install.sh: Replace `sleep 2` with `udevadm settle`** — After `partprobe`, use `udevadm settle` for deterministic partition readiness instead of a fixed sleep.
 - [x] **install.sh: Add cleanup trap on failure** — If the script fails mid-install, mounts under `/mnt` are left active. Add a trap that runs `umount -R /mnt; swapoff -a` on ERR exit.
@@ -19,7 +26,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **postinstall.sh: Add `--title` to `gh ssh-key add`** — Won't fix: `gh ssh-key add` already uses the key comment (`${USER}@hostname-date`) as the GitHub title automatically.
 - [x] **postinstall.sh: Validate not running as root** — `passwd` and `$HOME` would target the wrong user if run as root.
 
-## P3 — Architecture & Convention
+### P3 — Architecture & Convention
 
 - [x] **Remove unused `mac-app-util` flake input** — Declared in `flake.nix` but never consumed in any module. Adds to `flake.lock` weight and update time.
 - [x] **Add `determinate` darwin module to EDGE** — `flake/nixos.nix` includes `determinate.nixosModules.default` for NixOS hosts. `flake/darwin.nix` is missing `determinate.darwinModules.default` for EDGE.
@@ -31,7 +38,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Move duplicated `trusted-users` to flake-level builder** — `nix.settings.trusted-users` is identical in both NixOS `user.nix` files. Move to `flake/nixos.nix`.
 - [x] **Make repo path configurable** — `~/git/nix-config` is hardcoded in `postinstall.nix`, `aliases.nix` (`switchcd`, `switchupdate`, `switchcheck`). Add a configurable option with this as the default.
 
-## P4 — Module Quality
+### P4 — Module Quality
 
 - [x] **Add comment headers to 13 modules** — Missing purpose + Usage block: `base.nix`, `packages.nix`, `vscode.nix`, `bash.nix`, `brave.nix`, `syncthing.nix`, `thunderbird.nix`, `nextcloud.nix`, `docker.nix`, `mullvad.nix`, `garbage.nix` (shared), `packages.nix` (shared), partial `aliases.nix`.
 - [x] **Standardise option prefixes** — All modules now use prefixed naming: `hm*` (home-manager), `sys*` (shared system), `sysDar*` (darwin system), `sysNix*` (NixOS system). Updated all module files, host configs, and documentation.
@@ -49,7 +56,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Add Determinate Nix guard to shared `garbage.nix`** — Auto-disables GC/optimise when `nix.enable = false` (Determinate Nix hosts). Enabling `custom.sysGc` is a safe no-op on those hosts.
 - [x] **Add comment for `syncthing.nix` `urAccepted = -1`** — Added inline comment explaining `-1` means opt-out of anonymous usage reporting.
 
-## P5 — Script Polish
+### P5 — Script Polish
 
 - [x] **install.sh: Handle `/tmp/nix-config` collision** — Stale `/tmp/nix-config` from interrupted runs is now removed before cloning. Replaced unreliable `git pull` fallback with delete + fresh clone.
 - [x] **install.sh: Add error check after `git clone`** — Added explicit `fatal` message on clone failure instead of relying on cryptic `set -e` exit.
@@ -59,3 +66,41 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **bash.nix: Remove debug echo** — Won't fix: echos are intentional hook references. All four `programs.bash` hooks (`bashrcExtra`, `initExtra`, `profileExtra`, `logoutExtra`) are covered.
 - [x] **JIN `default.nix`: Fix stale `gfxmodeEfi` comment** — Updated value to full resolution chain (`3840x2160,2560x1440,1920x1200,1920x1080,auto`) and fixed comment. Removed stale commented-out line.
 - [x] **Move group membership into system modules** — `libvirtd` and `adbusers` auto-added by their modules. Created `embedded.nix` (`custom.sysNixEmbedded`) for `dialout` group + `arduino-ide`. Removed all three from JIN's `user.nix`.
+
+</details>
+
+---
+
+## Round 2
+
+### P1 — Security & Correctness
+
+- [ ] **install.sh: Validate extracted USERNAME** — `resolve_username()` extracts `USERNAME` from `user-settings.nix` via `sed` with no sanitization. Malformed nix file could inject shell metacharacters. Validate `USERNAME` contains only `[a-z_][a-z0-9_-]*`.
+- [ ] **install.sh: Add timeout to `udevadm settle`** — Two `udevadm settle` calls (lines 671, 682) have no timeout. Could hang indefinitely on slow or broken udev. Add `--timeout=30`.
+- [ ] **flake/hosts.nix: Assert valid channel value** — `selectNixpkgs`/`selectHomeManager`/`selectDarwin` use `if settings.channel == "stable"` with no assertion. A typo like `channel = "stble"` silently falls through to unstable.
+
+### P2 — Robustness & Reliability
+
+- [ ] **install.sh: Validate `nixos-generate-config` output** — `generate_hardware_config()` redirects output to file but doesn't check if the command succeeded or produced valid content. An empty/corrupt `hardware-configuration.nix` would cause a cryptic build failure.
+- [ ] **install.sh: Use `mktemp` for temporary repo** — `TEMP_REPO="/tmp/${REPO_NAME}"` is predictable. Concurrent installs or a malicious symlink at `/tmp/nix-config` could cause issues. Use `mktemp -d` instead.
+- [ ] **setup.sh: Validate Determinate Nix installer download** — `curl | sh` pipe (line ~60) has no checksum verification. Same for Homebrew installer (line ~113). Add `--fail` flag at minimum and check exit code.
+
+### P3 — Architecture & Convention
+
+- [ ] **Add comment headers to 16 modules** — Missing purpose + Usage block: `android.nix`, `shared/bash.nix`, `shared/fonts.nix`, `darwin/fonts.nix`, `darwin/garbage.nix`, `darwin/packages.nix`, `nixos/fwupd.nix`, `nixos/printing.nix`, `nixos/apps/coolercontrol.nix`, `nixos/apps/sunshine.nix`, `nixos/desktop_environment/kde_plasma.nix`, `nixos/input/wacom.nix`, `nixos/mouse/logitech.nix`, `nixos/security/fprintd.nix`, `nixos/security/yubikey.nix`, `darwin/alacritty.nix` (has comment but no Usage block).
+- [ ] **Remove unnecessary `lib.mkDefault` on NixOS home.nix** — FENNEC and JIN `home.nix` use `lib.mkDefault` for `home.username` and `home.homeDirectory`. On NixOS with home-manager as a module, these are auto-derived — `lib.mkDefault` is unnecessary (harmless but inconsistent with EDGE which correctly omits it).
+- [ ] **Add section comments to EDGE home-manager imports** — FENNEC and JIN `home-manager/default.nix` use section comments (`# Base`, `# Shell`, `# Apps`). EDGE lacks these, making the import list harder to navigate.
+- [ ] **Add section comments to EDGE configuration imports** — FENNEC and JIN `configuration/default.nix` have detailed section comments. EDGE's is uncommented — add `# System`, `# Darwin`, `# Shared` groupings.
+
+### P4 — Module Quality
+
+- [ ] **Decide host-level module coverage** — Several modules are enabled on some hosts but not others without clear justification. Review and decide for each: `fnm.nix` (FENNEC+JIN yes, EDGE no), `pyenv.nix` (FENNEC+JIN yes, EDGE no), `ansible.nix` (EDGE yes, FENNEC+JIN no), `syncthing.nix` (FENNEC yes, JIN+EDGE no). Either enable consistently or document why each host differs.
+- [ ] **enable-flakes.nix: Clean up stale comments** — Lines 2–6 contain commented-out examples and notes about other distros / Determinate Nix. Module header should follow standard pattern; move reference notes to docs or inline.
+- [ ] **Deduplicate FENNEC/JIN `user.nix`** — Both NixOS `user.nix` files are near-identical (`mutableUsers`, `defaultUserShell`, `isNormalUser`, `initialPassword`, `useDefaultShell`, `networking.hostName`). Extract common config to a shared NixOS user module, with host-specific `extraGroups` merged in.
+- [ ] **Deduplicate FENNEC/JIN `configuration.nix`** — Both set `system.stateVersion`, `nixpkgs.config.allowUnfree`, and `programs.nix-ld.enable` identically. Extract to shared module or flake builder.
+
+### P5 — Script & Documentation Polish
+
+- [ ] **INSTALL.md: Align manual steps with automated script** — Manual "step-by-step" section uses different variable names/calculations than `install.sh`. Users comparing manual vs automated could get confused.
+- [ ] **README.md: Document channel selection** — Quickstart shows `setup.sh` but doesn't explain how `channel` in `user-settings.nix` selects between stable/unstable. New users won't know how to switch.
+- [ ] **setup.sh: Consistent error handling pattern** — Uses `|| { ...; exit 1; }` for git clone but bare `exit 1` for xcode-select timeout. Standardize on one pattern throughout.
