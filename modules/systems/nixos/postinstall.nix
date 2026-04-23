@@ -22,6 +22,20 @@
   };
 
   config = lib.mkIf config.custom.sysNixPostinstall.enable {
+    assertions = [
+      {
+        assertion =
+          builtins.isString userSettings.repoPath
+          && userSettings.repoPath != ""
+          && !(lib.hasPrefix "/" userSettings.repoPath)
+          && !(builtins.elem ".." (lib.splitString "/" userSettings.repoPath));
+        message = ''
+          custom.sysNixPostinstall: userSettings.repoPath must be a non-empty
+          relative path (no leading '/', no '..' segments). Got: "${toString userSettings.repoPath}"
+        '';
+      }
+    ];
+
     environment.shellAliases = {
       postinstall = "bash ~/${userSettings.repoPath}/scripts/nixos/postinstall.sh";
     };

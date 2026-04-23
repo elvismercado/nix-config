@@ -127,7 +127,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P4 — Module Quality
 
 - [x] **`android.nix` lives in `all/` but is Linux/Android-developer focused** — Resolved by Round 3 P2 #1: EDGE confirmed as a genuine consumer (adb/scrcpy used for device work on macOS), so module stays in `all/`. Added a one-line cross-platform note to the module header.
-- [ ] **`postinstall.nix` doesn't validate `userSettings.repoPath` shape** — `modules/systems/nixos/postinstall.nix` interpolates `userSettings.repoPath` into `bash ~/${userSettings.repoPath}/scripts/nixos/postinstall.sh` with no validation. A leading `/`, empty value, or `..` would silently produce a broken alias. Add a `config.assertions` entry requiring a relative path with no `..` segments — matching the "auto-derive + assert" pattern from copilot-instructions.
+- [x] **`postinstall.nix` doesn't validate `userSettings.repoPath` shape** — Added a `config.assertions` entry requiring `repoPath` to be a non-empty relative string with no leading `/` and no `..` segments. Produces a clear build-time error instead of a silent broken alias.
 
 ### P5 — Script & Documentation Polish
 
