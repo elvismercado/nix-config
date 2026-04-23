@@ -47,7 +47,6 @@
     ../../../modules/home-manager/all/syncthing.nix
 
     # Packages
-    ../../../modules/home-manager/all/packages.nix
     ../../../modules/home-manager/linux/packages.nix
   ];
 
@@ -185,6 +184,5 @@
   custom.hmSyncthing.enable = true;
 
   # Packages
-  custom.hmPackages.enable = true;
   custom.hmLinuxPackages.enable = true;
 }

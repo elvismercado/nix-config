@@ -46,7 +46,6 @@
     ../../../modules/home-manager/linux/linutil.nix
 
     # Packages
-    ../../../modules/home-manager/all/packages.nix
     ../../../modules/home-manager/linux/packages.nix
   ];
 
@@ -88,6 +87,5 @@
   custom.hmLinutil.enable = true;
 
   # Packages
-  custom.hmPackages.enable = true;
   custom.hmLinuxPackages.enable = true;
 }

@@ -1,7 +1,7 @@
 # Linux-only user packages not managed by a dedicated module
 #
-# GUI apps that use Homebrew casks on macOS belong here (not in all/packages.nix).
-# Cross-platform CLI tools belong in all/packages.nix instead.
+# GUI apps that use Homebrew casks on macOS belong here.
+# Cross-platform CLI tools belong in all/base.nix instead.
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/linux/packages.nix ];
