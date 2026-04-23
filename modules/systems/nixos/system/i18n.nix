@@ -13,6 +13,10 @@
   lib,
   ...
 }:
+
+{
+  options = {
+    custom.sysNixI18n.enable = lib.mkEnableOption "i18n / locale configuration (en_GB.UTF-8)";
   };
 
   config = lib.mkIf config.custom.sysNixI18n.enable {

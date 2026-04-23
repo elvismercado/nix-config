@@ -183,3 +183,14 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P3 — Architecture & Convention
 
 - [x] **Four NixOS modules missing or incomplete header comments** — Round 2's header sweep missed `system/time.nix`, `system/i18n.nix`, `system/fonts.nix`, and `desktop_environment/cosmic.nix`. Added the standard `# Purpose / explanation / Usage:` block to each, tailored to what the module actually configures (timezone from userSettings, en_GB+nl_NL locale layering, NixOS-specific fontconfig over `shared/fonts.nix`, and the COSMIC desktop+cachix binary cache respectively).
+
+## Round 11
+
+No findings — deep dive across per-host configs, vscode/fnm/pyenv shell-init, plasma vs window-shortcuts, postinstall.sh idempotency, security/, and gaming/ returned clean.
+
+## Round 12
+
+### P1 — Security & Correctness
+
+- [x] **Round 10 header-add edits silently deleted `options` blocks in `cosmic.nix` and `i18n.nix`** — The `multi_replace_string_in_file` calls used an `oldString` that included the `options = { ... }` block but a `newString` that ended at the function-args closing `}:`, dropping the body in between. Both modules had an orphan `};` and referenced `enable` flags that no longer existed; `nix flake check` would fail. Restored the `options` blocks in both files. `time.nix` and `fonts.nix` from the same batch were unaffected because their replacements didn't span the body. Recorded the pattern in user memory (`/memories/nix-edit-pitfalls.md`) so I check the first 20 lines after any header-add batch.
+- [x] **Round 8 header-add edit silently deleted `imports` + `config = lib.mkIf` block in `nix/garbage.nix`** — Same bug pattern as the Round 10 regressions, found while auditing all session-edited files post-fix. The header-add `oldString` swallowed the opening `{`, the `imports = [ ../../shared/garbage.nix ]`, and the `config = lib.mkIf` line, leaving function args `}:` jumping straight to a free-floating `nix.gc = {` with mismatched braces. Restored the missing block; the module would have failed `nix flake check` on JIN and FENNEC (both enable `custom.sysGc`).

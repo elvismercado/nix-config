@@ -15,6 +15,10 @@
   lib,
   ...
 }:
+
+{
+  options = {
+    custom.sysNixCosmicDesktop.enable = lib.mkEnableOption "COSMIC desktop environment (with cosmic.cachix.org binary cache)";
   };
 
   config = lib.mkIf config.custom.sysNixCosmicDesktop.enable {
