@@ -160,3 +160,14 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 ### P2 — Robustness & Reliability
 
 - [x] **Install scripts hardcoded `git/nix-config` while `userSettings.repoPath` exists to make this configurable** — `install.sh` now reads `repoPath` from the host's `user-settings.nix` (same sed pattern as `username`/`uid`, with the same shape validation as `modules/systems/nixos/postinstall.nix`'s assertion). `postinstall.sh` now derives `REPO_DIR` from its own script path (`readlink -f "$0"` → up 3 levels), so it always uses whatever path the user chose without re-parsing. Both scripts now honour `repoPath` end-to-end.
+
+## Round 8
+
+### P3 — Architecture & Convention
+
+- [x] **`modules/systems/shared/ssh-server.nix` has no current consumer** — Module defines `custom.sysSshServer.{enable,passwordAuth}` and is documented in NIXOS.md/DARWIN.md/HOME-MANAGER.md but no host imports or enables it. Decision: **kept as-is** — intentionally dormant, ready for opt-in on any host that needs inbound SSH. No code change.
+- [x] **`modules/systems/nixos/nix/garbage.nix` missing header comment** — Every other module follows the standard purpose / explanation / Usage header convention; this NixOS-specific wrapper jumped straight to the function. Added a header noting it layers `nix.gc` scheduling and `nix.optimise.randomizedDelaySec` on top of `shared/garbage.nix`.
+
+### P4 — Module Quality
+
+- [x] **`modules/home-manager/all/base.nix` declared unused `userSettings` arg** — The function signature took `userSettings,` but nothing in the config body referenced it. Removed the argument so the module's function signature reflects its actual dependencies.
