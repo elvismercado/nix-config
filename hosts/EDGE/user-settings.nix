@@ -6,4 +6,5 @@
   timeZone = "Europe/Amsterdam";
   uid = 501; # required for users.knownUsers — find with `id -u <username>`
   repoPath = "git/nix-config"; # relative to $HOME
+  desktopEnvironment = null; # macOS — DE managed by the OS
 }
