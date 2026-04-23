@@ -20,6 +20,9 @@
     ../../../modules/home-manager/all/ssh.nix
     ../../../modules/home-manager/all/starship.nix
 
+    # Packages
+    ../../../modules/home-manager/all/packages.nix
+
     # macOS
     ../../../modules/home-manager/darwin/rectangle.nix
     ../../../modules/home-manager/darwin/aliases.nix
@@ -38,6 +41,9 @@
   custom.hmSsh.enable = true;
   custom.hmStarship.enable = true;
   custom.hmStarship.style = "pastel-powerline";
+
+  # Packages
+  custom.hmPackages.enable = true;
 
   # macOS
   custom.hmRectangle.enable = true;

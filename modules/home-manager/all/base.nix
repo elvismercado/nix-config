@@ -17,8 +17,6 @@
 
   config = lib.mkIf config.custom.hmBase.enable {
     home.packages = with pkgs; [
-      cowsay
-      lolcat
       nixfmt-tree
       nil
     ];

@@ -40,7 +40,7 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 - [x] **Move Linux-only packages from `all/packages.nix` to `linux/`** — Created `linux/packages.nix` (`custom.hmLinuxPackages`) with 6 Linux-only packages; `all/packages.nix` now only has cross-platform packages.
 - [x] **Add platform guard to `vscode.nix` and `nextcloud.nix`** — Moved both from `all/` to `linux/`. macOS hosts use Homebrew casks instead.
 - [x] **Move AMD/NVIDIA aliases from `all/` to `linux/`** — Moved `hmAliasesAmdCpu`, `hmAliasesNvidiaGpu`, and `nixdiag` to `linux/aliases.nix`. All use Linux-only commands.
-- [ ] **Move `cowsay`/`lolcat` out of `base.nix`** — Novelty packages don't belong in the base config. Move to `packages.nix` or a separate module.
+- [x] **Move `cowsay`/`lolcat` out of `base.nix`** — Moved to `all/packages.nix`. Also moved 4 GUI apps (`localsend`, `mullvad-vpn`, `handbrake`, `moonlight-qt`) from `all/packages.nix` to `linux/packages.nix` to avoid Homebrew conflicts on macOS. Enabled `hmPackages` on all hosts.
 - [ ] **Make `EDITOR` configurable in `base.nix`** — `EDITOR = "nano"` is hardcoded. Add a `custom.hmBase.editor` option with `"nano"` as default.
 - [ ] **Use declarative `programs.thunderbird` in `thunderbird.nix`** — Currently installed as a raw package with the declarative config commented out. Switch to the home-manager module.
 - [ ] **Clean up commented-out code** — Large commented-out blocks in `vscode.nix` (editor/formatter settings) and `packages.nix` (multiple packages). Remove or track in issues.

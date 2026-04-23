@@ -44,6 +44,10 @@
 
     # Linux / Utilities
     ../../../modules/home-manager/linux/linutil.nix
+
+    # Packages
+    ../../../modules/home-manager/all/packages.nix
+    ../../../modules/home-manager/linux/packages.nix
   ];
 
   # Base
@@ -82,4 +86,8 @@
 
   # Linux / Utilities
   custom.hmLinutil.enable = true;
+
+  # Packages
+  custom.hmPackages.enable = true;
+  custom.hmLinuxPackages.enable = true;
 }

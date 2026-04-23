@@ -1,7 +1,7 @@
 # Linux-only user packages not managed by a dedicated module
 #
-# Packages here are only available on Linux (not in nixpkgs for darwin).
-# Cross-platform packages belong in all/packages.nix instead.
+# GUI apps that use Homebrew casks on macOS belong here (not in all/packages.nix).
+# Cross-platform CLI tools belong in all/packages.nix instead.
 #
 # Usage:
 #   imports = [ ../../../modules/home-manager/linux/packages.nix ];
@@ -21,6 +21,10 @@
 
   config = lib.mkIf config.custom.hmLinuxPackages.enable {
     home.packages = with pkgs; [
+      localsend
+      mullvad-vpn # Client for Mullvad VPN
+      moonlight-qt # Open source game streaming client
+
       cameractrls # Camera controls for Linux
       # cameractrls-gtk3
       # cameractrls-gtk4
