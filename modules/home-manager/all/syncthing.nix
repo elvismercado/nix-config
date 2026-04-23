@@ -12,7 +12,7 @@
 
 {
   options = {
-    custom.hmSyncthing.enable = lib.mkEnableOption "enables syncthing";
+    custom.hmSyncthing.enable = lib.mkEnableOption "Syncthing continuous file synchronisation daemon with system tray";
   };
 
   config = lib.mkIf config.custom.hmSyncthing.enable {

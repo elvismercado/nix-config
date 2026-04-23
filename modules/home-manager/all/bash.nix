@@ -13,7 +13,7 @@
 
 {
   options = {
-    custom.hmBash.enable = lib.mkEnableOption "enables bash";
+    custom.hmBash.enable = lib.mkEnableOption "Bash shell with history, completion, and login/interactive hooks";
   };
 
   config = lib.mkIf config.custom.hmBash.enable {

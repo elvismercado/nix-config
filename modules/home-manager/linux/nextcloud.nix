@@ -12,7 +12,7 @@
 
 {
   options = {
-    custom.hmNextcloud.enable = lib.mkEnableOption "enables nextcloud";
+    custom.hmNextcloud.enable = lib.mkEnableOption "Nextcloud desktop sync client";
   };
 
   config = lib.mkIf config.custom.hmNextcloud.enable {

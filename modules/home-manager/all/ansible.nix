@@ -17,7 +17,7 @@
 
 {
   options = {
-    custom.hmAnsible.enable = lib.mkEnableOption "enables Ansible";
+    custom.hmAnsible.enable = lib.mkEnableOption "Ansible IT automation toolkit and ansible-lint";
   };
 
   config = lib.mkIf config.custom.hmAnsible.enable {

@@ -17,7 +17,7 @@
 
 {
   options = {
-    custom.sysNixSunshine.enable = lib.mkEnableOption "enables sunshine";
+    custom.sysNixSunshine.enable = lib.mkEnableOption "Sunshine game/desktop streaming host (Moonlight-compatible) with autostart and firewall rules";
   };
 
   config = lib.mkIf config.custom.sysNixSunshine.enable {

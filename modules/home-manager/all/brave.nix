@@ -17,7 +17,7 @@
 
 {
   options = {
-    custom.hmBrave.enable = lib.mkEnableOption "enables brave";
+    custom.hmBrave.enable = lib.mkEnableOption "Brave browser (with KDE Plasma integration when desktopEnvironment = kde-plasma)";
   };
 
   config = lib.mkIf config.custom.hmBrave.enable {

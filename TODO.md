@@ -141,4 +141,4 @@ Comprehensive audit findings for iterative improvement. Check items off as they 
 
 ### P4 — Module Quality
 
-- [ ] **Vague `mkEnableOption` descriptions across 8 modules** — `mkEnableOption "enables <name>"` adds no value beyond the option name. Affected: [brave.nix](modules/home-manager/all/brave.nix), [bash.nix](modules/home-manager/all/bash.nix), [ansible.nix](modules/home-manager/all/ansible.nix), [thunderbird.nix](modules/home-manager/all/thunderbird.nix), [syncthing.nix](modules/home-manager/all/syncthing.nix), [nextcloud.nix](modules/home-manager/linux/nextcloud.nix), [vscode.nix](modules/home-manager/linux/vscode.nix), [sunshine.nix](modules/systems/nixos/apps/sunshine.nix). Rewrite each to summarise what the module actually configures (matching the module's header comment).
+- [x] **Vague `mkEnableOption` descriptions across 8 modules** — Rewrote descriptions in brave, bash, ansible, thunderbird, syncthing, nextcloud, vscode, and sunshine to summarise what each module actually configures (matching its header comment).

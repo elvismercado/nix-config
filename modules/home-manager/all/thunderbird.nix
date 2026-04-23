@@ -15,7 +15,7 @@
 
 {
   options = {
-    custom.hmThunderbird.enable = lib.mkEnableOption "enables thunderbird";
+    custom.hmThunderbird.enable = lib.mkEnableOption "Thunderbird email client (declarative profile; accounts managed via the GUI)";
   };
 
   config = lib.mkIf config.custom.hmThunderbird.enable {

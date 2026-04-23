@@ -13,7 +13,7 @@
 
 {
   options = {
-    custom.hmVscode.enable = lib.mkEnableOption "enables vscode";
+    custom.hmVscode.enable = lib.mkEnableOption "Visual Studio Code with declarative extensions and settings";
   };
 
   config = lib.mkIf config.custom.hmVscode.enable {
