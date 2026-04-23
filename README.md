@@ -54,6 +54,9 @@ mkdir -p ~/git
 git clone https://github.com/elvismercado/nix-config ~/git/nix-config
 ```
 
+> All hosts default to `channel = "stable"`. To switch a host to `unstable`,
+> see [Per-Host Settings](#per-host-settings) below.
+
 ## Repository Structure
 
 ```
@@ -115,12 +118,31 @@ Each host has a `user-settings.nix` that controls system-level decisions:
 }
 ```
 
-The `channel` setting selects between stable and unstable versions of both **nixpkgs** and **Home Manager** at build time:
+The `channel` setting selects between stable and unstable inputs at build time.
+It's evaluated per host — you can mix stable and unstable hosts in the same flake.
 
-| Channel      | nixpkgs input                             | Home Manager input                                         |
-| ------------ | ----------------------------------------- | ---------------------------------------------------------- |
-| `"stable"`   | `nixpkgs-stable` (FlakeHub latest stable) | `home-manager-stable` (FlakeHub, follows `nixpkgs-stable`) |
-| `"unstable"` | `nixpkgs` (GitHub nixos-unstable)         | `home-manager` (FlakeHub, follows `nixpkgs`)               |
+| Input                     | `"stable"`                             | `"unstable"`                        |
+| ------------------------- | -------------------------------------- | ----------------------------------- |
+| `nixpkgs`                 | `nixpkgs-stable` (FlakeHub)            | `nixpkgs` (GitHub `nixos-unstable`) |
+| `home-manager`            | `home-manager-stable` (follows stable) | `home-manager` (follows unstable)   |
+| `nix-darwin` (macOS only) | `nix-darwin-stable`                    | `nix-darwin`                        |
+
+### Switching a host's channel
+
+1. Edit `hosts/<HOST>/user-settings.nix` and set `channel = "unstable";` (or back to `"stable"`).
+2. Rebuild the host:
+
+   ```bash
+   # NixOS
+   sudo nixos-rebuild switch --flake .#<HOST>
+
+   # macOS
+   darwin-rebuild switch --flake .#<HOST>
+   ```
+
+The flake builder picks the matching nixpkgs / home-manager / nix-darwin
+inputs automatically. An invalid value throws a clear error at evaluation
+time (see `mkHost` in `flake/hosts.nix`).
 
 ## Toggleable Modules
 
