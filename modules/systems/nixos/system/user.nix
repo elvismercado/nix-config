@@ -3,7 +3,8 @@
 # Creates the primary user from `userSettings` (username, uid, hostname) with
 # the default group set used across NixOS hosts (networkmanager, wheel, video,
 # render). Hosts can append additional groups via `extraGroups`. Also sets
-# `users.mutableUsers`, the default user shell to bash, and the system hostname.
+# `users.mutableUsers`, the default user shell to bash, the system hostname,
+# and enables NetworkManager (paired with the `networkmanager` group).
 #
 # Usage:
 #   imports = [ ../../../modules/systems/nixos/system/user.nix ];
@@ -50,5 +51,6 @@
     };
 
     networking.hostName = userSettings.hostname;
+    networking.networkmanager.enable = true;
   };
 }
