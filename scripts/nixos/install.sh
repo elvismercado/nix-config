@@ -668,7 +668,7 @@ partition_disk() {
 
   # Let the kernel re-read the partition table and wait for udev to process
   partprobe "$DISK" 2>/dev/null || true
-  udevadm settle
+  udevadm settle --timeout=30
 
   # Partition the dedicated home disk (entire disk = single ext4 partition)
   if [[ -n "$HOME_DISK" ]] && [[ -z "$KEEP_HOME" ]]; then
@@ -679,7 +679,7 @@ partition_disk() {
     parted -s "$HOME_DISK" -- mkpart home ext4 1MiB 100%
 
     partprobe "$HOME_DISK" 2>/dev/null || true
-    udevadm settle
+    udevadm settle --timeout=30
   elif [[ -n "$HOME_DISK" ]] && [[ -n "$KEEP_HOME" ]]; then
     info "Keeping existing partition table on home disk ${HOME_DISK}."
   fi
